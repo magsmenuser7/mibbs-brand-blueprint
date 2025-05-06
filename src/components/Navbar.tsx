@@ -1,0 +1,84 @@
+
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}>
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <span className="text-xl md:text-2xl font-bold text-navy">
+              MIBBS<span className="text-accent text-sm align-super">™</span>
+            </span>
+          </Link>
+          
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link to="/" className="font-medium text-navy hover:text-accent transition-colors">Home</Link>
+            <Link to="/how-it-works" className="font-medium text-navy hover:text-accent transition-colors">How It Works</Link>
+            <Link to="/tools" className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
+            <Link to="/about" className="font-medium text-navy hover:text-accent transition-colors">About</Link>
+            <Link to="/pricing" className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
+            <Link to="/contact" className="font-medium text-navy hover:text-accent transition-colors">Contact</Link>
+          </div>
+          
+          <div className="hidden md:block">
+            <Button className="btn-primary">Start Budgeting</Button>
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden text-navy focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white absolute top-full left-0 right-0 shadow-md animate-fade-in">
+            <div className="flex flex-col space-y-4 p-6">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Home</Link>
+              <Link to="/how-it-works" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">How It Works</Link>
+              <Link to="/tools" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">About</Link>
+              <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Contact</Link>
+              <Button className="btn-primary w-full">Start Budgeting</Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
