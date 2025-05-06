@@ -2,8 +2,11 @@
 import { Button } from "@/components/ui/button";
 import { Download, ArrowRight, FileText, QrCode } from "lucide-react";
 import QRCodeSection from "@/components/QRCodeSection";
+import { useNavigate } from "react-router-dom";
 
 const Tools = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       {/* Hero Section */}
@@ -58,7 +61,7 @@ const Tools = () => {
                   <p className="text-navy-light">Export your results as a PDF report with detailed explanations</p>
                 </li>
               </ul>
-              <Button className="btn-primary">Try Budget Calculator</Button>
+              <Button className="btn-primary" onClick={() => navigate("/calculator")}>Try Budget Calculator</Button>
             </div>
             <div className="bg-gray-50 p-8 rounded-xl border border-gray-200">
               <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -79,16 +82,15 @@ const Tools = () => {
                       <option>Retail</option>
                     </select>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium text-navy-light mb-1">Business Stage</label>
-                    <select className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent/50 focus:border-accent">
-                      <option>Select your business stage</option>
-                      <option>Early-stage Startup (0-2 years)</option>
-                      <option>Growth Phase (2-5 years)</option>
-                      <option>Established Business (5+ years)</option>
-                    </select>
-                  </div>
-                  <Button className="w-full btn-primary">Calculate Recommended Budget</Button>
+                  <Button 
+                    className="w-full btn-primary"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/calculator");
+                    }}
+                  >
+                    Calculate Recommended Budget
+                  </Button>
                 </form>
               </div>
             </div>
