@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,8 +10,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">MIBBS<span className="text-accent-light text-sm align-super">™</span></h3>
-            <p className="text-gray-300 mb-4">
+            <Logo variant="white" />
+            <p className="text-gray-300 mt-4 mb-4">
               India's First Intelligent Brand Budgeting System. Smarter Budgets. Stronger Brands.
             </p>
             <p className="text-gray-300">

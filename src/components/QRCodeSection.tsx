@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Logo from "./Logo";
 
 const QRCodeSection = () => {
   return (
@@ -18,9 +19,20 @@ const QRCodeSection = () => {
         
         <div className="md:w-1/2 flex justify-center">
           <div className="bg-white p-3 rounded-lg">
-            {/* Replace with actual QR code */}
-            <div className="w-48 h-48 bg-gray-900 flex items-center justify-center">
-              <span className="text-white text-sm">QR Code</span>
+            {/* QR Code with logo */}
+            <div className="w-48 h-48 bg-gray-900 flex items-center justify-center relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-white text-sm">QR Code</span>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="bg-white p-1 rounded-sm">
+                  <img 
+                    src="/lovable-uploads/7a398dd0-1c8a-4165-b535-94922f313fbe.png" 
+                    alt="MIBBS Logo" 
+                    className="h-8 w-auto" 
+                  />
+                </div>
+              </div>
             </div>
             <p className="text-center mt-2 text-navy text-sm">Scan to access MIBBS™</p>
           </div>

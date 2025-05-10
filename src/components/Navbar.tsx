@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,11 +25,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl md:text-2xl font-bold text-navy">
-              MIBBS<span className="text-accent text-sm align-super">™</span>
-            </span>
-          </Link>
+          <Logo />
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
