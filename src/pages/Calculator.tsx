@@ -418,12 +418,12 @@ const Calculator = () => {
                     <div className="h-64 sm:h-80">
                       <ChartContainer 
                         config={{
-                          "Brand Identity": { theme: { light: "#9b87f5" } },
-                          "Digital Marketing": { theme: { light: "#7E69AB" } },
-                          "Traditional Media": { theme: { light: "#6E59A5" } },
-                          "Content Creation": { theme: { light: "#8B5CF6" } },
-                          "Events & Experiences": { theme: { light: "#D946EF" } },
-                          "Research & Insights": { theme: { light: "#F97316" } }
+                          "Brand Identity": { theme: { light: "#9b87f5", dark: "#9b87f5" } },
+                          "Digital Marketing": { theme: { light: "#7E69AB", dark: "#7E69AB" } },
+                          "Traditional Media": { theme: { light: "#6E59A5", dark: "#6E59A5" } },
+                          "Content Creation": { theme: { light: "#8B5CF6", dark: "#8B5CF6" } },
+                          "Events & Experiences": { theme: { light: "#D946EF", dark: "#D946EF" } },
+                          "Research & Insights": { theme: { light: "#F97316", dark: "#F97316" } }
                         }}
                       >
                         <ResponsiveContainer width="100%" height="100%">
