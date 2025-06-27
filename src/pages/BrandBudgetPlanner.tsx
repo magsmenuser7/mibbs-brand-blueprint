@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { ArrowRight, ArrowLeft, Building, TrendingUp, Target, Plus, BarChart3, Users } from "lucide-react";
+import { ArrowRight, ArrowLeft, Building, TrendingUp, Target, Plus, BarChart3, Users, Download, Lock, Unlock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +14,9 @@ const BrandBudgetPlanner = () => {
   const [selectedBusinessStage, setSelectedBusinessStage] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isGeneratingBudget, setIsGeneratingBudget] = useState(false);
+  const [isReportGenerated, setIsReportGenerated] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [showUnlockForm, setShowUnlockForm] = useState(false);
   const navigate = useNavigate();
   
   // Form data
@@ -38,6 +40,13 @@ const BrandBudgetPlanner = () => {
     brandGoals: "",
     plannedBudget: "",
     timeFrame: ""
+  });
+
+  // Unlock form data
+  const [unlockData, setUnlockData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: ""
   });
 
   const industries = [
@@ -82,6 +91,13 @@ const BrandBudgetPlanner = () => {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleUnlockInputChange = (field: string, value: string) => {
+    setUnlockData(prev => ({
       ...prev,
       [field]: value
     }));
@@ -162,6 +178,7 @@ const BrandBudgetPlanner = () => {
       // Simulate final budget generation
       setTimeout(() => {
         setIsGeneratingBudget(false);
+        setIsReportGenerated(true);
         toast({
           title: "Budget Plan Generated!",
           description: "Your personalized brand budget plan is ready.",
@@ -176,6 +193,69 @@ const BrandBudgetPlanner = () => {
   const handlePrev = () => {
     setStep(step - 1);
     setProgress(Math.max(progress - 20, 20));
+  };
+
+  const handleStartOver = () => {
+    setStep(1);
+    setProgress(20);
+    setSelectedBusinessStage("");
+    setIsAnalyzing(false);
+    setIsGeneratingBudget(false);
+    setIsReportGenerated(false);
+    setIsUnlocked(false);
+    setShowUnlockForm(false);
+    setFormData({
+      companyName: "",
+      location: "",
+      websiteUrl: "",
+      companyOverview: "",
+      industry: "",
+      brandProvides: "", 
+      businessDuration: "",
+      businessStage: "",
+      aboutCompany: "",
+      targetAudience: "",
+      businessType: "",
+      customerLTV: "",
+      bestROIChannels: "",
+      repeatCustomerPercentage: "",
+      brandingChallenges: "",
+      currentBrandingSpend: "",
+      brandGoals: "",
+      plannedBudget: "",
+      timeFrame: ""
+    });
+    setUnlockData({
+      fullName: "",
+      email: "",
+      phoneNumber: ""
+    });
+  };
+
+  const handleDownloadPDF = () => {
+    // In a real implementation, this would generate and download a PDF
+    toast({
+      title: "PDF Downloaded",
+      description: "Your brand budget report has been saved to your desktop.",
+    });
+  };
+
+  const handleUnlockReport = () => {
+    if (!unlockData.fullName || !unlockData.email || !unlockData.phoneNumber) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields to unlock the report",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsUnlocked(true);
+    setShowUnlockForm(false);
+    toast({
+      title: "Report Unlocked!",
+      description: "You now have access to the complete strategic recommendations.",
+    });
   };
 
   const businessStageCards = [
@@ -213,7 +293,7 @@ const BrandBudgetPlanner = () => {
     );
   }
 
-  if (isGeneratingBudget) {
+  if (isGeneratingBudget && !isReportGenerated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md mx-auto p-8">
@@ -223,6 +303,230 @@ const BrandBudgetPlanner = () => {
             Our AI is processing all your inputs to create a comprehensive, data-driven budget recommendation tailored specifically for your business needs.
           </p>
           <p className="text-navy-light mt-2">This may take a few moments...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Final Report Display
+  if (isReportGenerated) {
+    return (
+      <div className="container mx-auto px-4 md:px-8 py-20">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy mb-4">
+              Your Brand Budget Report
+            </h1>
+            <p className="text-xl text-navy-light">
+              Comprehensive analysis and recommendations
+            </p>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
+            <Button onClick={handleDownloadPDF} className="flex items-center">
+              <Download className="mr-2 h-4 w-4" />
+              Download PDF
+            </Button>
+            <Button variant="outline" onClick={handleStartOver} className="flex items-center">
+              Start Over
+            </Button>
+          </div>
+
+          {/* Report Content */}
+          <div className="space-y-6">
+            {/* Company Summary */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Company Summary</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 className="font-semibold mb-2">Company Name</h4>
+                    <p className="text-navy-light">{formData.companyName}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Industry</h4>
+                    <p className="text-navy-light">{formData.industry}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Business Stage</h4>
+                    <p className="text-navy-light">{formData.businessStage}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Planned Budget</h4>
+                    <p className="text-navy-light">{formData.plannedBudget}</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Basic Recommendations */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Strategic Recommendations</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span>Deploy targeted ads on Meta/Google to captivate urban and semi-urban shoppers.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span>Develop content marketing strategy focused on your target audience demographics.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                    <span>Optimize brand messaging consistency across all touchpoints.</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Locked Content */}
+            <Card className={`${isUnlocked ? 'border-green-200 bg-green-50' : 'border-gray-300 bg-gray-50'} relative`}>
+              <CardHeader>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="flex items-center">
+                    {isUnlocked ? <Unlock className="mr-2 h-5 w-5 text-green-600" /> : <Lock className="mr-2 h-5 w-5 text-gray-400" />}
+                    Advanced Strategic Analysis
+                  </CardTitle>
+                  {!isUnlocked && (
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setShowUnlockForm(true)}
+                      className="flex items-center"
+                    >
+                      <Unlock className="mr-2 h-4 w-4" />
+                      Unlock
+                    </Button>
+                  )}
+                </div>
+              </CardHeader>
+              <CardContent>
+                {isUnlocked ? (
+                  <div className="space-y-4">
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span>Detailed implementation timeline with monthly milestones and KPIs.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span>Channel-specific budget allocation with ROI projections.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span>Competitive analysis and market positioning strategies.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span>Custom brand guidelines and messaging framework.</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-accent rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span>Performance tracking dashboard and optimization recommendations.</span>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <Lock className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-600 mb-4">
+                      This section contains advanced strategic recommendations, implementation timeline, and detailed budget breakdown.
+                    </p>
+                    <Button onClick={() => setShowUnlockForm(true)} className="flex items-center mx-auto">
+                      <Unlock className="mr-2 h-4 w-4" />
+                      Unlock Full Report
+                    </Button>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Unlock Form Modal */}
+          {showUnlockForm && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <Card className="w-full max-w-md">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Unlock className="mr-2 h-5 w-5" />
+                    Unlock Full Report
+                  </CardTitle>
+                  <CardDescription>
+                    Get access to complete strategic recommendations and implementation timeline
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-navy mb-2">
+                      Full Name *
+                    </label>
+                    <Input
+                      value={unlockData.fullName}
+                      onChange={(e) => handleUnlockInputChange("fullName", e.target.value)}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-navy mb-2">
+                      Email Address *
+                    </label>
+                    <Input
+                      type="email"
+                      value={unlockData.email}
+                      onChange={(e) => handleUnlockInputChange("email", e.target.value)}
+                      placeholder="Enter your email address"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-navy mb-2">
+                      Phone Number *
+                    </label>
+                    <Input
+                      type="tel"
+                      value={unlockData.phoneNumber}
+                      onChange={(e) => handleUnlockInputChange("phoneNumber", e.target.value)}
+                      placeholder="Enter your phone number"
+                      required
+                    />
+                  </div>
+
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <p className="text-sm text-blue-800">
+                      <strong>Privacy Notice:</strong> We respect your privacy. Your information will only be used to provide you with this report.
+                    </p>
+                  </div>
+
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      variant="outline"
+                      onClick={() => setShowUnlockForm(false)}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleUnlockReport}
+                      className="flex-1 flex items-center justify-center"
+                    >
+                      <Unlock className="mr-2 h-4 w-4" />
+                      Unlock Report
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
         </div>
       </div>
     );
