@@ -22,7 +22,7 @@ const About = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
+              <span className="bg-accent/10 text-[#64378e] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
                 Our Mission
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
@@ -37,7 +37,7 @@ const About = () => {
               <p className="text-lg mb-8 text-navy-light">
                 MIBBS was created to solve this specific gap: providing Indian businesses with a data-backed, market-specific system to allocate their brand building budgets more effectively.
               </p>
-              <Button className="btn-primary flex items-center group">
+              <Button className="btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] flex items-center group">
                 Our Approach <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
               </Button>
             </div>
@@ -82,13 +82,13 @@ const About = () => {
               <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/20 rounded-full -z-10"></div>
             </div>
             <div className="order-1 md:order-2">
-              <span className="bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
+              <span className="bg-accent/10 text-[#64378e] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
                 Founder's Vision
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
                 Sandeep's Vision for Brand Budgeting
               </h2>
-              <div className="text-accent-light text-4xl font-serif mb-4">"</div>
+              <div className="text-[#64378e] text-4xl font-serif mb-4">"</div>
               <p className="text-lg mb-6 text-navy-light italic">
                 "After 15+ years of building brands across India, I realized that most businesses, from startups to conglomerates, struggle with the same question: How much should we spend on brand building, and where should we allocate it?"
               </p>
@@ -100,9 +100,9 @@ const About = () => {
               </p>
               
               <div className="flex items-center my-8">
-                <div className="w-16 h-1 bg-accent"></div>
-                <div className="w-4 h-4 rounded-full bg-accent mx-2"></div>
-                <div className="w-16 h-1 bg-accent"></div>
+                <div className="w-16 h-1 bg-[#64378e]"></div>
+                <div className="w-4 h-4 rounded-full bg-[#64378e] mx-2"></div>
+                <div className="w-16 h-1 bg-[#64378e]"></div>
               </div>
               
               <p className="text-navy font-medium">
@@ -117,11 +117,11 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <span className="bg-accent/10 text-accent px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
+            <span className="bg-accent/10 text-[#64378e] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
               Our Background
             </span>
             <h2 className="section-title">Built by Magsmen</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               MIBBS is powered by insights from India's leading brand strategy consultancy.
             </p>
           </div>
@@ -138,7 +138,7 @@ const About = () => {
               <p className="text-navy-light mb-4">
                 MIBBS represents the culmination of insights gathered from years of successful brand building campaigns across diverse Indian markets.
               </p>
-              <Button variant="outline" className="btn-secondary">
+              <Button variant="outline" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
                 Visit Magsmen Website
               </Button>
             </div>
@@ -164,8 +164,8 @@ const About = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="section-title">MIBBS<span className="text-accent text-sm align-super">™</span> Development Timeline</h2>
-            <p className="section-subtitle">
+            <h2 className="section-title">MIBBS<span className="text-[#64378e] text-sm align-super">™</span> Development Timeline</h2>
+            <p className="section-subtitle mx-auto">
               The journey from concept to India's first intelligent brand budgeting system.
             </p>
           </div>
@@ -174,13 +174,13 @@ const About = () => {
             <div className="space-y-12">
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e]  rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-accent font-semibold">2019</span>
+                  <span className="text-[#64378e] font-semibold">2019</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Problem Identification</h3>
                   <p className="text-navy-light">
                     Sandeep and the Magsmen team identify the pattern of inefficient brand budget allocation across multiple Indian client engagements.
@@ -190,13 +190,13 @@ const About = () => {
 
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e] rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-accent font-semibold">2020</span>
+                  <span className="text-[#64378e] font-semibold">2020</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Initial Research</h3>
                   <p className="text-navy-light">
                     Begin collecting and analyzing data from 150+ Indian brand campaigns to identify patterns in budget allocation and effectiveness.
@@ -206,13 +206,13 @@ const About = () => {
 
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e] rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-accent font-semibold">2021</span>
+                  <span className="text-[#64378e] font-semibold">2021</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Algorithm Development</h3>
                   <p className="text-navy-light">
                     Creation of the first proprietary algorithm that factors in Indian market dynamics, industry verticals, and business stages.
@@ -222,13 +222,13 @@ const About = () => {
 
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e] rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-accent font-semibold">2022</span>
+                  <span className="text-[#64378e] font-semibold">2022</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Beta Testing</h3>
                   <p className="text-navy-light">
                     Initial version of MIBBS deployed with select Magsmen clients across various industries, gathering feedback and refining outputs.
@@ -238,13 +238,13 @@ const About = () => {
 
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e] rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30 hidden"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-accent font-semibold">2023</span>
+                  <span className="text-[#64378e]font-semibold">2023</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Official Launch</h3>
                   <p className="text-navy-light">
                     MIBBS is officially launched as India's first intelligent brand budgeting system, available to businesses of all sizes.
@@ -260,7 +260,7 @@ const About = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="section-title">MIBBS<span className="text-accent text-sm align-super">™</span> in the Media</h2>
+            <h2 className="section-title">MIBBS<span className="text-sm align-super text-[#64378e]">™</span> in the Media</h2>
             <p className="section-subtitle">
               Recognition and coverage of our innovative approach to brand budgeting.
             </p>
@@ -283,40 +283,40 @@ const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card hover:-translate-y-2">
-              <span className="text-accent font-medium mb-2 block">Forbes India</span>
+              <span className="text-[#64378e] font-medium mb-2 block">Forbes India</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
                 "Transforming How Indian Startups Approach Brand Building"
               </h3>
               <p className="text-navy-light mb-4">
                 An in-depth look at how MIBBS is changing the game for early-stage companies.
               </p>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
                 Read Article <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
             <div className="card hover:-translate-y-2">
-              <span className="text-accent font-medium mb-2 block">Economic Times</span>
+              <span className="text-[#64378e] font-medium mb-2 block">Economic Times</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
                 "Data-Driven Brand Budgeting: The MIBBS Approach"
               </h3>
               <p className="text-navy-light mb-4">
                 Feature on how Magsmen's MIBBS is bringing scientific rigor to brand investment.
               </p>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
                 Read Article <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
             <div className="card hover:-translate-y-2">
-              <span className="text-accent font-medium mb-2 block">YourStory</span>
+              <span className="text-[#64378e] font-medium mb-2 block">YourStory</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
                 "Meet the Founder Building India's Brand Budget Science"
               </h3>
               <p className="text-navy-light mb-4">
                 Profile of Sandeep Kumar and his mission to transform Indian brand building.
               </p>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
                 Read Article <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -325,7 +325,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-accent text-white">
+      <section className="py-20 text-white bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Join the Smarter Brand Budgeting Movement</h2>
@@ -333,10 +333,10 @@ const About = () => {
               Experience MIBBS and transform how you plan, allocate, and optimize your brand building investments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-accent hover:bg-gray-100 font-semibold py-3 px-6 rounded-md transition-all duration-300 flex items-center group">
+              <Button className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] font-semibold py-3 px-6 rounded-md transition-all duration-300 flex items-center group">
                 Start Budgeting <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
               </Button>
-              <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 font-semibold py-3 px-6 rounded-md transition-all duration-300">
+              <Button variant="outline" className="border-2 border-white text-white bg-[#ac89b9] hover:bg-white/10 font-semibold py-3 px-6 rounded-md transition-all duration-300">
                 Contact Our Team
               </Button>
             </div>

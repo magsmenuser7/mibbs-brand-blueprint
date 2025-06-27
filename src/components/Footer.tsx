@@ -14,9 +14,9 @@ const Footer = () => {
             <p className="text-gray-300 mt-4 mb-4">
               India's First Intelligent Brand Budgeting System. Smarter Budgets. Stronger Brands.
             </p>
-            <p className="text-gray-300">
-              Built by <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer" className="text-accent-light hover:underline">Magsmen</a>
-            </p>
+            {/* <p className="text-gray-300">
+              Built by <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer" className="text-[#cbd347] hover:underline">Magsmen</a>
+            </p> */}
           </div>
           
           <div>
@@ -65,12 +65,12 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-evenly items-center">
           <p className="text-gray-400 mb-4 md:mb-0">
             &copy; {currentYear} MIBBS. All rights reserved.
           </p>
           <p className="text-gray-400">
-            A Product of <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer" className="text-accent-light hover:underline">Magsmen</a>
+            A Product of <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer" className="text-[#e2659f] hover:underline ">Magsmen</a>
           </p>
         </div>
       </div>

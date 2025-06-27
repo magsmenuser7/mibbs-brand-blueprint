@@ -74,13 +74,13 @@ const Pricing = () => {
                 </div>
               </div>
               <div className="p-6 border-t border-gray-200">
-                <Button variant="outline" className="w-full">Get Started Free</Button>
+                <Button variant="outline" className="w-full hover:bg-[#64378e] hover:text-[#fff]">Get Started Free</Button>
               </div>
             </div>
 
             {/* Pro Plan */}
             <div className="bg-white rounded-xl overflow-hidden border border-accent shadow-md hover:shadow-lg transition-all flex flex-col relative">
-              <div className="absolute top-0 left-0 right-0 bg-accent text-white text-center py-1 text-sm font-medium">
+              <div className="absolute top-0 left-0 right-0 bg-[#ac89b9] text-white text-center py-1 text-sm font-medium">
                 Most Popular
               </div>
               <div className="p-6 border-b border-gray-200 mt-6">
@@ -121,7 +121,7 @@ const Pricing = () => {
                 </div>
               </div>
               <div className="p-6 border-t border-gray-200">
-                <Button className="w-full btn-primary">Subscribe Now</Button>
+                <Button className="w-full btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">Subscribe Now</Button>
               </div>
             </div>
 
@@ -161,7 +161,7 @@ const Pricing = () => {
                 </div>
               </div>
               <div className="p-6 border-t border-gray-200">
-                <Button variant="outline" className="w-full">Contact Sales</Button>
+                <Button variant="outline" className="w-full hover:bg-[#64378e] hover:text-[#fff]">Contact Sales</Button>
               </div>
             </div>
           </div>
@@ -173,7 +173,7 @@ const Pricing = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title">Plan Comparison</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               Detailed feature breakdown for each MIBBS<span className="text-accent text-sm align-super">™</span> plan.
             </p>
           </div>
@@ -182,10 +182,10 @@ const Pricing = () => {
             <table className="w-full bg-white rounded-xl shadow-sm">
               <thead>
                 <tr className="border-b border-gray-200">
-                  <th className="py-4 px-6 text-left text-navy font-semibold">Features</th>
-                  <th className="py-4 px-6 text-center text-navy font-semibold">Free</th>
-                  <th className="py-4 px-6 text-center text-navy font-semibold bg-accent/5">Pro</th>
-                  <th className="py-4 px-6 text-center text-navy font-semibold">Enterprise</th>
+                  <th className="py-4 px-6 text-left text-[#64378e]font-semibold">Features</th>
+                  <th className="py-4 px-6 text-center text-[#64378e] font-semibold">Free</th>
+                  <th className="py-4 px-6 text-center text-[#64378e] font-semibold bg-accent/5">Pro</th>
+                  <th className="py-4 px-6 text-center text-[#64378e] font-semibold">Enterprise</th>
                 </tr>
               </thead>
               <tbody>
@@ -195,19 +195,19 @@ const Pricing = () => {
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Budget Calculator</td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Industry Benchmarks</td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">Limited</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">PDF Reports</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">1</span></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">1</span></td>
                   <td className="py-3 px-6 text-center bg-accent/5"><span className="text-navy-light">Unlimited</span></td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">Unlimited</span></td>
                 </tr>
@@ -218,21 +218,21 @@ const Pricing = () => {
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Quarterly Planning Tools</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Channel-specific Breakdown</td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 ttext-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Budget Tracking Dashboard</td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
 
                 {/* Premium Features */}
@@ -241,27 +241,27 @@ const Pricing = () => {
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Dedicated Account Manager</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Custom Brand Analytics</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">Expert Consultation Sessions</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">—</span></td>
                   <td className="py-3 px-6 text-center bg-accent/5"><span className="text-navy-light">1/quarter</span></td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">Monthly</span></td>
                 </tr>
                 <tr className="border-b border-gray-200">
                   <td className="py-3 px-6 text-navy-light">API Access</td>
-                  <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-navy-light">—</span></td>
-                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="py-3 px-6 text-center"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center bg-accent/5"><span className="text-[#64378e]">—</span></td>
+                  <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
               </tbody>
             </table>
@@ -274,7 +274,7 @@ const Pricing = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title">Frequently Asked Questions</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               Find answers to common questions about MIBBS<span className="text-accent text-sm align-super">™</span> plans and pricing.
             </p>
           </div>
@@ -318,7 +318,7 @@ const Pricing = () => {
 
           <div className="text-center mt-12">
             <p className="text-navy-light mb-6">Still have questions about our plans?</p>
-            <Button className="btn-primary">Contact Support</Button>
+            <Button className="btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">Contact Support</Button>
           </div>
         </div>
       </section>
@@ -331,7 +331,7 @@ const Pricing = () => {
             <p className="text-xl mb-8">
               Join thousands of Indian businesses using MIBBS<span className="text-accent-light text-sm align-super">™</span> to make data-backed brand investment decisions.
             </p>
-            <Button className="bg-accent-light hover:bg-accent text-white font-semibold py-3 px-6 rounded-md transition-all duration-300">
+            <Button className="bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] text-white font-semibold py-3 px-6 rounded-md transition-all duration-300">
               Get Started Free
             </Button>
           </div>

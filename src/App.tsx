@@ -14,6 +14,9 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Calculator from "./pages/Calculator";
 
+
+
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,11 +35,15 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
+           
           </Route>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+
+
+ 
 );
 
 export default App;

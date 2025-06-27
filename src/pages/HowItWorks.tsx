@@ -34,7 +34,7 @@ const HowItWorks = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-2">
                   <div className="bg-accent/10 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-accent">1</span>
+                    <span className="text-xl font-bold text-[#64378e]">1</span>
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-navy">Collect Your Business Inputs</h3>
                   <p className="text-navy-light mb-4">
@@ -118,7 +118,7 @@ const HowItWorks = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-2 md:order-2">
                   <div className="bg-accent/10 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-accent">2</span>
+                    <span className="text-xl font-bold text-[#64378e]">2</span>
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-navy">Intelligent Processing</h3>
                   <p className="text-navy-light mb-4">
@@ -163,18 +163,18 @@ const HowItWorks = () => {
                   <div className="bg-navy-light/5 p-6 rounded-xl border border-navy-light/20">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-4 shadow-sm flex flex-col items-center">
-                        <PieChart className="text-accent mb-2 h-12 w-12" />
+                        <PieChart className="text-[#64378e] mb-2 h-12 w-12" />
                         <h5 className="font-medium text-navy">Market Analysis</h5>
                         <div className="w-full bg-gray-200 h-2 rounded-full mt-3">
-                          <div className="bg-accent h-2 rounded-full w-3/4"></div>
+                          <div className="bg-[#64378e] h-2 rounded-full w-3/4"></div>
                         </div>
                         <p className="text-xs text-navy-light mt-2">Processing: 75%</p>
                       </div>
                       <div className="bg-white rounded-lg p-4 shadow-sm flex flex-col items-center">
-                        <BarChart2 className="text-accent mb-2 h-12 w-12" />
+                        <BarChart2 className="text-[#64378e] mb-2 h-12 w-12" />
                         <h5 className="font-medium text-navy">Budget Optimization</h5>
                         <div className="w-full bg-gray-200 h-2 rounded-full mt-3">
-                          <div className="bg-accent h-2 rounded-full w-5/6"></div>
+                          <div className="bg-[#64378e] h-2 rounded-full w-5/6"></div>
                         </div>
                         <p className="text-xs text-navy-light mt-2">Processing: 83%</p>
                       </div>
@@ -213,7 +213,7 @@ const HowItWorks = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-2">
                   <div className="bg-accent/10 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold text-accent">3</span>
+                    <span className="text-xl font-bold text-[#64378e]">3</span>
                   </div>
                   <h3 className="text-2xl font-semibold mb-3 text-navy">Strategic Recommendations</h3>
                   <p className="text-navy-light mb-4">
@@ -258,7 +258,7 @@ const HowItWorks = () => {
                   <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
                     <div className="flex justify-between items-center mb-6">
                       <h4 className="font-semibold text-navy">Budget Recommendation Report</h4>
-                      <Button variant="outline" size="sm" className="flex items-center text-navy">
+                      <Button variant="outline" size="sm" className="flex items-center text-navy hover:bg-[#64378e] hover:text-[#fff]">
                         <Download size={16} className="mr-1" /> Export
                       </Button>
                     </div>
@@ -267,11 +267,11 @@ const HowItWorks = () => {
                         <h5 className="text-sm font-medium text-navy-light mb-2">Channel Allocation</h5>
                         <div className="bg-gray-50 p-4 rounded-lg">
                           <div className="h-32 flex items-end space-x-2">
-                            <div className="h-[80%] w-full bg-accent/80 rounded-t-md"></div>
-                            <div className="h-[60%] w-full bg-accent/70 rounded-t-md"></div>
-                            <div className="h-[45%] w-full bg-accent/60 rounded-t-md"></div>
-                            <div className="h-[30%] w-full bg-accent/50 rounded-t-md"></div>
-                            <div className="h-[20%] w-full bg-accent/40 rounded-t-md"></div>
+                            <div className="h-[80%] w-full bg-[#64378e]/80 rounded-t-md"></div>
+                            <div className="h-[60%] w-full bg-[#64378e]/70 rounded-t-md"></div>
+                            <div className="h-[45%] w-full bg-[#64378e]/60 rounded-t-md"></div>
+                            <div className="h-[30%] w-full bg-[#64378e]/50 rounded-t-md"></div>
+                            <div className="h-[20%] w-full bg-[#64378e]/40 rounded-t-md"></div>
                           </div>
                           <div className="flex justify-between text-xs text-navy-light mt-2">
                             <span>Digital</span>
@@ -288,7 +288,7 @@ const HowItWorks = () => {
                           <h5 className="text-sm font-medium text-navy-light mb-2">Timeline Summary</h5>
                           <div className="bg-gray-50 p-4 rounded-lg h-24 flex items-center justify-center">
                             <div className="text-center">
-                              <FileText className="h-8 w-8 text-accent mx-auto mb-1" />
+                              <FileText className="h-8 w-8 text-[#64378e] mx-auto mb-1" />
                               <span className="text-xs text-navy-light">Quarterly Roadmap</span>
                             </div>
                           </div>
@@ -297,7 +297,7 @@ const HowItWorks = () => {
                           <h5 className="text-sm font-medium text-navy-light mb-2">ROI Projection</h5>
                           <div className="bg-gray-50 p-4 rounded-lg h-24 flex items-center justify-center">
                             <div className="text-center">
-                              <div className="text-2xl font-bold text-accent">24%</div>
+                              <div className="text-2xl font-bold text-[#64378e]">24%</div>
                               <span className="text-xs text-navy-light">Estimated Return</span>
                             </div>
                           </div>
@@ -316,7 +316,7 @@ const HowItWorks = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="section-title">What MIBBS<span className="text-accent text-sm align-super">™</span> Delivers</h2>
+            <h2 className="section-title">What MIBBS<span className="text-[#64378e] text-sm align-super">™</span> Delivers</h2>
             <p className="section-subtitle">
               Each MIBBS recommendation includes comprehensive resources to guide your brand budgeting.
             </p>
@@ -325,7 +325,7 @@ const HowItWorks = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="card hover:-translate-y-2">
               <div className="h-12 w-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                <BarChart2 className="h-6 w-6 text-accent" />
+                <BarChart2 className="h-6 w-6 text-[#64378e]" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-navy">Budget Allocation Plan</h3>
               <p className="text-navy-light mb-4">
@@ -333,7 +333,7 @@ const HowItWorks = () => {
               </p>
               <ul className="space-y-2 mb-4">
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -341,7 +341,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Percentage-based allocation</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -349,7 +349,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Channel prioritization</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -357,14 +357,14 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Spend optimization strategy</p>
                 </li>
               </ul>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#64378e] hover:bg-[#64378e] hover:text-[#fff]">
                 View Sample <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
             <div className="card hover:-translate-y-2">
               <div className="h-12 w-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                <FileText className="h-6 w-6 text-accent" />
+                <FileText className="h-6 w-6 text-[#64378e]" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-navy">Strategic Roadmap</h3>
               <p className="text-navy-light mb-4">
@@ -372,7 +372,7 @@ const HowItWorks = () => {
               </p>
               <ul className="space-y-2 mb-4">
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -380,7 +380,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Quarterly planning structure</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -388,7 +388,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Seasonal optimization</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -396,14 +396,14 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Key milestone planning</p>
                 </li>
               </ul>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#64378e] hover:bg-[#64378e] hover:text-[#fff]">
                 View Sample <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
 
             <div className="card hover:-translate-y-2">
               <div className="h-12 w-12 bg-accent/10 rounded-full flex items-center justify-center mb-4">
-                <PieChart className="h-6 w-6 text-accent" />
+                <PieChart className="h-6 w-6 text-[#64378e]" />
               </div>
               <h3 className="text-xl font-semibold mb-3 text-navy">ROI Analysis</h3>
               <p className="text-navy-light mb-4">
@@ -411,7 +411,7 @@ const HowItWorks = () => {
               </p>
               <ul className="space-y-2 mb-4">
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -419,7 +419,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Channel effectiveness scores</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -427,7 +427,7 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Brand impact projections</p>
                 </li>
                 <li className="flex items-start">
-                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-2 mt-0.5">
+                  <div className="h-5 w-5 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-2 mt-0.5">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -435,14 +435,14 @@ const HowItWorks = () => {
                   <p className="text-navy-light text-sm">Performance tracking metrics</p>
                 </li>
               </ul>
-              <Button variant="ghost" className="text-accent hover:text-accent-light hover:bg-accent/5">
+              <Button variant="ghost" className="text-[#64378e] hover:bg-[#64378e] hover:text-[#fff]">
                 View Sample <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
 
-          <div className="mt-16 text-center">
-            <Button className="btn-primary" asChild>
+          <div className="mt-16 text-center ">
+            <Button className="btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]" asChild>
               <a href="/tools">Explore Templates & Tools</a>
             </Button>
           </div>
