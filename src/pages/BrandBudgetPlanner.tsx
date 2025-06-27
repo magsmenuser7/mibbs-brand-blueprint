@@ -14,6 +14,7 @@ const BrandBudgetPlanner = () => {
   const [progress, setProgress] = useState(20);
   const [selectedBusinessStage, setSelectedBusinessStage] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [isGeneratingBudget, setIsGeneratingBudget] = useState(false);
   const navigate = useNavigate();
   
   // Form data
@@ -27,7 +28,16 @@ const BrandBudgetPlanner = () => {
     businessDuration: "",
     businessStage: "",
     aboutCompany: "",
-    targetAudience: ""
+    targetAudience: "",
+    businessType: "",
+    customerLTV: "",
+    bestROIChannels: "",
+    repeatCustomerPercentage: "",
+    brandingChallenges: "",
+    currentBrandingSpend: "",
+    brandGoals: "",
+    plannedBudget: "",
+    timeFrame: ""
   });
 
   const industries = [
@@ -49,6 +59,25 @@ const BrandBudgetPlanner = () => {
     "3-5 years",
     "6-10 years",
     "More than 10 years"
+  ];
+
+  const businessTypes = [
+    "B2B (Business to Business)",
+    "B2C (Business to Consumer)",
+    "B2B2C (Business to Business to Consumer)",
+    "Marketplace",
+    "SaaS Platform",
+    "E-commerce",
+    "Service Provider",
+    "Other"
+  ];
+
+  const timeFrames = [
+    "3 months",
+    "6 months",
+    "1 year",
+    "2 years",
+    "3+ years"
   ];
 
   const handleInputChange = (field: string, value: string) => {
@@ -81,7 +110,27 @@ const BrandBudgetPlanner = () => {
         }
         break;
       case 3:
-        if (!formData.aboutCompany || !formData.targetAudience) {
+        if (!formData.aboutCompany || !formData.targetAudience || !formData.businessType) {
+          toast({
+            title: "Missing Information", 
+            description: "Please fill in all required fields to continue",
+            variant: "destructive"
+          });
+          return false;
+        }
+        break;
+      case 4:
+        if (!formData.customerLTV || !formData.bestROIChannels || !formData.repeatCustomerPercentage || !formData.brandingChallenges || !formData.currentBrandingSpend) {
+          toast({
+            title: "Missing Information", 
+            description: "Please fill in all required fields to continue",
+            variant: "destructive"
+          });
+          return false;
+        }
+        break;
+      case 5:
+        if (!formData.brandGoals || !formData.plannedBudget || !formData.timeFrame) {
           toast({
             title: "Missing Information", 
             description: "Please fill in all required fields to continue",
@@ -107,6 +156,17 @@ const BrandBudgetPlanner = () => {
         setStep(step + 1);
         setProgress(Math.min(progress + 20, 100));
       }, 3000);
+    } else if (step === 5) {
+      setIsGeneratingBudget(true);
+      
+      // Simulate final budget generation
+      setTimeout(() => {
+        setIsGeneratingBudget(false);
+        toast({
+          title: "Budget Plan Generated!",
+          description: "Your personalized brand budget plan is ready.",
+        });
+      }, 4000);
     } else {
       setStep(step + 1);
       setProgress(Math.min(progress + 20, 100));
@@ -153,6 +213,21 @@ const BrandBudgetPlanner = () => {
     );
   }
 
+  if (isGeneratingBudget) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center max-w-md mx-auto p-8">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-accent mx-auto mb-6"></div>
+          <h2 className="text-2xl font-bold text-navy mb-4">Analyzing and loading personalized budget</h2>
+          <p className="text-navy-light">
+            Our AI is processing all your inputs to create a comprehensive, data-driven budget recommendation tailored specifically for your business needs.
+          </p>
+          <p className="text-navy-light mt-2">This may take a few moments...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 md:px-8 py-20">
       <div className="max-w-4xl mx-auto">
@@ -181,8 +256,8 @@ const BrandBudgetPlanner = () => {
               {step === 1 && "Basic Company Information"}
               {step === 2 && "Select Your Business Stage"}
               {step === 3 && "You're over halfway there!"}
-              {step === 4 && "Budget Goals & Preferences"}
-              {step === 5 && "Final Review"}
+              {step === 4 && "Stage-Specific Assessment"}
+              {step === 5 && "Brand Goals & Budget Planning"}
             </CardTitle>
           </CardHeader>
 
@@ -208,6 +283,22 @@ const BrandBudgetPlanner = () => {
               <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
                 <p className="text-purple-800">
                   Excellent! We've analyzed your business and generated comprehensive insights. Please review and refine the information below. Your input ensures we create the most accurate budget recommendations for your specific market and audience.
+                </p>
+              </div>
+            )}
+
+            {step === 4 && (
+              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+                <p className="text-orange-800">
+                  Almost there! Now let's dive into the specifics of your marketing performance and challenges. This data helps us understand what's working for your business and where there might be opportunities to optimize your branding investment for better returns.
+                </p>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mb-6">
+                <p className="text-indigo-800">
+                  Final step! You're doing great! Now let's define your brand objectives, timeline, and budget parameters. This final information will allow us to create a comprehensive, actionable budget plan that aligns perfectly with your goals and financial capacity.
                 </p>
               </div>
             )}
@@ -375,6 +466,140 @@ const BrandBudgetPlanner = () => {
                     required
                   />
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    Business Type *
+                  </label>
+                  <select
+                    value={formData.businessType}
+                    onChange={(e) => handleInputChange("businessType", e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent/50 focus:border-accent"
+                    required
+                  >
+                    <option value="">Select business type</option>
+                    {businessTypes.map(type => (
+                      <option key={type} value={type}>{type}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
+
+            {/* Step 4 - Stage-Specific Assessment */}
+            {step === 4 && (
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What is your average customer lifetime value (LTV)? *
+                  </label>
+                  <Input
+                    value={formData.customerLTV}
+                    onChange={(e) => handleInputChange("customerLTV", e.target.value)}
+                    placeholder="e.g., ₹50,000"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    Which marketing channels have given you the best ROI so far? *
+                  </label>
+                  <Textarea
+                    value={formData.bestROIChannels}
+                    onChange={(e) => handleInputChange("bestROIChannels", e.target.value)}
+                    placeholder="e.g., Social media marketing, Google Ads, Email marketing, etc."
+                    rows={3}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What percentage of your revenue comes from repeat customers? *
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.repeatCustomerPercentage}
+                    onChange={(e) => handleInputChange("repeatCustomerPercentage", e.target.value)}
+                    placeholder="Enter percentage (0-100)"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What are your primary branding challenges currently? *
+                  </label>
+                  <Textarea
+                    value={formData.brandingChallenges}
+                    onChange={(e) => handleInputChange("brandingChallenges", e.target.value)}
+                    placeholder="e.g., Low brand awareness, inconsistent messaging, competition, etc."
+                    rows={4}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What is your current branding spend? *
+                  </label>
+                  <Input
+                    value={formData.currentBrandingSpend}
+                    onChange={(e) => handleInputChange("currentBrandingSpend", e.target.value)}
+                    placeholder="e.g., ₹2,00,000 per month"
+                    required
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Step 5 - Brand Goals & Budget Planning */}
+            {step === 5 && (
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What are your goals for your brand? *
+                  </label>
+                  <Textarea
+                    value={formData.brandGoals}
+                    onChange={(e) => handleInputChange("brandGoals", e.target.value)}
+                    placeholder="e.g., Increase brand awareness, improve customer retention, expand market share, etc."
+                    rows={4}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What is your planned budget? *
+                  </label>
+                  <Input
+                    value={formData.plannedBudget}
+                    onChange={(e) => handleInputChange("plannedBudget", e.target.value)}
+                    placeholder="e.g., ₹10,00,000"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-navy mb-2">
+                    What is the time frame? *
+                  </label>
+                  <select
+                    value={formData.timeFrame}
+                    onChange={(e) => handleInputChange("timeFrame", e.target.value)}
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-accent/50 focus:border-accent"
+                    required
+                  >
+                    <option value="">Select time frame</option>
+                    {timeFrames.map(timeFrame => (
+                      <option key={timeFrame} value={timeFrame}>{timeFrame}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             )}
 
@@ -392,7 +617,6 @@ const BrandBudgetPlanner = () => {
               <Button 
                 onClick={handleNext}
                 className="flex items-center"
-                disabled={step === 5}
               >
                 {step === 5 ? "Complete" : "Continue"} 
                 <ArrowRight className="ml-2 h-4 w-4" />
