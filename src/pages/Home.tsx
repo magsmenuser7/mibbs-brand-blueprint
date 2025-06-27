@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, BarChart2, PieChart, TrendingUp } from "lucide-react";
 import QRCodeSection from "@/components/QRCodeSection";
