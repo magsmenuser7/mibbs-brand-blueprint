@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, BarChart2, PieChart, TrendingUp } from "lucide-react";
 import QRCodeSection from "@/components/QRCodeSection";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -25,11 +25,13 @@ const Home = () => {
                 Built for Indian Businesses. Data-backed brand budgeting tools, strategic recommendations, and real-time planning.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="btn-primary flex items-center group">
-                  Start Budgeting <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                <Button className="btn-primary flex items-center group" asChild>
+                  <Link to="/brand-budget-planner">
+                    Start Budgeting <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                  </Link>
                 </Button>
-                <Button variant="outline" className="btn-secondary">
-                  Learn How It Works
+                <Button variant="outline" className="btn-secondary" asChild>
+                  <Link to="/how-it-works">Learn How It Works</Link>
                 </Button>
               </div>
             </div>

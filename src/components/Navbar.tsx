@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -38,7 +37,9 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:block">
-            <Button className="btn-primary">Start Budgeting</Button>
+            <Button className="btn-primary" asChild>
+              <Link to="/brand-budget-planner">Start Budgeting</Link>
+            </Button>
           </div>
           
           {/* Mobile Menu Button */}
@@ -67,9 +68,11 @@ const Navbar = () => {
               <Link to="/how-it-works" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">How It Works</Link>
               <Link to="/tools" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
               <Link to="/about" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">About</Link>
-              <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
+              <Link to="/pricing" onClick(() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Contact</Link>
-              <Button className="btn-primary w-full">Start Budgeting</Button>
+              <Button className="btn-primary w-full" asChild>
+                <Link to="/brand-budget-planner">Start Budgeting</Link>
+              </Button>
             </div>
           </div>
         )}
