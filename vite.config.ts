@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/mibbs-brand-blueprint/", // 👈 important for GitHub Pages
+  base: "/", // 👈 important for GitHub Pages
 
   plugins: [
     react(),
