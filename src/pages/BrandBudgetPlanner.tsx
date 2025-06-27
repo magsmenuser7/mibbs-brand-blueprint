@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { ArrowRight, ArrowLeft, Building, TrendingUp, Target, Plus, BarChart3, Users, Download, Lock, Unlock, Shield } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 
 const BrandBudgetPlanner = () => {
   const [step, setStep] = useState(1);
@@ -87,6 +88,35 @@ const BrandBudgetPlanner = () => {
     "1 year",
     "2 years",
     "3+ years"
+  ];
+
+  const businessStageCards = [
+    {
+      id: "entry",
+      icon: Plus,
+      title: "Entry Level",
+      subtitle: "Starting a new business and not sure where to put money in branding"
+    },
+    {
+      id: "mid", 
+      icon: TrendingUp,
+      title: "Mid Level",
+      subtitle: "Existing business, spending vaguely on branding and marketing, need navigation"
+    },
+    {
+      id: "advanced",
+      icon: BarChart3, 
+      title: "Advanced",
+      subtitle: "Extensive market visibility, looking to streamline and scale with higher budgets"
+    }
+  ];
+
+  // Pie chart data
+  const pieChartData = [
+    { name: 'Digital Advertising', value: 40, amount: 72000, color: '#3B82F6' },
+    { name: 'In-store Promotions', value: 30, amount: 54000, color: '#10B981' },
+    { name: 'OOH Billboards', value: 20, amount: 36000, color: '#8B5CF6' },
+    { name: 'Influencer Collaborations', value: 10, amount: 18000, color: '#F59E0B' }
   ];
 
   const handleInputChange = (field: string, value: string) => {
@@ -255,27 +285,6 @@ const BrandBudgetPlanner = () => {
     });
   };
 
-  const businessStageCards = [
-    {
-      id: "entry",
-      icon: Plus,
-      title: "Entry Level",
-      subtitle: "Starting a new business and not sure where to put money in branding"
-    },
-    {
-      id: "mid", 
-      icon: TrendingUp,
-      title: "Mid Level",
-      subtitle: "Existing business, spending vaguely on branding and marketing, need navigation"
-    },
-    {
-      id: "advanced",
-      icon: BarChart3, 
-      title: "Advanced",
-      subtitle: "Extensive market visibility, looking to streamline and scale with higher budgets"
-    }
-  ];
-
   if (isAnalyzing) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -307,25 +316,36 @@ const BrandBudgetPlanner = () => {
 
   // Final Report Display
   if (isReportGenerated) {
+    const currentDate = new Date().toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="container mx-auto px-4 md:px-8 py-12">
+      <div className="min-h-screen bg-white print:bg-white">
+        <div className="container mx-auto px-4 md:px-8 py-12 print:py-8">
           <div className="max-w-4xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-navy mb-4">
+            <div className="text-center mb-8 print:mb-6">
+              <div className="flex items-center justify-center mb-4">
+                <Building className="h-8 w-8 text-accent mr-3" />
+                <h1 className="text-2xl font-bold text-navy">Brand Budget Report - {formData.companyName}</h1>
+              </div>
+              <div className="w-full h-px bg-gray-300 mb-6"></div>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy mb-2">
                 Your Brand Budget Recommendation
-              </h1>
-              <p className="text-xl text-navy-light mb-8">
+              </h2>
+              <p className="text-lg text-navy-light">
                 Based on your inputs, here is our recommended budget allocation
               </p>
             </div>
 
             {/* Company Info Banner */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-6 mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div>
-                  <h3 className="font-bold text-2xl text-navy">{formData.companyName}</h3>
+                  <h3 className="font-bold text-xl text-navy">{formData.companyName}</h3>
                 </div>
                 <div>
                   <p className="text-sm text-gray-600">Industry</p>
@@ -340,68 +360,93 @@ const BrandBudgetPlanner = () => {
                   <p className="font-semibold text-navy">D2C</p>
                 </div>
               </div>
-              <div className="text-center mt-4 pt-4 border-t">
+              <div className="text-center mt-4 pt-4 border-t border-gray-200">
                 <p className="text-sm text-gray-600">Planned Budget</p>
-                <p className="font-bold text-3xl text-accent">{formData.plannedBudget}</p>
+                <p className="font-bold text-2xl text-accent">{formData.plannedBudget}</p>
               </div>
             </div>
 
             {/* Budget Summary */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <h2 className="text-2xl font-bold text-navy mb-4">Budget Summary</h2>
               <p className="text-navy-light text-lg leading-relaxed">
                 This budget targets a 20% increase in brand recall and 1.5M impressions to boost brand awareness in the Indian market via strategic, high-ROI channels.
               </p>
             </div>
 
-            {/* Budget Allocation */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            {/* Budget Allocation with Pie Chart */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <h2 className="text-2xl font-bold text-navy mb-6">Recommended Budget Allocation</h2>
-              <div className="space-y-6">
-                <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-navy">Digital Advertising (Meta/Google) for Pan-India Retail Audiences</h3>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-blue-600">40%</div>
-                    <div className="text-lg font-semibold text-navy">₹72,000</div>
-                  </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Pie Chart */}
+                <div className="flex justify-center">
+                  <ResponsiveContainer width="100%" height={300}>
+                    <PieChart>
+                      <Pie
+                        data={pieChartData}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={100}
+                        dataKey="value"
+                        label={({ name, value }) => `${value}%`}
+                      >
+                        {pieChartData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <Tooltip formatter={(value) => `${value}%`} />
+                      <Legend />
+                    </PieChart>
+                  </ResponsiveContainer>
                 </div>
-                
-                <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-navy">In-store Promotional Displays for Urban Retail Hubs</h3>
+
+                {/* Budget Breakdown */}
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-navy">Digital Advertising (Meta/Google) for Pan-India Retail Audiences</h3>
+                    </div>
+                    <div className="text-right ml-4">
+                      <div className="text-xl font-bold text-blue-600">40%</div>
+                      <div className="text-lg font-semibold text-navy">₹72,000</div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-green-600">30%</div>
-                    <div className="text-lg font-semibold text-navy">₹54,000</div>
+                  
+                  <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-navy">In-store Promotional Displays for Urban Retail Hubs</h3>
+                    </div>
+                    <div className="text-right ml-4">
+                      <div className="text-xl font-bold text-green-600">30%</div>
+                      <div className="text-lg font-semibold text-navy">₹54,000</div>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-navy">Outdoor/OOH Billboards in Tier 1-2 Cities</h3>
+                  
+                  <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-navy">Outdoor/OOH Billboards in Tier 1-2 Cities</h3>
+                    </div>
+                    <div className="text-right ml-4">
+                      <div className="text-xl font-bold text-purple-600">20%</div>
+                      <div className="text-lg font-semibold text-navy">₹36,000</div>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-purple-600">20%</div>
-                    <div className="text-lg font-semibold text-navy">₹36,000</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between p-4 bg-orange-50 rounded-lg">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-navy">Influencer Collaborations for Retail Product Endorsements</h3>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-orange-600">10%</div>
-                    <div className="text-lg font-semibold text-navy">₹18,000</div>
+                  
+                  <div className="flex items-center justify-between p-4 bg-orange-50 rounded-lg border-l-4 border-orange-500">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-navy">Influencer Collaborations for Retail Product Endorsements</h3>
+                    </div>
+                    <div className="text-right ml-4">
+                      <div className="text-xl font-bold text-orange-600">10%</div>
+                      <div className="text-lg font-semibold text-navy">₹18,000</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Strategic Recommendations */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <h2 className="text-2xl font-bold text-navy mb-6">Strategic Recommendations</h2>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -420,7 +465,7 @@ const BrandBudgetPlanner = () => {
             </div>
 
             {/* Implementation Timeline */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <h2 className="text-2xl font-bold text-navy mb-6">Recommended Implementation Timeline</h2>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -447,81 +492,109 @@ const BrandBudgetPlanner = () => {
               </div>
             </div>
 
-            {/* Locked Advanced Content */}
-            <div className={`bg-white rounded-2xl shadow-lg p-8 mb-8 relative ${!isUnlocked ? 'opacity-75' : ''}`}>
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-navy flex items-center">
-                  {isUnlocked ? <Unlock className="mr-3 h-6 w-6 text-green-600" /> : <Lock className="mr-3 h-6 w-6 text-gray-400" />}
-                  Advanced Strategic Analysis
-                </h2>
-                {!isUnlocked && (
-                  <Button 
-                    onClick={() => setShowUnlockForm(true)}
-                    className="flex items-center"
-                  >
-                    <Unlock className="mr-2 h-4 w-4" />
-                    Unlock Full Report
-                  </Button>
-                )}
-              </div>
-              
-              {isUnlocked ? (
-                <div className="space-y-4">
-                  <ul className="space-y-4">
-                    <li className="flex items-start">
-                      <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                      <span className="text-navy-light text-lg">Detailed implementation timeline with monthly milestones and KPIs.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                      <span className="text-navy-light text-lg">Channel-specific budget allocation with ROI projections.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                      <span className="text-navy-light text-lg">Competitive analysis and market positioning strategies.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                      <span className="text-navy-light text-lg">Custom brand guidelines and messaging framework.</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
-                      <span className="text-navy-light text-lg">Performance tracking dashboard and optimization recommendations.</span>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <Lock className="h-16 w-16 text-gray-400 mx-auto mb-6" />
-                  <p className="text-gray-600 mb-6 text-lg">
-                    This section contains advanced strategic recommendations, implementation timeline, and detailed budget breakdown.
-                  </p>
-                  <Button onClick={() => setShowUnlockForm(true)} className="flex items-center mx-auto">
-                    <Unlock className="mr-2 h-4 w-4" />
-                    Unlock Full Report
-                  </Button>
+            {/* Locked Content with Unlock Form */}
+            <div className={`bg-white rounded-2xl shadow-lg p-8 mb-8 relative print:shadow-none print:border-2 print:border-gray-200 ${!isUnlocked ? 'blur-sm' : ''}`}>
+              {!isUnlocked && (
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-2xl flex items-center justify-center z-10">
+                  <div className="text-center p-8">
+                    <Lock className="h-16 w-16 text-gray-400 mx-auto mb-6" />
+                    <h3 className="text-2xl font-bold text-navy mb-4 flex items-center justify-center">
+                      <Lock className="mr-3 h-6 w-6" />
+                      Unlock Full Report
+                    </h3>
+                    <p className="text-gray-600 mb-6 text-lg">
+                      Get access to complete strategic recommendations and implementation timeline
+                    </p>
+                    <Button onClick={() => setShowUnlockForm(true)} size="lg" className="flex items-center mx-auto">
+                      <Unlock className="mr-2 h-5 w-5" />
+                      Unlock Full Report
+                    </Button>
+                  </div>
                 </div>
               )}
+              
+              <h2 className="text-2xl font-bold text-navy mb-6 flex items-center">
+                {isUnlocked ? <Unlock className="mr-3 h-6 w-6 text-green-600" /> : <Lock className="mr-3 h-6 w-6 text-gray-400" />}
+                Advanced Strategic Analysis
+              </h2>
+              
+              <div className="space-y-4">
+                <ul className="space-y-4">
+                  <li className="flex items-start">
+                    <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                    <span className="text-navy-light text-lg">Detailed implementation timeline with monthly milestones and KPIs.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                    <span className="text-navy-light text-lg">Channel-specific budget allocation with ROI projections.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                    <span className="text-navy-light text-lg">Competitive analysis and market positioning strategies.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                    <span className="text-navy-light text-lg">Custom brand guidelines and messaging framework.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-3 h-3 bg-accent rounded-full mt-2 mr-4 flex-shrink-0"></span>
+                    <span className="text-navy-light text-lg">Performance tracking dashboard and optimization recommendations.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8 justify-center print:hidden">
               <Button onClick={handleDownloadPDF} size="lg" className="flex items-center">
                 <Download className="mr-2 h-5 w-5" />
-                Download Report
+                Download PDF
               </Button>
               <Button variant="outline" size="lg" onClick={handleStartOver} className="flex items-center">
                 Start Over
               </Button>
             </div>
 
+            {/* Generated By Section */}
+            <div className="text-center mb-8">
+              <div className="w-full h-px bg-gray-300 mb-6"></div>
+              <p className="text-lg font-semibold text-navy mb-2">Generated by MIBBS - India's First Intelligent Brand Budgeting System</p>
+              <div className="w-full h-px bg-gray-300 mt-6"></div>
+            </div>
+
+            {/* About MIBBS */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
+              <h2 className="text-2xl font-bold text-navy mb-6">About MIBBS</h2>
+              <p className="text-navy-light text-lg leading-relaxed">
+                At Magsmen, we have seen brands struggle — not because they lacked ideas, but because they lacked intelligent
+                budget planning. In a market driven by intuition, we realized businesses needed more than just advice. They needed a
+                system. A structured, intelligent model to align their brand ambitions with financial discipline. That's why we built MIBBS —
+                India's first intelligent brand budgeting system, crafted to help businesses invest smarter, grow faster, and build
+                stronger market positions.
+              </p>
+            </div>
+
+            {/* About Magsmen */}
+            <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 print:shadow-none print:border-2 print:border-gray-200">
+              <h2 className="text-2xl font-bold text-navy mb-6">About Magsmen</h2>
+              <p className="text-navy-light text-lg leading-relaxed">
+                Magsmen is a renowned brand consulting firm that helps businesses grow by making them easy to understand and
+                trust. We work with companies to improve how they present themselves, so more people remember and choose them.
+                Magsmen believes that every business has a unique story—and we help you tell it in a simple and powerful way. You
+                don't need big budgets or complex ideas. Just a clear plan that connects with people. Whether you're just starting or
+                looking to grow, Magsmen is here to guide you and turn your business into a strong, well-known brand.
+              </p>
+            </div>
+
             {/* Privacy Footer */}
-            <div className="bg-white rounded-2xl shadow-lg p-6 text-center">
+            <div className="bg-white rounded-2xl shadow-lg p-6 text-center mb-8 print:shadow-none print:border-2 print:border-gray-200">
               <div className="flex items-center justify-center mb-2">
                 <Shield className="h-5 w-5 text-green-600 mr-2" />
                 <h3 className="font-semibold text-navy">Secure. Private. In Your Control.</h3>
               </div>
               <p className="text-gray-600">Your data stays yours — always encrypted, never shared.</p>
+              <div className="w-full h-px bg-gray-300 my-4"></div>
+              <p className="text-sm text-gray-500">Report Generated on: {currentDate}</p>
             </div>
 
             {/* Unlock Form Modal */}
