@@ -261,7 +261,7 @@ const About = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title">MIBBS<span className="text-sm align-super text-[#64378e]">™</span> in the Media</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               Recognition and coverage of our innovative approach to brand budgeting.
             </p>
           </div>

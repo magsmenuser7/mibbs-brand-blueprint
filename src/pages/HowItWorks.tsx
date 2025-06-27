@@ -24,7 +24,7 @@ const HowItWorks = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="section-title">The MIBBS<span className="text-accent text-sm align-super">™</span> Process</h2>
-              <p className="section-subtitle">
+              <p className="section-subtitle mx-auto">
                 Our system takes your inputs, processes them through our proprietary algorithm, and delivers actionable strategies.
               </p>
             </div>
@@ -317,7 +317,7 @@ const HowItWorks = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title">What MIBBS<span className="text-[#64378e] text-sm align-super">™</span> Delivers</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               Each MIBBS recommendation includes comprehensive resources to guide your brand budgeting.
             </p>
           </div>
@@ -454,7 +454,7 @@ const HowItWorks = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
             <h2 className="section-title">Example Outputs</h2>
-            <p className="section-subtitle">
+            <p className="section-subtitle mx-auto">
               See samples of what MIBBS provides to help you understand the value before you start.
             </p>
           </div>
