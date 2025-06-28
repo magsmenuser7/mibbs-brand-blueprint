@@ -71,7 +71,10 @@ useEffect(() => {
                       <div
                         className="flex items-center justify-center h-40 rounded-md"
                         style={{
-                          background: "linear-gradient(to right, #ccadcc, #5b2d89)",
+                          backgroundImage: "url('./lovable-uploads/mibbs-percentage-report.jpeg')",
+                          backgroundSize: "contain",
+                          backgroundPosition: "center",
+                          borderRadius: "0.375rem", // same as rounded-md
                         }}
                       >
                         <PieChart className="text-white h-16 w-16" />
