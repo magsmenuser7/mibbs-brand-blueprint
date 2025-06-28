@@ -77,7 +77,7 @@ useEffect(() => {
                           borderRadius: "0.375rem", // same as rounded-md
                         }}
                       >
-                        <PieChart className="text-white h-16 w-16" />
+                        {/* <PieChart className="text-white h-16 w-16" /> */}
                       </div>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
