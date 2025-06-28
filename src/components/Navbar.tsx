@@ -42,13 +42,13 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:block">
-            <Button
+            {/* <Button
               className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
               onClick={() => navigate("/brand-budget-planner")}
             >
               Start Budgeting
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-            </Button>
+            </Button> */}
           </div>
 
           { }

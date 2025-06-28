@@ -2162,20 +2162,20 @@ Absolutely. You can update your inputs anytime and get a fresh recommendation.
                   MIBBS Brand Budgeting
                 </h1>
                 <p className="text-[#2C3585] font-medium text-sm sm:text-base">Smart Budget Planning for Your Brand</p> */}
-                            <img
+                            {/* <img
                                 src="/lovable-uploads/mibbs.png"
                                 alt="Logo - MIBBS"
                                 className="w-[140px]"
-                            />
+                            /> */}
                         </div>
-                        <Button
+                        {/* <Button
                             onClick={() => navigate('/')}
                             variant="ghost"
                             className="text-[#191947] hover:bg-white/20 flex items-center gap-2 mt-3 sm:mt-0 text-sm sm:text-base"
                         >
                             <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                             Back to Home
-                        </Button>
+                        </Button> */}
                     </div>
                 </div>
             </nav>
