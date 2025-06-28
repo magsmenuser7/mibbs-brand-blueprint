@@ -14,7 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Calculator from "./pages/Calculator";
 import BrandBudgetPlanner from "./pages/BrandBudgetPlanner";
-
+import BudgetingFormPage from "./pages/BudgetingForm"
 
 
 
@@ -32,7 +32,7 @@ const App = () => (
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/tools" element={<Tools />} />
             <Route path="/calculator" element={<Calculator />} />
-            <Route path="/brand-budget-planner" element={<BrandBudgetPlanner />} />
+            <Route path="/brand-budget-planner" element={<BudgetingFormPage />} />
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />

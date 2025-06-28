@@ -4,6 +4,7 @@ import QRCodeSection from "@/components/QRCodeSection";
 import { useState } from "react";
 import AuthModal from "@/components/AuthModal";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,6 +13,7 @@ import { useEffect } from "react";
 const Home = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isAuthOpen, setAuthOpen] = useState(false);
+  const navigate = useNavigate();
   
 useEffect(() => {
   if (isAuthOpen) {
@@ -47,7 +49,7 @@ useEffect(() => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  onClick={() => setShowAuthModal(true)}
+                  onClick={() => navigate("/brand-budget-planner")}
                 >
                   Start Budgeting
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import AuthModal from "@/components/AuthModal";
 import { ArrowRight } from "lucide-react";
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,16 +42,16 @@ const Navbar = () => {
           </div>
           
           <div className="hidden md:block">
-                            <Button
-                  className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  onClick={() => setShowAuthModal(true)}
-                >
-                  Start Budgeting
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-                </Button>
+            <Button
+              className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
+              onClick={() => navigate("/brand-budget-planner")}
+            >
+              Start Budgeting
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+            </Button>
           </div>
-          
-          {/* Mobile Menu Button */}
+
+          { }
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-navy focus:outline-none"
