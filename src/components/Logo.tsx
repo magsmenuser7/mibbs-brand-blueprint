@@ -6,7 +6,7 @@ const Logo = ({ variant = "default" }: { variant?: "default" | "white" }) => {
     <Link to="/" className="flex items-center">
       <div className="flex items-center">
         <img 
-          src="/lovable-uploads/mibbs.png" 
+          src="./lovable-uploads/mibbs.png" 
           alt="MIBBS Logo" 
           className="h-20 md:h-12" 
         />
