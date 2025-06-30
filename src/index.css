@@ -79,10 +79,11 @@
     @apply bg-gradient-to-r from-accent-light to-accent;
   }
 
-  /* html, body, #root {
+html, body, #root {
   margin: 0;
   padding: 0;
   width: 100% !important;
   height: 100% !important;
-} */
+}
+
 }

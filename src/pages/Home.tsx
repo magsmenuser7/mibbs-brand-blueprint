@@ -33,7 +33,7 @@ useEffect(() => {
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(126,105,171,0.15),transparent_70%)]"></div>
         </div>
-        <div className="container mx-auto px-4 md:px-8 z-10 py-20">
+        <div className="container mx-auto px-4 md:px-8 z-10 py-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <span className="bg-accent/10  text-[#ac89b9] px-4 py-1 rounded-full text-sm font-medium mb-6 inline-block">
