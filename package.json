@@ -46,14 +46,19 @@
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.4",
     "@tanstack/react-query": "^5.56.2",
+    "axios": "^1.10.0",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
+    "dotenv": "^17.0.0",
     "embla-carousel-react": "^8.3.0",
     "input-otp": "^1.2.4",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
+    "pg": "^8.16.3",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -88,5 +93,17 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
+  },
+  "description": "**URL**: https://lovable.dev/projects/8c6b302a-3636-4843-b6f1-44952d727a41",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magsmenuser7/mibbs-brand-blueprint.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/magsmenuser7/mibbs-brand-blueprint/issues"
   }
 }

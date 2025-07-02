@@ -1,15 +1,8 @@
-/* #root {
+#root {
   max-width: 1440px !important;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-} */
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  width: 100% !important;
-  height: 100vh !important;
 }
 
 .logo {

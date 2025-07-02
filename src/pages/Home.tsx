@@ -49,8 +49,8 @@ useEffect(() => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  // onClick={() => navigate("/brand-budget-planner")}
-                  onClick={() => setShowAuthModal(true)}
+                  onClick={() => navigate("/brand-budget-planner")}
+                  // onClick={() => setShowAuthModal(true)}
                 >
                   Start Budgeting
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
