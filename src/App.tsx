@@ -15,12 +15,15 @@ import NotFound from "./pages/NotFound";
 import Calculator from "./pages/Calculator";
 import BrandBudgetPlanner from "./pages/BrandBudgetPlanner";
 import BudgetingFormPage from "./pages/BudgetingForm"
+import { json } from "stream/consumers";
 
 
 
 const queryClient = new QueryClient();
 
 const App = () => (
+
+  
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />

@@ -2183,14 +2183,7 @@ Absolutely. You can update your inputs anytime and get a fresh recommendation.
             {/* Form Content */}
             <div className="p-4 sm:p-6 md:p-8">
                 <div className="max-w-6xl mx-auto">
-                    {!formReady ? (
-                        <div className="flex flex-col items-center justify-center py-24">
-                            <Loader2 className="h-10 w-10 text-blue-600 animate-spin mb-4" />
-                            <p className="text-gray-700 text-lg">
-                                Loading form...
-                            </p>
-                        </div>
-                    ) : errorStep ? (
+                    {errorStep ? (
                         renderErrorStep()
                     ) : (
                         <>
