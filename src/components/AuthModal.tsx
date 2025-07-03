@@ -9,7 +9,7 @@ import { User, Mail, Lock } from "lucide-react";
 import { registerUser, loginUser } from "@/lib/api/auth";
 import { useNavigate } from "react-router-dom";
 
-const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const AuthModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
