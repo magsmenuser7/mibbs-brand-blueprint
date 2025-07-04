@@ -41,7 +41,7 @@ import { useNavigate } from "react-router-dom";
         // onClose();
       }
     } catch (err: any) {
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(err.response?.data?.message || "Invalid credentials");
     }
   };
 
@@ -75,7 +75,7 @@ import { useNavigate } from "react-router-dom";
                   <User className="absolute left-3 top-3 text-gray-400" size={20} />
                   <input
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ac89b9]"

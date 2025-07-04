@@ -13,7 +13,6 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Calculator from "./pages/Calculator";
-import BrandBudgetPlanner from "./pages/BrandBudgetPlanner";
 import BudgetingFormPage from "./pages/BudgetingForm"
 import { json } from "stream/consumers";
 

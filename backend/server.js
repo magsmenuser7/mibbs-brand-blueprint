@@ -13,36 +13,31 @@
 
 
 
-// backend/server.js
+/// server.js
 const express = require("express");
-const cors = require("cors");           // <-- Allow frontend requests
-const app = express();                  // <-- Initialize express
-const authRoutes = require("./routes/auth");        // <-- Import user data
+const cors = require("cors");
+const app = express();
 require("dotenv").config();
 
+const authRoutes = require("./routes/auth");
 
-const allowedOrigins = ["http://localhost:5000", "https://mibbs.ai"];
+// ✅ Allow only frontend origin
+const allowedOrigins = ["http://localhost:8080"];
 
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
 }));
 
-// Middleware
-app.use(cors());
-app.use(express.json());              // <-- Parse JSON bodies
+// ✅ Middleware
+app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-// Sample route (test it)
+// ✅ Test route
 app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
-// app.get("/api/user", (req, res) => {
-//   res.json(users);                    // <-- Send user data as JSON
-// });
-
-// Start server
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

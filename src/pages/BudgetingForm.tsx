@@ -375,6 +375,7 @@ const BudgetingFormPage = () => {
 
     // Initialize form details from the server
     const initializeForm = async () => {
+        debugger;
         console.log('initializing form');
         try {
         
