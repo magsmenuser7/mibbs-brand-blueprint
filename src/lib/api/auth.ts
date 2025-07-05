@@ -1,16 +1,16 @@
 import axios from "axios";
 
 // ✅ Centralized base URL
-const API = "https://api.mibbs.ai/";
+const API = "https://api.mibbs.ai/api";
 
 
 
 export const registerUser = async (name: string, email: string, password: string) => {
-  return axios.post(`${API}api/registerUser`, { name, email, password });
+  return axios.post(`${API}/registerUser`, { name, email, password });
 };
 
 export const loginUser = async (email: string, password: string) => {
-  return axios.post(`${API}api/login`, { email, password }); // ✅ Fixed to use same base
+  return axios.post(`${API}/login`, { email, password }); // ✅ Fixed to use same base
 };
 
 
