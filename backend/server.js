@@ -22,7 +22,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/auth");
 
 // ✅ Allow only frontend origin
-const allowedOrigins = ["http://localhost:8080"];
+const allowedOrigins = ["https://api.mibbs.ai/"];
 
 app.use(cors({
   origin: allowedOrigins,

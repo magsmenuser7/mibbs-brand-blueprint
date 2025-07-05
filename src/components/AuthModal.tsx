@@ -24,6 +24,8 @@ import { useNavigate } from "react-router-dom";
       if (isLogin) {
         const res = await loginUser(email, password);
         localStorage.setItem("token", res.data.token);
+        setEmail("");
+        setPassword("");
         onClose();
         navigate("/brand-budget-planner");
       } else {
