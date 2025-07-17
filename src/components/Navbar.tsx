@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import AuthModal from "@/components/AuthModal";
-import { ArrowRight, LogOut, User } from "lucide-react";
+import { ArrowRight, LogIn, LogOut, User, UserPlus } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +11,7 @@ const Navbar = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user') || 'null');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,8 +49,32 @@ const Navbar = () => {
             <Link to="/contact" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">Contact</Link>
           </div>
 
+
+
+          <div className="flex items-center space-x-4">
+            {user ? (
+              <Button variant="ghost" size="sm">
+                <User className="w-6 h-6" />
+                {user.username || user.name}
+              </Button>
+            ) : (
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/login">
+                  <User className="w-6 h-6" />
+                  Login
+                </Link>
+              </Button>
+            )}
+            {/* <Button size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
+              <Link to="/signup">
+                <UserPlus className="w-4 h-4 mr-2" />
+                Get Started
+              </Link>
+            </Button> */}
+          </div>
+
           {/* Desktop Login/Logout Button */}
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             {isLoggedIn ? (
               <Button
                 className="bg-[#64378e] text-white hover:bg-[#4e2c6c]"
@@ -66,7 +91,7 @@ const Navbar = () => {
                  <User className="w-5 h-5" /> Login
               </Button>
             )}
-          </div>
+          </div> */}
 
           {/* Mobile Menu Toggle Button */}
           <button

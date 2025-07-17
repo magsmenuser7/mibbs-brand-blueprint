@@ -13,5 +13,10 @@ export const loginUser = async (email: string, password: string) => {
   return axios.post(`${API}/login`, { email, password }); // ✅ Fixed to use same base
 };
 
+export const logoutUser = async () => {
+  return axios.post(`${API}/logout`, {}, {
+    withCredentials: true
+  });
+};
 
 // const API = "http://localhost:5000/api/auth";

@@ -13,8 +13,19 @@ import Pricing from "./pages/Pricing";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Calculator from "./pages/Calculator";
-import BudgetingFormPage from "./pages/BudgetingForm"
+import BudgetingFormPage from "./pages/BudgetingForm";
 import { json } from "stream/consumers";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Questionnaire from "./pages/Questionnarie";
+import FacebookAdsCalculatorPage from "./pages/FacebookAdsCalculator";
+import WebsiteCostCalculatorPage from "./pages/WebsiteCostCalculator";
+import Report from "./pages/Report";
+import { GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+
 
 
 
@@ -22,7 +33,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
 
-  
+  <GoogleOAuthProvider clientId="117023473598-5kllhb66rs6vmliqq0l37a32asa6uvtl.apps.googleusercontent.com">
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -39,12 +50,20 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/tools/facebook-ads" element={<FacebookAdsCalculatorPage />} />
+            <Route path="/tools/website-cost" element={<WebsiteCostCalculatorPage />} />
+            <Route path="/report" element={<Report />} />
            
           </Route>
         </Routes>
       </HashRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </GoogleOAuthProvider>
 
 
  
