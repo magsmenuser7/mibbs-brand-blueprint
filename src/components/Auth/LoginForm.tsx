@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
 
 const LoginForm = () => {
-  const BASE_URL = 'http://127.0.0.1:8000/api';
+  const BASE_URL = 'https://api.mibbs.ai/api';
   const navigate = useNavigate();
 
   const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
