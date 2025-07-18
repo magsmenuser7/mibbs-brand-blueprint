@@ -24,6 +24,7 @@ import WebsiteCostCalculatorPage from "./pages/WebsiteCostCalculator";
 import Report from "./pages/Report";
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AuthCallback from "./pages/AuthCallback";
 
 
 
@@ -33,7 +34,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
 
-  <GoogleOAuthProvider clientId="117023473598-5kllhb66rs6vmliqq0l37a32asa6uvtl.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId="1064045400562-1hte2pu0bd34iino0fg7sff0qirna1n7.apps.googleusercontent.com">
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/tools/facebook-ads" element={<FacebookAdsCalculatorPage />} />
             <Route path="/tools/website-cost" element={<WebsiteCostCalculatorPage />} />
             <Route path="/report" element={<Report />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
            
           </Route>
         </Routes>
