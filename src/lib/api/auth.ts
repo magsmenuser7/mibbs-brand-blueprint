@@ -22,4 +22,15 @@ export const logoutUser = async () => {
   });
 };
 
+
+
+
+export const loginWithGoogle = async (credential: string) => {
+  return axios.post(
+    `${API}/auth/google-login/`,
+    { credential },
+    { withCredentials: true }
+  );
+};
+
 // const API = "http://localhost:5000/api/auth";

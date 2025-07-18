@@ -15,6 +15,17 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin } from '@react-oauth/google';
+import { loginWithGoogle } from '@/lib/api/auth';
+import { jwtDecode } from "jwt-decode";
+
+
+
+interface GoogleUser {
+  name: string;
+  email: string;
+  picture?: string;
+  sub: string;
+}
 
 const LoginForm = () => {
   const BASE_URL = 'https://api.mibbs.ai/api';
@@ -127,6 +138,27 @@ const LoginForm = () => {
       }
     }
   };
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      const decoded = jwtDecode<GoogleUser>(credentialResponse.credential);
+      console.log("Decoded User Info:", decoded);
+
+      localStorage.setItem("username", decoded.name);
+
+      // Send token to backend using auth.js
+      const response = await loginWithGoogle(credentialResponse.credential);
+      console.log("Backend Response:", response.data);
+
+      // Optional: redirect user
+      // navigate("/dashboard");
+    } catch (error) {
+      console.error("Google Login Error:", error);
+    }
+  };
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 flex items-center justify-center p-4">
@@ -307,8 +339,8 @@ const LoginForm = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <GoogleLogin
-                  onSuccess={(res) => {
-                    console.log('Google Login Success', res);
+                  onSuccess={(handleGoogleSuccess) => {
+                    console.log('Google Login Success', handleGoogleSuccess);
                     navigate('/dashboard');
                   }}
                   onError={() => {
@@ -408,6 +440,10 @@ export default LoginForm;
 
 
 
+
+// function jwt_decode<T>(credential: any) {
+//   throw new Error('Function not implemented.');
+// }
 // import React, { useState } from 'react';
 // import { Button } from '@/components/ui/button';
 // import { Input } from '@/components/ui/input';
