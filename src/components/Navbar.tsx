@@ -122,7 +122,7 @@ const Navbar = () => {
               <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Contact</Link>
 
-              {isLoggedIn ? (
+              {/* {isLoggedIn ? (
                 <Button className="btn-primary w-full" onClick={handleLogout}>
                   Logout
                 </Button>
@@ -130,7 +130,7 @@ const Navbar = () => {
                 <Button className="btn-primary w-full" onClick={() => setShowAuthModal(true)}>
                   Login
                 </Button>
-              )}
+              )} */}
             </div>
           </div>
         )}
