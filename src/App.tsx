@@ -24,10 +24,7 @@ import WebsiteCostCalculatorPage from "./pages/WebsiteCostCalculator";
 import Report from "./pages/Report";
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import ReactGA from "react-ga4";
-import { useEffect } from "react";
-
-
+import Analytics from "./pages/Analytics";
 
 
 
@@ -36,45 +33,43 @@ const queryClient = new QueryClient();
 
 
 
-const App = () => {
-  useEffect(() => {
-    ReactGA.initialize("G-ZT3MQ46K9T"); // <-- Replace with your actual ID
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "App.tsx" });
+const App = () => (
 
-  })
-  
-  return (
-    <GoogleOAuthProvider clientId="1064045400562-lljdlndc03j31gh3e3njeegd4p79ms4l.apps.googleusercontent.com">
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <HashRouter>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/tools" element={<Tools />} />
-                <Route path="/calculator" element={<Calculator />} />
-                <Route path="/brand-budget-planner" element={<BudgetingFormPage />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/questionnaire" element={<Questionnaire />} />
-                <Route path="/tools/facebook-ads" element={<FacebookAdsCalculatorPage />} />
-                <Route path="/tools/website-cost" element={<WebsiteCostCalculatorPage />} />
-                <Route path="/report" element={<Report />} />
-              </Route>
-            </Routes>
-          </HashRouter>
-        </TooltipProvider>
-      </QueryClientProvider>
-    </GoogleOAuthProvider>
-  );
-};
+  <GoogleOAuthProvider clientId="1064045400562-lljdlndc03j31gh3e3njeegd4p79ms4l.apps.googleusercontent.com">
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <HashRouter>
+        <Analytics />
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/tools" element={<Tools />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/brand-budget-planner" element={<BudgetingFormPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/questionnaire" element={<Questionnaire />} />
+            <Route path="/tools/facebook-ads" element={<FacebookAdsCalculatorPage />} />
+            <Route path="/tools/website-cost" element={<WebsiteCostCalculatorPage />} />
+            <Route path="/report" element={<Report />} />
+           
+          </Route>
+        </Routes>
+      </HashRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+  </GoogleOAuthProvider>
+
+
+ 
+);
 
 export default App;
