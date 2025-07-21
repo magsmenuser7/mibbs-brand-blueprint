@@ -107,7 +107,7 @@ const About = () => {
               </div>
               
               <p className="text-navy font-medium">
-                Sandeep Kumar, with Magsmen's expertise in brand strategy, built MIBBS to transform how Indian businesses approach brand budgeting—from guesswork to a scientific, data-driven approach.
+                Sandeep, with Magsmen's expertise in brand strategy, built MIBBS to transform how Indian businesses approach brand budgeting—from guesswork to a scientific, data-driven approach.
               </p>
             </div>
           </div>
