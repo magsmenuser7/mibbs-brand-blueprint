@@ -99,7 +99,7 @@ const Dashboard = () => {
                   Get personalized budget recommendations based on your business needs
                 </p>
                 <Button asChild className="bg-white text-[#64378e] hover:bg-gray-100">
-                  <Link to="/questionnaire">
+                  <Link to="/start-budgeting-form">
                     Start Budgeting
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Link>

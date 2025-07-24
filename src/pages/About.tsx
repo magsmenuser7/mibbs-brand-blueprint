@@ -1,18 +1,20 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
   return (
     <div>
       {/* Hero Section */}
       <section className="pt-32 pb-16 bg-gradient-to-br from-white to-gray-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-navy mb-6">About MIBBS<span className="text-accent text-sm align-super">™</span></h1>
-            <p className="text-xl mb-8 text-navy-light">
+            <h1 className="text-4xl md:text-3xl font-bold text-navy mb-6"> The story behind India's first intelligent brand budgeting system.</h1>
+            {/* <p className="text-xl mb-8 text-navy-light">
               The story behind India's first intelligent brand budgeting system.
-            </p>
+              <span className="text-accent text-sm align-super">™</span>
+            </p> */}
           </div>
         </div>
       </section>
@@ -29,24 +31,96 @@ const About = () => {
                 Why MIBBS<span className="text-accent text-sm align-super">™</span> Was Built
               </h2>
               <p className="text-lg mb-6 text-navy-light">
-                After working with hundreds of Indian brands at Magsmen, we identified a consistent problem: brand budgeting in India was largely guesswork, not guided by data or strategic frameworks.
+                At Magsmen, As consultants, we have seen brands struggle not because they lacked ideas, but because they lacked intelligent budget planning.
               </p>
-              <p className="text-lg mb-6 text-navy-light">
-                Brand managers were either following outdated templates from global headquarters or making decisions based on limited experience. Both approaches resulted in inefficient spending and missed opportunities.
+
+
+              <p className="text-lg mb-2 text-navy-light">
+                It’s about ensuring every rupee builds long-term brand value.
               </p>
-              <p className="text-lg mb-8 text-navy-light">
-                MIBBS was created to solve this specific gap: providing Indian businesses with a data-backed, market-specific system to allocate their brand building budgets more effectively.
+              <p className="text-lg mb-2 text-navy-light">
+                Because at Magsmen, we believe:
               </p>
-              <Button className="btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] flex items-center group">
+
+              <p className="text-lg mb-2 text-navy-light">
+                Smart brands don’t guess.
+              </p>
+
+              <p className="text-lg mb-2 text-navy-light">
+                They plan | They build | They win.
+              </p>
+
+              <p className="text-lg mb-2 text-navy-light">
+                Welcome to MIBBS.
+              </p>
+
+              <p className="text-lg mb-2 text-navy-light">
+                Built by Magsmen.
+              </p>
+
+              <p className="text-lg mb-2 text-navy-light">
+                Made for India’s future brands.
+              </p>
+
+
+              {/* <Button className="btn-primary bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] flex items-center group">
                 Our Approach <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Button>
+              </Button> */}
             </div>
             <div className="relative hidden md:block">
               <div className="relative z-10">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="MIBBS Founding Story" className="rounded-lg shadow-xl" />
+                <img src="./lovable-uploads/brand-budget-for-business.png" alt="brand-budget-for-business" className="rounded-lg shadow-xl" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-full -z-10"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full -z-10"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <div className="relative hidden md:block">
+              <div className="relative z-10">
+                {/* Re-using the uploaded image for this section for demonstration */}
+                <img src="./lovable-uploads/circle-infograph.png" alt="circle-infograph" className="rounded-lg shadow-xl" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-full -z-10"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full -z-10"></div>
+            </div>
+            <div>
+
+
+              <p className="text-lg mb-3 text-navy-light">
+                It’s about ensuring every rupee builds long-term brand value.
+              </p>
+              <p className="text-lg mb-3 text-navy-light">
+                Because at Magsmen, we believe:
+              </p>
+
+              <p className="text-lg mb-3 text-navy-light">
+                Smart brands don’t guess.
+              </p>
+
+              <p className="text-lg mb-3 text-navy-light">
+                They plan | They build | They win.
+              </p>
+
+              <p className="text-lg mb-3 text-navy-light">
+                Welcome to MIBBS.
+              </p>
+
+              <p className="text-lg mb-3 text-navy-light">
+                Built by Magsmen.
+              </p>
+
+              <p className="text-lg mb-3 text-navy-light">
+                Made for India’s future brands.
+              </p>
+
+
             </div>
           </div>
         </div>
@@ -61,7 +135,7 @@ const About = () => {
                 <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
                   <div className="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-6">
                     {/* Placeholder for founder image */}
-                    <img src="./lovable-uploads/sandeep.png" alt="sandeep"/>
+                    <img src="./lovable-uploads/sandeep.png" alt="sandeep" />
                   </div>
                   <h3 className="text-xl font-bold text-navy text-center mb-2">Sandeep Kumar</h3>
                   <p className="text-accent text-center mb-4">Founder, MIBBS & Magsmen</p>
@@ -91,21 +165,21 @@ const About = () => {
               </h2>
               <div className="text-[#64378e] text-4xl font-serif mb-4">"</div>
               <p className="text-lg mb-6 text-navy-light italic">
-                "After 15+ years of building brands across India, I realized that most businesses, from startups to conglomerates, struggle with the same question: How much should we spend on brand building, and where should we allocate it?"
+                Sandeep N. is a visionary brand architect, entrepreneur, and thought leader who has redefined how brands, leaders, and individuals build lasting identities.
               </p>
               <p className="text-lg mb-6 text-navy-light italic">
-                "Unlike the West, India doesn't have established frameworks that consider our unique market dynamics, consumer behavior patterns, and business environment."
+                As the founder of Magsmen Brand Consultants, he has been the strategic force behind Fortune 25 companies, IPL sponsors, and iconic entrepreneurs. An enrolled advocate and certified image consultant, Sandeep has empowered over 2,500 young entrepreneurs to craft powerful personal brands.
               </p>
               <p className="text-lg mb-6 text-navy-light italic">
-                "MIBBS is my answer to this challenge—a system built specifically for Indian brands, backed by real data from hundreds of successful campaigns across the country."
+                Recognized among India’s Top 100 Admiring Marketing Leaders and named ‘Consultant of the Year 2023’, Sandeep’s vision is simple: brands must be engineered, not left to chance. MIBBS™ is built to bring that vision to life.
               </p>
-              
+
               <div className="flex items-center my-8">
                 <div className="w-16 h-1 bg-[#64378e]"></div>
                 <div className="w-4 h-4 rounded-full bg-[#64378e] mx-2"></div>
                 <div className="w-16 h-1 bg-[#64378e]"></div>
               </div>
-              
+
               <p className="text-navy font-medium">
                 Sandeep, with Magsmen's expertise in brand strategy, built MIBBS to transform how Indian businesses approach brand budgeting—from guesswork to a scientific, data-driven approach.
               </p>
@@ -140,21 +214,23 @@ const About = () => {
                 MIBBS represents the culmination of insights gathered from years of successful brand building campaigns across diverse Indian markets.
               </p>
               <Button variant="outline" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
-                Visit Magsmen Website
+                <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer">
+                  Visit Magsmen Website
+                </a>
               </Button>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gray-100 p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy">Client Logo</span>
+              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
+                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-sweathatelugufoods-168x168.png" alt="magsmen-homepage-clients-sweathatelugufoods-168x168" /></span>
               </div>
-              <div className="bg-gray-100 p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy">Client Logo</span>
+              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
+                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-tenalidoublehorse-168x168.png" alt="magsmen-homepage-clients-tenalidoublehorse-168x168" /></span>
               </div>
-              <div className="bg-gray-100 p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy">Client Logo</span>
+              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
+                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-colors-168x168.png" alt="magsmen-homepage-clients-colors-168x168" /></span>
               </div>
-              <div className="bg-gray-100 p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy">Client Logo</span>
+              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
+                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-triplexxx-168x168.png" alt="magsmen-homepage-clients-triplexxx-168x168" /></span>
               </div>
             </div>
           </div>
@@ -175,13 +251,13 @@ const About = () => {
             <div className="space-y-12">
               <div className="flex">
                 <div className="flex flex-col items-center">
-                  <div className="w-8 h-8 bg-[#64378e]  rounded-full flex items-center justify-center">
+                  <div className="w-8 h-8 bg-[#64378e] rounded-full flex items-center justify-center">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-[#64378e] font-semibold">2019</span>
+                  <span className="text-[#64378e] font-semibold">2023</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Problem Identification</h3>
                   <p className="text-navy-light">
                     Sandeep and the Magsmen team identify the pattern of inefficient brand budget allocation across multiple Indian client engagements.
@@ -197,7 +273,7 @@ const About = () => {
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-[#64378e] font-semibold">2020</span>
+                  <span className="text-[#64378e] font-semibold">2024</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Initial Research</h3>
                   <p className="text-navy-light">
                     Begin collecting and analyzing data from 150+ Indian brand campaigns to identify patterns in budget allocation and effectiveness.
@@ -213,7 +289,7 @@ const About = () => {
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-[#64378e] font-semibold">2021</span>
+                  <span className="text-[#64378e] font-semibold">2025</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Algorithm Development</h3>
                   <p className="text-navy-light">
                     Creation of the first proprietary algorithm that factors in Indian market dynamics, industry verticals, and business stages.
@@ -229,7 +305,7 @@ const About = () => {
                   <div className="h-full w-1 bg-accent/30"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-[#64378e] font-semibold">2022</span>
+                  <span className="text-[#64378e] font-semibold">2025</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Beta Testing</h3>
                   <p className="text-navy-light">
                     Initial version of MIBBS deployed with select Magsmen clients across various industries, gathering feedback and refining outputs.
@@ -245,7 +321,7 @@ const About = () => {
                   <div className="h-full w-1 bg-accent/30 hidden"></div>
                 </div>
                 <div className="ml-6">
-                  <span className="text-[#64378e]font-semibold">2023</span>
+                  <span className="text-[#64378e]font-semibold">2026</span>
                   <h3 className="text-xl font-semibold mt-1 mb-2 text-navy">Official Launch</h3>
                   <p className="text-navy-light">
                     MIBBS is officially launched as India's first intelligent brand budgeting system, available to businesses of all sizes.
@@ -267,63 +343,186 @@ const About = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-            <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-24">
-              <span className="font-semibold text-gray-500">Media Logo</span>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-24">
-              <span className="font-semibold text-gray-500">Media Logo</span>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-24">
-              <span className="font-semibold text-gray-500">Media Logo</span>
-            </div>
-            <div className="bg-gray-100 p-6 rounded-lg flex items-center justify-center h-24">
-              <span className="font-semibold text-gray-500">Media Logo</span>
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card hover:-translate-y-2">
-              <span className="text-[#64378e] font-medium mb-2 block">Forbes India</span>
+              <span className="text-[#64378e] font-medium mb-2 block">Deccan Business</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
-                "Transforming How Indian Startups Approach Brand Building"
+                "Magsmen Ventures into International Territory with Launch of First Australian Office in Rowville, Melbourne"
               </h3>
               <p className="text-navy-light mb-4">
-                An in-depth look at how MIBBS is changing the game for early-stage companies.
+                Magsmen, a renowned brand consulting firm headquartered in Hyderabad and Guntur, Andhra Pradesh, takes a bold step into international waters with the grand opening of its inaugural office in Australia.
               </p>
-              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
-                Read Article <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <a
+                href="https://deccanbusiness.com/magsmen-ventures-into-international-territory-with-launch-of-first-australian-office-in-rowville-melbourne/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="ghost"
+                  className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
+                >
+                  Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
             </div>
 
             <div className="card hover:-translate-y-2">
-              <span className="text-[#64378e] font-medium mb-2 block">Economic Times</span>
+              <span className="text-[#64378e] font-medium mb-2 block">The Print</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
-                "Data-Driven Brand Budgeting: The MIBBS Approach"
+                "Andhra Pradesh-based brand consulting firm Magsmen on the limelight in scaling up brands growth to 10x in less than 9 months"
               </h3>
               <p className="text-navy-light mb-4">
-                Feature on how Magsmen's MIBBS is bringing scientific rigor to brand investment.
+                Award-winning brand consulting firm from Andhra Pradesh, Magsmen has witnessed the growth of their clients at a 10x rate of brand growth in less than 9 months.
               </p>
-              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
-                Read Article <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+              <a
+                href="https://theprint.in/ani-press-releases/andhra-pradesh-based-brand-consulting-firm-magsmen-on-the-limelight-in-scaling-up-brands-growth-to-10x-in-less-than-9-months/1233451/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="ghost"
+                  className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
+                >
+                  Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
             </div>
 
             <div className="card hover:-translate-y-2">
-              <span className="text-[#64378e] font-medium mb-2 block">YourStory</span>
+              <span className="text-[#64378e] font-medium mb-2 block">UP18 News</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
-                "Meet the Founder Building India's Brand Budget Science"
+                "Magsmen and VIT AP Partnership: A Catalyst for Innovation and Entrepreneurial Success"
               </h3>
               <p className="text-navy-light mb-4">
-                Profile of Sandeep Kumar and his mission to transform Indian brand building.
+                Magsmen Brand Consultants, a leading brand consultancy ﬁrm, today announced a strategic partnership with VIT AP, a renowned institute of technology and innovation in Guntur, India.
               </p>
-              <Button variant="ghost" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
-                Read Article <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+             <a
+                href="https://up18news.com/tag/magsmen-brand-consultants/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="ghost"
+                  className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
+                >
+                  Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
             </div>
           </div>
         </div>
       </section>
+
+
+      {/* NEW: Our Team Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="text-center mb-16">
+            <h2 className="section-title text-4xl md:text-5xl font-extrabold text-navy">
+              Meet Our <span className="text-[#64378e]">Visionary</span> Team
+            </h2>
+            <p className="section-subtitle mx-auto">
+              The minds behind MIBBS, dedicated to transforming brand budgeting.
+            </p>
+          </div>
+
+          {/* Adjusted grid for 4 columns on large screens */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {/* Team Member 1 */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+              {/* Ensure these image paths are correct relative to your public folder */}
+              <img
+                src="/images/sandeep-kumar.jpg"
+                alt=""
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+              />
+              <h3 className="text-2xl font-semibold mb-2 text-navy">Manimala Gavvala</h3>
+              <p className="text-[#64378e] font-medium mb-3">Branch Manager</p>
+              {/* <p className="text-navy-light text-sm">
+                With extensive experience in brand strategy, Sandeep leads Magsmen and conceptualized MIBBS to bridge the gap between ambition and disciplined investment.
+              </p> */}
+              <div className="mt-4 flex justify-center space-x-3">
+                {/* Example: Replace with LinkedIn icon SVG */}
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+                </a>
+                {/* Example: Replace with Twitter icon SVG */}
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Team Member 2 */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+              <img
+                src="/images/priya-sharma.jpg"
+                alt=""
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+              />
+              <h3 className="text-2xl font-semibold mb-2 text-navy">Koushik</h3>
+              <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
+              {/* <p className="text-navy-light text-sm">
+                Priya is the architect of MIBBS's intelligent algorithms, leveraging her expertise in AI and market analytics to ensure precise budget recommendations.
+              </p> */}
+              <div className="mt-4 flex justify-center space-x-3">
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+                </a>
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Team Member 3 */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+              <img
+                src="/images/rajesh-verma.jpg"
+                alt=""
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+              />
+              <h3 className="text-2xl font-semibold mb-2 text-navy">Bhagya Shree</h3>
+              <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
+              {/* <p className="text-navy-light text-sm">
+                Rajesh brings years of client-side brand management experience, ensuring MIBBS's outputs are practical, actionable, and aligned with real-world brand challenges.
+              </p> */}
+              <div className="mt-4 flex justify-center space-x-3">
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+                </a>
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Team Member 4 (New) */}
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+              <img
+                src="/images/sneha-gupta.jpg"
+                alt=""
+                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+              />
+              <h3 className="text-2xl font-semibold mb-2 text-navy">Vamsi Kiran</h3>
+              <p className="text-[#64378e] font-medium mb-3">Head Of Operations</p>
+              {/* <p className="text-navy-light text-sm">
+                Sneha ensures that MIBBS's innovative solutions reach the right brands, communicating its value proposition effectively across the Indian market.
+              </p> */}
+              <div className="mt-4 flex justify-center space-x-3">
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
+                </a>
+                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* End NEW: Our Team Section */}
+
 
       {/* CTA Section */}
       <section className="py-20 text-white bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
@@ -334,10 +533,19 @@ const About = () => {
               Experience MIBBS and transform how you plan, allocate, and optimize your brand building investments.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] font-semibold py-3 px-6 rounded-md transition-all duration-300 flex items-center group">
-                Start Budgeting <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Button>
-              <Button variant="outline" className="border-2 border-white text-white bg-[#ac89b9] hover:bg-white/10 font-semibold py-3 px-6 rounded-md transition-all duration-300">
+              <Button
+                  className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
+                  onClick={() => navigate("/Login")}
+                  // onClick={() => setShowAuthModal(true)}
+                >
+                  Start Budgeting
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                </Button>
+              <Button
+                variant="outline"
+                className="border-2 border-white text-white bg-[#ac89b9] hover:bg-white/10 font-semibold py-3 px-6 rounded-md transition-all duration-300"
+                onClick={() => navigate('/contact')}
+              >
                 Contact Our Team
               </Button>
             </div>

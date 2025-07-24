@@ -25,6 +25,9 @@ import Report from "./pages/Report";
 import { GoogleLogin } from '@react-oauth/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Analytics from "./pages/Analytics";
+import StartBudgetingForm from "./pages/StartBudgetingForm"
+import Generate from "./pages/Generate";
+
 
 
 
@@ -60,7 +63,8 @@ const App = () => (
             <Route path="/tools/facebook-ads" element={<FacebookAdsCalculatorPage />} />
             <Route path="/tools/website-cost" element={<WebsiteCostCalculatorPage />} />
             <Route path="/report" element={<Report />} />
-           
+            <Route path="/start-budgeting-form" element={<StartBudgetingForm />} />
+            <Route path="/generate" element={<Generate />} />
           </Route>
         </Routes>
       </HashRouter>
