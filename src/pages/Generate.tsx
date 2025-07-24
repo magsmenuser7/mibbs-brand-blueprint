@@ -220,7 +220,7 @@ const Generate = () => {
   // Placeholder data - this would typically come from a state or props
   const brandBudgetRecommendation = {
     branding: {
-      companyName: "suresh",
+      companyName: "NA",
       industry: "Food & Beverage",
       businessType: "B2B",
       businessStage: "Entry Level",
