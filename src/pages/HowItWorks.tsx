@@ -368,7 +368,7 @@ const HowItWorks = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-navy">Strategic Roadmap</h3>
               <p className="text-navy-light mb-4">
-                Timeline-based implementation plan for your brand budgeting strategy across quarters.
+                Timeline based implementation plan for your brand budgeting strategy across quarters.
               </p>
               <ul className="space-y-2 mb-4">
                 <li className="flex items-start">
@@ -467,7 +467,7 @@ const HowItWorks = () => {
               <div className="p-6">
                 <h3 className="font-semibold text-navy mb-2">D2C Brand Budget</h3>
                 <p className="text-sm text-navy-light mb-4">
-                  Sample budget allocation for a direct-to-consumer brand in growth stage.
+                  Sample budget allocation for a direct to consumer brand in growth stage.
                 </p>
                 <Button variant="outline" size="sm" className="w-full flex items-center justify-center">
                   <Download className="mr-2 h-4 w-4" /> Download PDF

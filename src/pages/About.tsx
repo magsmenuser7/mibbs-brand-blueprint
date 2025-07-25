@@ -31,19 +31,14 @@ const About = () => {
                 Why MIBBS<span className="text-accent text-sm align-super">™</span> Was Built
               </h2>
               <p className="text-lg mb-6 text-navy-light">
-                At Magsmen, As consultants, we have seen brands struggle not because they lacked ideas, but because they lacked intelligent budget planning.
+                At Magsmen As consultants, we have seen brands struggle not because they lacked ideas, but because they lacked intelligent budget planning.
               </p>
-
 
               <p className="text-lg mb-2 text-navy-light">
                 It’s about ensuring every rupee builds long-term brand value.
               </p>
               <p className="text-lg mb-2 text-navy-light">
-                Because at Magsmen, we believe:
-              </p>
-
-              <p className="text-lg mb-2 text-navy-light">
-                Smart brands don’t guess.
+                Because at Magsmen, we believe:  Smart brands don’t guess.
               </p>
 
               <p className="text-lg mb-2 text-navy-light">
@@ -181,7 +176,7 @@ const About = () => {
               </div>
 
               <p className="text-navy font-medium">
-                Sandeep, with Magsmen's expertise in brand strategy, built MIBBS to transform how Indian businesses approach brand budgeting—from guesswork to a scientific, data-driven approach.
+                Sandeep, with Magsmen's expertise in brand strategy, built MIBBS to transform how Indian businesses approach brand budgeting from guesswork to a scientific, data driven approach.
               </p>
             </div>
           </div>
@@ -370,7 +365,7 @@ const About = () => {
             <div className="card hover:-translate-y-2">
               <span className="text-[#64378e] font-medium mb-2 block">The Print</span>
               <h3 className="text-xl font-semibold mb-3 text-navy">
-                "Andhra Pradesh-based brand consulting firm Magsmen on the limelight in scaling up brands growth to 10x in less than 9 months"
+                "Andhra Pradesh based brand consulting firm Magsmen on the limelight in scaling up brands growth to 10x in less than 9 months"
               </h3>
               <p className="text-navy-light mb-4">
                 Award-winning brand consulting firm from Andhra Pradesh, Magsmen has witnessed the growth of their clients at a 10x rate of brand growth in less than 9 months.
@@ -413,6 +408,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+
 
 
       {/* CTA Section */}

@@ -42,7 +42,7 @@ const Tools = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-navy-light">Input your annual revenue and get industry-specific recommendations</p>
+                  <p className="text-navy-light">Input your annual revenue and get industry specific recommendations</p>
                 </li>
                 <li className="flex items-start">
                   <div className="h-6 w-6 rounded-full bg-accent/10 flex items-center justify-center text-[#64378e] mr-3 mt-0.5">
@@ -134,7 +134,7 @@ const Tools = () => {
               </div>
               <div className="p-5">
                 <h3 className="font-semibold text-navy mb-2">Q2 Budget Template</h3>
-                <p className="text-sm text-navy-light mb-4">Adjustment strategies and mid-term planning for second quarter.</p>
+                <p className="text-sm text-navy-light mb-4">Adjustment strategies and mid term planning for second quarter.</p>
                 <Button variant="outline" size="sm" className="w-full flex items-center justify-center hover:bg-[#64378e] hover:text-[#fff]">
                   <Download className="mr-2 h-4 w-4" /> Download Template
                 </Button>
@@ -166,7 +166,7 @@ const Tools = () => {
               </div>
               <div className="p-5">
                 <h3 className="font-semibold text-navy mb-2">Q4 Budget Template</h3>
-                <p className="text-sm text-navy-light mb-4">Year-end campaigns and next-year planning strategies.</p>
+                <p className="text-sm text-navy-light mb-4">Year-end campaigns and next year planning strategies.</p>
                 <Button variant="outline" size="sm" className="w-full flex items-center justify-center hover:bg-[#64378e] hover:text-[#fff]">
                   <Download className="mr-2 h-4 w-4" /> Download Template
                 </Button>
@@ -343,7 +343,7 @@ const Tools = () => {
                     <FileText className="h-5 w-5 text-[#64378e] mr-3 mt-0.5" />
                     <div>
                       <p className="font-medium text-navy">Zero to One Budget</p>
-                      <p className="text-sm text-navy-light">For pre-revenue startups</p>
+                      <p className="text-sm text-navy-light">For pre revenue startups</p>
                     </div>
                   </li>
                   <li className="flex items-start">
@@ -442,7 +442,7 @@ const Tools = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Interactive Dashboard</h3>
               <p className="text-gray-300 mb-4">
-                Real-time budget tracking dashboard with scenario planning and ROI visualization.
+                Real time budget tracking dashboard with scenario planning and ROI visualization.
               </p>
               <p className="text-[#ac89b9] mb-4">Premium Feature</p>
               <Button className="bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]text-white font-medium py-2 px-4 rounded flex items-center">
@@ -458,7 +458,7 @@ const Tools = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Expert Consultation</h3>
               <p className="text-gray-300 mb-4">
-                One-on-one consultation session with Magsmen's brand strategy experts.
+                One on one consultation session with Magsmen's brand strategy experts.
               </p>
               <p className="text-[#ac89b9] mb-4">Premium Feature</p>
               <Button className="bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] text-white font-medium py-2 px-4 rounded flex items-center">

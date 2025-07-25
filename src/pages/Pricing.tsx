@@ -113,7 +113,7 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-start">
                   <Check className="h-5 w-5 text-accent mr-3 mt-0.5" />
-                  <span className="text-navy-light">Channel-specific breakdown</span>
+                  <span className="text-navy-light">Channel specific breakdown</span>
                 </div>
                 <div className="flex items-start">
                   <Check className="h-5 w-5 text-accent mr-3 mt-0.5" />
@@ -223,7 +223,7 @@ const Pricing = () => {
                   <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
                 </tr>
                 <tr className="border-b border-gray-200">
-                  <td className="py-3 px-6 text-navy-light">Channel-specific Breakdown</td>
+                  <td className="py-3 px-6 text-navy-light">Channel specific Breakdown</td>
                   <td className="py-3 px-6 text-center"><span className="text-navy-light">—</span></td>
                   <td className="py-3 px-6 text-center bg-accent/5"><Check className="h-5 w-5 ttext-[#64378e] mx-auto" /></td>
                   <td className="py-3 px-6 text-center"><Check className="h-5 w-5 text-[#64378e] mx-auto" /></td>
@@ -311,7 +311,7 @@ const Pricing = () => {
             <div className="bg-gray-50 p-6 rounded-xl">
               <h3 className="text-lg font-semibold mb-3 text-navy">Can I get a refund if I'm not satisfied?</h3>
               <p className="text-navy-light">
-                We offer a 30-day money-back guarantee for all paid plans. If you're not completely satisfied, contact our support team within 30 days of subscription for a full refund.
+                We offer a 30-day money back guarantee for all paid plans. If you're not completely satisfied, contact our support team within 30 days of subscription for a full refund.
               </p>
             </div>
           </div>
@@ -329,7 +329,7 @@ const Pricing = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Brand Budgeting?</h2>
             <p className="text-xl mb-8">
-              Join thousands of Indian businesses using MIBBS<span className="text-accent-light text-sm align-super">™</span> to make data-backed brand investment decisions.
+              Join thousands of Indian businesses using MIBBS<span className="text-accent-light text-sm align-super">™</span> to make data backed brand investment decisions.
             </p>
             <Button className="bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] text-white font-semibold py-3 px-6 rounded-md transition-all duration-300">
               Get Started Free

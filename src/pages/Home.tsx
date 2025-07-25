@@ -44,7 +44,7 @@ useEffect(() => {
                 <span className="text-[#ac89b9]">Stronger Brands.</span>
               </h1>
               <p className="text-xl mb-8 text-navy-light max-w-lg">
-                Built for Indian Businesses. Data-backed brand budgeting tools, strategic recommendations, and real-time planning.
+                Built for Indian Businesses. Data backed brand budgeting tools, strategic recommendations, and real time planning.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -173,7 +173,7 @@ useEffect(() => {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="section-title text-white">What MIBBS<span className="text-accent text-sm align-super text-white">™</span> Solves</h2>
             <p className="section-subtitle text-white">
-              Our data-backed system helps brands make informed decisions for optimal budget allocation.
+              Our data backed system helps brands make informed decisions for optimal budget allocation.
             </p>
           </div>
 
@@ -191,7 +191,7 @@ useEffect(() => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-navy-light"><span className="font-medium text-navy">Data-Driven Decisions:</span> Replace guesswork with India-specific market data.</p>
+                    <p className="text-navy-light"><span className="font-medium text-navy">Data Driven Decisions:</span> Replace guesswork with India specific market data.</p>
                   </li>
                   <li className="flex items-start">
                     <div className="h-6 w-6 rounded-full bg-accent/10 flex items-center justify-center text-accent mr-3 mt-0.5">
@@ -215,7 +215,7 @@ useEffect(() => {
               <div className="bg-white rounded-xl shadow-lg p-8 mt-8 relative">
                 <div className="absolute top-0 left-0 h-1 bg-gradient-to-r from-accent-light to-accent"></div>
                 <h3 className="text-2xl font-semibold mb-6 text-navy">
-                  Real-Time Planning Tools
+                  Real Time Planning Tools
                 </h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -263,7 +263,7 @@ useEffect(() => {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="section-title">How MIBBS<span className="text-accent text-sm align-super">™</span> Works</h2>
             <p className="section-subtitle">
-              A simple three-step process to transform your brand budgeting approach.
+              A simple three step process to transform your brand budgeting approach.
             </p>
           </div>
 
@@ -327,7 +327,7 @@ useEffect(() => {
           <div className="max-w-4xl mx-auto">
             <div className="text-[#64378e] text-5xl font-serif mb-6">"</div>
             <blockquote className="text-xl md:text-2xl text-[#64378e] italic mb-8">
-              Indian brands deserve better than guesswork. With MIBBS, we're bringing data-backed strategic thinking to brand budgeting—something that has been missing in our market for far too long. This is how we build world-class Indian brands.
+              Indian brands deserve better than guesswork. With MIBBS, we're bringing data backed strategic thinking to brand budgeting something that has been missing in our market for far too long. This is how we build world-class Indian brands.
             </blockquote>
             <div className="flex items-center">
               <div className="w-16 h-16 bg-[#64378e] rounded-full mr-4">
