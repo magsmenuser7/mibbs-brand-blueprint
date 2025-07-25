@@ -27,6 +27,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import Analytics from "./pages/Analytics";
 import StartBudgetingForm from "./pages/StartBudgetingForm"
 import Generate from "./pages/Generate";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 
 
@@ -65,6 +66,7 @@ const App = () => (
             <Route path="/report" element={<Report />} />
             <Route path="/start-budgeting-form" element={<StartBudgetingForm />} />
             <Route path="/generate" element={<Generate />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Route>
         </Routes>
       </HashRouter>

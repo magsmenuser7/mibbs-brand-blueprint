@@ -69,7 +69,7 @@ const About = () => {
             </div>
             <div className="relative hidden md:block">
               <div className="relative z-10">
-                <img src="./lovable-uploads/brand-budget-for-business.png" alt="brand-budget-for-business" className="rounded-lg shadow-xl" />
+                <img src="./lovable-uploads/about-budget-1.png" alt="about-budget-1" className="rounded-lg " />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-full -z-10"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full -z-10"></div>
@@ -85,7 +85,7 @@ const About = () => {
             <div className="relative hidden md:block">
               <div className="relative z-10">
                 {/* Re-using the uploaded image for this section for demonstration */}
-                <img src="./lovable-uploads/circle-infograph.png" alt="circle-infograph" className="rounded-lg shadow-xl" />
+                <img src="./lovable-uploads/about-budget-2.png" alt="about-budget-2" className="rounded-lg" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-full -z-10"></div>
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-accent/20 rounded-full -z-10"></div>
@@ -216,6 +216,7 @@ const About = () => {
               <Button variant="outline" className="text-[#fff] bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]">
                 <a href="https://magsmen.com" target="_blank" rel="noopener noreferrer">
                   Visit Magsmen Website
+                  
                 </a>
               </Button>
             </div>
@@ -412,116 +413,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
-
-      {/* NEW: Our Team Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-16">
-            <h2 className="section-title text-4xl md:text-5xl font-extrabold text-navy">
-              Meet Our <span className="text-[#64378e]">Visionary</span> Team
-            </h2>
-            <p className="section-subtitle mx-auto">
-              The minds behind MIBBS, dedicated to transforming brand budgeting.
-            </p>
-          </div>
-
-          {/* Adjusted grid for 4 columns on large screens */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            {/* Team Member 1 */}
-            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              {/* Ensure these image paths are correct relative to your public folder */}
-              <img
-                src="/images/sandeep-kumar.jpg"
-                alt=""
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
-              />
-              <h3 className="text-2xl font-semibold mb-2 text-navy">Manimala Gavvala</h3>
-              <p className="text-[#64378e] font-medium mb-3">Branch Manager</p>
-              {/* <p className="text-navy-light text-sm">
-                With extensive experience in brand strategy, Sandeep leads Magsmen and conceptualized MIBBS to bridge the gap between ambition and disciplined investment.
-              </p> */}
-              <div className="mt-4 flex justify-center space-x-3">
-                {/* Example: Replace with LinkedIn icon SVG */}
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
-                </a>
-                {/* Example: Replace with Twitter icon SVG */}
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Team Member 2 */}
-            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <img
-                src="/images/priya-sharma.jpg"
-                alt=""
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
-              />
-              <h3 className="text-2xl font-semibold mb-2 text-navy">Koushik</h3>
-              <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
-              {/* <p className="text-navy-light text-sm">
-                Priya is the architect of MIBBS's intelligent algorithms, leveraging her expertise in AI and market analytics to ensure precise budget recommendations.
-              </p> */}
-              <div className="mt-4 flex justify-center space-x-3">
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Team Member 3 */}
-            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <img
-                src="/images/rajesh-verma.jpg"
-                alt=""
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
-              />
-              <h3 className="text-2xl font-semibold mb-2 text-navy">Bhagya Shree</h3>
-              <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
-              {/* <p className="text-navy-light text-sm">
-                Rajesh brings years of client-side brand management experience, ensuring MIBBS's outputs are practical, actionable, and aligned with real-world brand challenges.
-              </p> */}
-              <div className="mt-4 flex justify-center space-x-3">
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Team Member 4 (New) */}
-            <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <img
-                src="/images/sneha-gupta.jpg"
-                alt=""
-                className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
-              />
-              <h3 className="text-2xl font-semibold mb-2 text-navy">Vamsi Kiran</h3>
-              <p className="text-[#64378e] font-medium mb-3">Head Of Operations</p>
-              {/* <p className="text-navy-light text-sm">
-                Sneha ensures that MIBBS's innovative solutions reach the right brands, communicating its value proposition effectively across the Indian market.
-              </p> */}
-              <div className="mt-4 flex justify-center space-x-3">
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
-                </a>
-                <a href="#" className="text-gray-600 hover:text-[#64378e] transition-colors">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.4 3 5 9.3 9.4 14 8.2 16 6a2.2 2.2 0 0 1 2 2c0 .5 0 1 .2 1.5C20.5 7.1 22 4 22 4z" /></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* End NEW: Our Team Section */}
 
 
       {/* CTA Section */}
