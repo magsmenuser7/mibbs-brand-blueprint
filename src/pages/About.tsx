@@ -215,19 +215,12 @@ const About = () => {
                 </a>
               </Button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-sweathatelugufoods-168x168.png" alt="magsmen-homepage-clients-sweathatelugufoods-168x168" /></span>
-              </div>
-              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-tenalidoublehorse-168x168.png" alt="magsmen-homepage-clients-tenalidoublehorse-168x168" /></span>
-              </div>
-              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-colors-168x168.png" alt="magsmen-homepage-clients-colors-168x168" /></span>
-              </div>
-              <div className=" p-4 rounded-lg flex items-center justify-center h-32">
-                <span className="font-semibold text-navy"><img src="./lovable-uploads/magsmen-homepage-clients-triplexxx-168x168.png" alt="magsmen-homepage-clients-triplexxx-168x168" /></span>
-              </div>
+            <div className="grid grid-cols-1 gap-4">
+              <img
+                src="./lovable-uploads/about-one.jpeg"
+                alt="magsmen-animation"
+                className="h-[80%] w-[100%] rounded-lg object-cover shadow-lg my-auto"
+              />
             </div>
           </div>
         </div>
