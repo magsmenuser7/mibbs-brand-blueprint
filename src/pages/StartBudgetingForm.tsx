@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
 import { Progress } from '@/components/ui/progress';
-import { Rocket, TrendingUp, Crown, PlayCircle, BarChart3, TrendingDown, Plus } from 'lucide-react';
+import { Rocket, TrendingUp, Crown, PlayCircle, BarChart3, TrendingDown, Plus,ArrowLeft  } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import {
   Laptop,
@@ -920,13 +920,22 @@ const StartBudgetingForm = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold">Brand Budget Planner</h1>
-          <span className="text-sm text-muted-foreground">Optimize your branding investment</span>
-        </div>
+      <div className="min-h-screen bg-background py-8 px-4">
+          {/* Back to Dashboard Button - Right Aligned */}
+          <div className="max-w-4xl mx-auto mb-4 flex justify-start md:justify-end">
+              <Button variant="outline" onClick={() => navigate('/dashboard')} className="gap-2">
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Dashboard
+              </Button>
+          </div>
+          <div className="max-w-4xl mx-auto">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-8">
+                  <h1 className="text-2xl font-bold">Brand Budget Planner</h1>
+                  <span className="text-sm text-muted-foreground">Optimize your branding investment</span>
+              </div>
+
+
 
         {/* Progress Bar */}
         <div className="mb-8">
@@ -953,10 +962,6 @@ const StartBudgetingForm = () => {
     </div>
   );
 };
-
-
-
-
 
 
 
