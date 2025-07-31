@@ -412,6 +412,107 @@ const About = () => {
 
 
 
+<section className="py-20 bg-[#f5f5f5]">
+  <div className="container mx-auto px-4 md:px-8">
+    <div className="text-center mb-16">
+      <h2 className="section-title text-4xl md:text-5xl font-extrabold text-navy">
+        Meet Our <span className="text-[#64378e]">Dedicated</span> Team
+      </h2>
+      <p className="section-subtitle mx-auto">
+        The minds behind MIBBS, dedicated to transforming brand budgeting.
+      </p>
+    </div>
+
+    {/* Founding Team */}
+    <div className="mb-16">
+      <h3 className="text-3xl font-bold text-center text-navy mb-8">Founding</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-10 justify-items-center">
+        {/* Team Member 1 - Founding */}
+        <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-[50%] mx-auto">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_tbp9lktbp9lktbp9.png"
+            alt="CEO-&-Founder"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Sandeep</h3>
+          <p className="text-[#64378e] font-medium mb-3">CEO & Founder</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Strategy Team */}
+    <div className="mb-16">
+      <h3 className="text-3xl font-bold text-center text-navy mb-8">Strategy</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 justify-items-center">
+        {/* Team Member 2 - Strategy */}
+        <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_9oyg799oyg799oyg.png"
+            alt="Brand-Strategist"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Koushik</h3>
+          <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
+        </div>
+
+        {/* Team Member 3 - Strategy */}
+        <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_b6fv2eb6fv2eb6fv.png"
+            alt="Brand-Strategist"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Bhagya Shree</h3>
+          <p className="text-[#64378e] font-medium mb-3">Brand Strategist</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Support Team */}
+    <div>
+      <h3 className="text-3xl font-bold text-center text-navy mb-8">Support</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+        {/* Team Member 4 - Support (from your original list) */}
+
+          <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_7ce4717ce4717ce4.png"
+            alt="Manimala-Gavvala"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Manimala Gavvala</h3>
+          <p className="text-[#64378e] font-medium mb-3">Branch Manager</p>
+        </div>
+
+        {/* Placeholder for additional Support Team Member 1 */}
+
+          <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_c6qewec6qewec6qe.png"
+            alt="Vamsi Kiran"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Vamsi Kiran</h3>
+          <p className="text-[#64378e] font-medium mb-3">Head Of Operations</p>
+        </div>
+
+        {/* Placeholder for additional Support Team Member 2 */}
+        <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
+          <img
+            src="./lovable-uploads/Gemini_Generated_Image_rdjausrdjausrdja.png"
+            alt="Web-Developer"
+            className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
+          />
+          <h3 className="text-2xl font-semibold mb-2 text-navy">Suresh</h3>
+          <p className="text-[#64378e] font-medium mb-3">Web Developer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
       {/* CTA Section */}
       <section className="py-20 text-white bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
         <div className="container mx-auto px-4 md:px-8">
