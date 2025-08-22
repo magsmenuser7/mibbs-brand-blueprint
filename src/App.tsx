@@ -139,7 +139,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={import.meta.env.DEV ? "/" : "/repo-name"}>
+        <BrowserRouter basename={import.meta.env.DEV ? "/mibbs-brand-blueprint" : "/"}>
           <Analytics />
           {/* ✅ Wrap everything in AuthProvider */}
           <AuthProvider>
