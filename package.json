@@ -7,9 +7,8 @@
   "scripts": {
     "start": "react-scripts start",
     "dev": "vite",
-    "build": "vite build && npm run copy-404",
-    "build:dev": "vite build --mode development && npm run copy-404",
-    "copy-404": "copyfiles dist/index.html dist/404.html",
+    "build": "vite build && copy dist/index.html dist/404.html",
+    "build:dev": "vite build --mode development && cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
