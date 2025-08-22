@@ -8,7 +8,7 @@
     "start": "react-scripts start",
     "dev": "vite",
     "build": "vite build && copy dist/index.html dist/404.html",
-    "build:dev": "vite build --mode development && cp dist/index.html dist/404.html",
+    "build:dev": "vite build --mode development && copy dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
