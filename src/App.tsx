@@ -139,7 +139,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.DEV ? "/" : "/repo-name"}>
           <Analytics />
           {/* ✅ Wrap everything in AuthProvider */}
           <AuthProvider>
