@@ -49,7 +49,7 @@ useEffect(() => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  onClick={() => navigate("/Login")}
+                  onClick={() => navigate("/login")}
                   // onClick={() => setShowAuthModal(true)}
                 >
                   Start Budgeting

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "db.js",
   "scripts": {
-    "start": "node server.js"
+   "start": "node server/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import AuthModal from "@/components/AuthModal";
-import { ArrowRight, LogIn, LogOut, User, UserPlus } from "lucide-react";
+import { ArrowRight, Building, LogIn, LogOut, User, UserPlus } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +43,7 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <Link to="/about" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">About</Link>
+            <Link to="/enterprises" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">Enterprises</Link>
             <Link to="/how-it-works" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">How It Works</Link>
             <Link to="/tools" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">Tools & Templates</Link>
             <Link to="/pricing" className="font-medium text-[#5A4A6A] hover:text-[#c1a1c5] transition-colors">Pricing</Link>
@@ -52,25 +53,28 @@ const Navbar = () => {
 
 
           <div className="flex items-center space-x-4">
+             <Button size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
+              <Link to="/agency-login">
+                <Building className="w-4 h-4" />
+                Agency
+              </Link>
+            </Button>
+
+
             {user ? (
               <Button variant="ghost" size="sm">
                 <User className="w-6 h-6" />
                 {user.username || user.name}
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/login">
+              <Button variant="ghost" size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89] text-white">
+                <Link to="/dashboard">
                   <User className="w-6 h-6" />
-                  Login
+                  User
                 </Link>
               </Button>
             )}
-            {/* <Button size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
-              <Link to="/signup">
-                <UserPlus className="w-4 h-4 mr-2" />
-                Get Started
-              </Link>
-            </Button> */}
+           
           </div>
 
           {/* Desktop Login/Logout Button */}
