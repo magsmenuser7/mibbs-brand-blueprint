@@ -112,13 +112,13 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center hover:scale-105 transition-transform duration-300">
-            <Logo />
+            {/* <Logo /> */}
             
-            {/* <img 
+            <img 
               src="src/assets/mibbs-1.png" 
               alt="MIBBS" 
               className="h-8 w-auto"
-            /> */}
+            />
           </div>
 
           {/* Desktop Navigation */}
