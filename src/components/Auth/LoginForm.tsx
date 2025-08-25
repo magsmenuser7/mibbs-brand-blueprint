@@ -166,7 +166,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
                 type="button"
                 onClick={() => {
                   // setFormData({ email: 'new@example.com', password: 'new123' });
-                  navigate('/');
+                  navigate('/mibbs-brand-blueprint');
                 }}
 
                 className="px-3 py-1 bg-mibbs-light text-mibbs-primary rounded hover:bg-purple-100"

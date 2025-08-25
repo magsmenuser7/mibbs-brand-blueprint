@@ -30,9 +30,6 @@ import LoginForm from "./components/auth/LoginForm";
 
 
 
-
-
-
 // User Dashboard  Authenticartion
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import AuthPage from "./components/auth/AuthPage";
@@ -46,8 +43,6 @@ const queryClient = new QueryClient();
 
 
 
-
-
 // Enterprises user authentication  and  dashboard 
 import LandingPage from './components/LandingPage';
 import DashboardEnterprises from './components/DashboardEnterprises';
@@ -58,21 +53,19 @@ import LoginEnterprises from './components/LoginEnterprises';
 import AuthScreen from './components/AuthScreen';
 import AgencyPortal from './components/AgencyPortal/AgencyPortal';
 
-// function AppRoutes() {
-//   const { user, isAuthenticated } = useAuth();
 
-//   if (!isAuthenticated) {
-//     return <AuthScreen />;
-//   }
 
-//   return (
-//     <Routes>
-//       <Route path="/" element={<AgencyPortal />} />
-//       <Route path="/agency/*" element={<AgencyPortal />} />
-      
-//     </Routes>
-//   );
-// }
+// Extra Components (new code merged here)
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import WhyChoose from "./components/WhyChoose";
+import Certification from "./components/Certification";
+import HowItWorksAgency from "./components/HowItWorksAgency"; // ✅ renamed to avoid clash
+import DashboardAgency from "./components/DashboardAgency";
+import FooterAgency from "./components/FooterAgency";
+import SuccessStories from "./components/SuccessStories";
+import PricingAgency from "./components/PricingAgency";
+import FAQ from "./components/FAQ";
 
 
 
@@ -147,6 +140,7 @@ const App = () => (
               {/* Public Pages */}
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
+                <Route path="/mibbs-brand-blueprint" element={<Home />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/calculator" element={<Calculator />} />
@@ -178,7 +172,30 @@ const App = () => (
               <Route path="/cms-dashboard" element={<CMSDashboard />} />
 
               <Route path="/agency-login" element={<AuthScreen />} />
-               <Route path="/agency/*" element={<AgencyPortal />} />
+              <Route path="/agency/*" element={<AgencyPortal />} />
+
+
+
+
+
+              {/* ✅ New "One-Page Landing" version */}
+                <Route
+                  path="/landing"
+                  element={
+                    <div className="min-h-screen bg-white">
+                      <Header />
+                      <Hero />
+                      <WhyChoose />
+                      <HowItWorksAgency />
+                      <DashboardAgency />
+                      <PricingAgency />
+                      <Certification />
+                      <SuccessStories />
+                      <FAQ />
+                      <FooterAgency />
+                    </div>
+                  }
+                />
 
 
 

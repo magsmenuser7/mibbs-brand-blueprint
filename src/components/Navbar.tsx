@@ -54,7 +54,7 @@ const Navbar = () => {
 
           <div className="flex items-center space-x-4">
              <Button size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
-              <Link to="/agency-login">
+              <Link to="/landing">
                 <Building className="w-4 h-4" />
                 Agency
               </Link>
