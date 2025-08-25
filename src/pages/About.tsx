@@ -128,8 +128,8 @@ const About = () => {
             <div className="order-2 md:order-1 relative hidden md:block">
               <div className="relative z-10">
                 <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-                  <div className="w-32 h-32 bg-gray-300 rounded-full mx-auto mb-6">
-                    {/* Placeholder for founder image */}
+                  <div className="w-32 h-32  rounded-full mx-auto mb-6">
+                    {/* Placeholder for founder image bg-gray-300 */}
                     <img src="./lovable-uploads/sandeep.png" alt="sandeep" />
                   </div>
                   <h3 className="text-xl font-bold text-navy text-center mb-2">Sandeep Kumar</h3>
@@ -517,7 +517,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                   className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  onClick={() => navigate("/Login")}
+                  onClick={() => navigate("/dashboard")}
                   // onClick={() => setShowAuthModal(true)}
                 >
                   Start Budgeting

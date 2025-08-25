@@ -46,11 +46,11 @@ useEffect(() => {
               <p className="text-xl mb-8 text-navy-light max-w-lg">
                 Built for Indian Businesses. Data backed brand budgeting tools, strategic recommendations, and real time planning.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 z-50 relative">
                 <Button
-                  className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff]"
-                  onClick={() => navigate("/login")}
-                  // onClick={() => setShowAuthModal(true)}
+                  className="btn-primary flex items-center group bg-[#ac89b9] hover:bg-[#64378e] hover:text-[#fff] "
+                  onClick={() => navigate("/dashboard")}
+                  
                 >
                   Start Budgeting
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />

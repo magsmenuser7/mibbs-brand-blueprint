@@ -28,7 +28,7 @@ interface GoogleUser {
 }
 
 const LoginForm = () => {
-  const BASE_URL = 'http://api.mibbs.ai/api';
+  const BASE_URL = 'https://api.mibbs.ai/api';
   const navigate = useNavigate();
 
   const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
