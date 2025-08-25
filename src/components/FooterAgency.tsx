@@ -9,7 +9,7 @@ const FooterAgency = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <img 
-              src="src/assets/mibbs-2.png" 
+              src="./src/assets/mibbs-2.png" 
               alt="MIBBS" 
               className="h-8 w-auto mb-6 filter brightness-0 invert"
             />
