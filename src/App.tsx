@@ -26,6 +26,7 @@ import StartBudgetingForm from "./pages/StartBudgetingForm";
 import Generate from "./pages/Generate";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LoginForm from "./components/auth/LoginForm";
+import Logo from "./components/Logo";
 
 
 
@@ -140,7 +141,6 @@ const App = () => (
               {/* Public Pages */}
               <Route element={<Layout />}>
                 <Route path="/" element={<Home />} />
-                <Route path="/mibbs-brand-blueprint" element={<Home />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/calculator" element={<Calculator />} />

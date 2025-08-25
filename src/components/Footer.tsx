@@ -1,6 +1,8 @@
 
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
+import logo1 from "../assets/mibbs-1.png";
+import logo2 from "../assets/mibbs-2.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,7 +12,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <Logo variant="white" />
+            {/* <Logo variant="white" /> */}
+            <img 
+          src={logo1} 
+          alt="MIBBS Logo 1" 
+          className="h-10 sm:h-10 md:h-12"
+        />
             <p className="text-gray-300 mt-4 mb-4">
               India's First Intelligent Brand Budgeting System. Smarter Budgets. Stronger Brands.
             </p>

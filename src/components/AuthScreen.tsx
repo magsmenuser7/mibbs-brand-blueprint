@@ -105,7 +105,7 @@ const AuthScreen: React.FC = () => {
           <div className="flex justify-center mt-4">
             <button
               type="button"
-              onClick={() => navigate('/mibbs-brand-blueprint')}
+              onClick={() => navigate('/')}
               className="px-3 py-1  text-mibbs-primary rounded hover:bg-purple-100 "
             >
               Back To Home

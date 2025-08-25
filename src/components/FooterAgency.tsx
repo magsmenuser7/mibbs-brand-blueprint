@@ -9,7 +9,7 @@ const FooterAgency = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <img 
-              src="./src/assets/mibbs-2.png" 
+              src="src/assets/mibbs-2.png" 
               alt="MIBBS" 
               className="h-8 w-auto mb-6 filter brightness-0 invert"
             />
@@ -73,7 +73,7 @@ const FooterAgency = () => {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-3 text-gray-400" />
-                <span className="text-gray-300">hello@mibbs.ai</span>
+                <span className="text-gray-300">hello@mibbs.co</span>
               </div>
               <div className="flex items-center">
                 <Phone className="h-4 w-4 mr-3 text-gray-400" />
