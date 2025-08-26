@@ -42,12 +42,18 @@ const CMSSidebar: React.FC<CMSSidebarProps> = ({
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
         {!collapsed && (
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-mibbs-gradient rounded-lg flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-white" />
+          // <div className="flex items-center space-x-3">
+          //   <div className="w-8 h-8 bg-mibbs-gradient rounded-lg flex items-center justify-center">
+          //     <Building2 className="w-5 h-5 text-white" />
+          //   </div>
+          //   <span className="text-xl font-bold text-gray-900">MIBBS</span>
+          // </div>
+            <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-xl">M</span>
+                </div>
+                <span className="text-3xl font-bold">MIBBS</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">MIBBS</span>
-          </div>
         )}
         <button
           onClick={onToggleCollapse}
@@ -63,7 +69,7 @@ const CMSSidebar: React.FC<CMSSidebarProps> = ({
 
       {/* Navigation */}
       <nav className="p-4">
-        <ul className="space-y-2">
+        <ul className="space-y-0">
           {navigationItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeSection === item.id;
@@ -94,7 +100,7 @@ const CMSSidebar: React.FC<CMSSidebarProps> = ({
 
       {/* Upgrade Section */}
       {!collapsed && (
-        <div className="absolute bottom-4 left-4 right-4">
+        <div className="absolute bottom-4 left-4 right-4 mt-5">
           <div className="bg-mibbs-gradient rounded-lg p-4 text-white">
             <h4 className="font-semibold mb-1">Upgrade to Pro</h4>
             <p className="text-sm text-purple-100 mb-3">Unlock advanced features</p>

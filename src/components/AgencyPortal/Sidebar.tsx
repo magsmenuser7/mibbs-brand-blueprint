@@ -50,12 +50,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 bg-gradient-to-r from-primary-50 to-accent-50">
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className="p-1 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg">
               <Building2 className="w-6 h-6 text-white" />
             </div>
             <span className="ml-2 text-xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">MIBBS</span>
-          </div>
+          </div> */}
+
+          <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-xl">M</span>
+                </div>
+                <span className="text-3xl font-bold">MIBBS</span>
+            </div>
           <button
             onClick={onClose}
             className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 transition-colors duration-200"
@@ -95,9 +102,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 bg-gradient-to-r from-primary-25 to-accent-25">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-100 to-accent-100 rounded-full flex items-center justify-center animate-pulse-soft">
+            {/* <div className="w-8 h-8 bg-gradient-to-r from-primary-100 to-accent-100 rounded-full flex items-center justify-center animate-pulse-soft">
               <Building2 className="w-4 h-4 text-primary-600" />
-            </div>
+            </div> */}
+
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-xl">M</span>
+                </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-700">Agency Portal</p>
               <p className="text-xs text-gray-500">v2.0.0</p>

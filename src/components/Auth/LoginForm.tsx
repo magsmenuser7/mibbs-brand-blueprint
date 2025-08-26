@@ -49,13 +49,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode }) => {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="text-center mb-8">
-        <div className="flex items-center justify-center space-x-3 mb-4">
+        {/* <div className="flex items-center justify-center space-x-3 mb-4">
           <div className="w-12 h-12 bg-mibbs-gradient rounded-xl flex items-center justify-center">
             <Building2 className="w-6 h-6 text-white" />
           </div>
           <span className="text-2xl font-bold text-gray-900">MIBBS</span>
+        </div> */}
+
+        <div className="flex justify-center items-center space-x-3 mb-2">
+          <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+            <span className="text-white font-bold text-xl">M</span>
+          </div>
+          <span className="text-3xl font-bold">MIBBS</span>
         </div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1>
+        {/* <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back</h1> */}
         <p className="text-gray-600">Sign in to your brand command center</p>
       </div>
 
