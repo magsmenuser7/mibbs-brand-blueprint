@@ -1,5 +1,7 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Twitter, Linkedin, Instagram,X } from 'lucide-react';
+import logo2 from "../assets/mibbs-2.png";
+
 
 const FooterAgency = () => {
   return (
@@ -9,7 +11,7 @@ const FooterAgency = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <img 
-              src="src/assets/mibbs-2.png" 
+              src={logo2} 
               alt="MIBBS" 
               className="h-8 w-auto mb-6 filter brightness-0 invert"
             />

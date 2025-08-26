@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, ChevronDown, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import Logo from './Logo';
 import { Navigate, useNavigate } from 'react-router-dom';
+import logo1 from "../assets/mibbs-1.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -115,7 +116,7 @@ const Header = () => {
             {/* <Logo /> */}
             
             <img 
-              src="src/assets/mibbs-1.png" 
+              src={logo1}
               alt="MIBBS" 
               className="h-8 w-auto"
             />
