@@ -31,6 +31,25 @@ import Logo from "./components/Logo";
 
 
 
+// Updated Home Page pages
+import HeaderNew from './components/UpdatedHomePage/Header';
+import HeroNew from './components/UpdatedHomePage/Hero';
+import Problem from './components/UpdatedHomePage/Problem';
+import Features from './components/UpdatedHomePage/Features';
+import HowItWorksNew from './components/UpdatedHomePage/HowItWorks';
+import WhoItsFor from './components/UpdatedHomePage/WhoItsFor';
+import ProductPreview from './components/UpdatedHomePage/ProductPreview';
+import Testimonials from './components/UpdatedHomePage/Testimonials';
+import FAQNew from './components/UpdatedHomePage/FAQ';
+import FinalCTA from './components/UpdatedHomePage/FinalCTA';
+import FooterNew from './components/UpdatedHomePage/Footer';
+import PrivacyPolicyNew from './components/UpdatedHomePage/PrivacyPolicy';
+
+
+
+
+
+
 // User Dashboard  Authenticartion
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import AuthPage from "./components/auth/AuthPage";
@@ -140,7 +159,31 @@ const App = () => (
             <Routes>
               {/* Public Pages */}
               <Route element={<Layout />}>
-                <Route path="/" element={<Home />} />
+
+                {/* ✅ Homepage Route */}
+                <Route
+                  path="/"
+                  element={
+                    <div className="min-h-screen bg-gray-50 text-gray-800">
+                      {/* <HeaderNew /> */}
+                      <HeroNew />
+                      <Problem />
+                      <Features />
+                      <HowItWorksNew />
+                      <WhoItsFor />
+                      <ProductPreview />
+                      <Testimonials />
+                      <FAQNew />
+                      <FinalCTA />
+                      <FooterNew />
+                      {/* <PrivacyPolicyNew /> */}
+                    </div>
+                  }
+                />
+
+
+
+                {/* <Route path="/" element={<Home />} /> */}
                 <Route path="/how-it-works" element={<HowItWorks />} />
                 <Route path="/tools" element={<Tools />} />
                 <Route path="/calculator" element={<Calculator />} />

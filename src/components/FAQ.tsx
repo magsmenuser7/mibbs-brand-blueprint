@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import navigate, { useNavigate } from "react-router-dom";
 
 const FAQ = () => {
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -100,10 +102,10 @@ const FAQ = () => {
             Our team is here to help you get started with MIBBS
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-mibbs-primary to-mibbs-secondary text-white px-6 py-3 rounded-lg hover:from-mibbs-secondary hover:to-mibbs-accent transition-all duration-500 font-semibold transform hover:-translate-y-1 hover:scale-105 hover:shadow-lg">
+            <button onClick={() => navigate("/dashboard")} className="bg-gradient-to-r from-mibbs-primary to-mibbs-secondary text-white px-6 py-3 rounded-lg hover:from-mibbs-secondary hover:to-mibbs-accent transition-all duration-500 font-semibold transform hover:-translate-y-1 hover:scale-105 hover:shadow-lg">
               Schedule a Demo
             </button>
-            <button className="border border-mibbs-primary text-mibbs-primary px-6 py-3 rounded-lg hover:bg-gradient-to-r hover:from-mibbs-primary hover:to-mibbs-secondary hover:text-white transition-all duration-500 font-semibold transform hover:-translate-y-1 hover:scale-105">
+            <button onClick={() => navigate("/contact")} className="border border-mibbs-primary text-mibbs-primary px-6 py-3 rounded-lg hover:bg-gradient-to-r hover:from-mibbs-primary hover:to-mibbs-secondary hover:text-white transition-all duration-500 font-semibold transform hover:-translate-y-1 hover:scale-105">
               Contact Support
             </button>
           </div>

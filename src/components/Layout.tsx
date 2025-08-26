@@ -1,12 +1,12 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Footer from "./UpdatedHomePage/Footer";
 
 const Layout = () => {
   const location = useLocation();
 
   // Pages where footer should be hidden
-  const noFooterPages = ["/enterprises"];
+  const noFooterPages = ["/enterprises" ,"/"];
 
   return (
     <div className="min-h-screen flex flex-col">

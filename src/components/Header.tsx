@@ -124,10 +124,10 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-             {/* <a href="/" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:scale-105 relative group">
+             <a href="/" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:scale-105 relative group">
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-mibbs-primary to-mibbs-accent group-hover:w-full transition-all duration-300"></span>
-            </a> */}
+            </a>
             <a href="#how-it-works" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:scale-105 relative group">
               How It Works
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-mibbs-primary to-mibbs-accent group-hover:w-full transition-all duration-300"></span>

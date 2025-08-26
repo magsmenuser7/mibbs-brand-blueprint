@@ -53,7 +53,7 @@ const Navbar = () => {
 
 
           <div className="flex items-center space-x-4">
-             <Button size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89]">
+             <Button size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
               <Link to="/landing">
                 <Building className="w-4 h-4" />
                 Agency
@@ -67,10 +67,10 @@ const Navbar = () => {
                 {user.username || user.name}
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild className="bg-gradient-to-br from-[#ccadcc] to-[#5b2d89] text-white">
+              <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
                 <Link to="/dashboard">
                   <User className="w-6 h-6" />
-                  User
+                  Login
                 </Link>
               </Button>
             )}
