@@ -11,7 +11,8 @@ const UserTypeSelection: React.FC = () => {
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <div className="w-16 h-16 bg-mibbs-gradient rounded-2xl flex items-center justify-center">
-              <Building2 className="w-8 h-8 text-white" />
+              {/* <Building2 className="w-8 h-8 text-white" /> */}
+              <span className="text-white font-bold text-xl">M</span>
             </div>
             <span className="text-4xl font-bold text-gray-900">MIBBS</span>
           </div>
