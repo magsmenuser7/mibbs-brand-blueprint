@@ -134,7 +134,7 @@ const LandingPage = () => {
                   Gain Absolute Control
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Unify your brand vision, regional spend, and agency performance — in one intelligent dashboard built for CMOs, CFOs, and CXOs.
+                  Unify your brand vision, regional spend, and agency performance in one intelligent dashboard built for CMOs, CFOs, and CXOs.
                 </p>
               </div>
 
@@ -213,7 +213,7 @@ const LandingPage = () => {
               What is MIBBS Enterprise?
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              MIBBS Enterprise is the country's first full-stack BrandOps system that gives national brands a single source of truth for brand budgeting, agency coordination, and marketing control — all tailored by region, objective, and growth plan.
+              MIBBS Enterprise is the country's first full-stack BrandOps system that gives national brands a single source of truth for brand budgeting, agency coordination, and marketing control all tailored by region, objective, and growth plan.
             </p>
           </div>
           
@@ -451,7 +451,7 @@ const LandingPage = () => {
           
           <div className="text-center mt-12">
             <p className="text-2xl font-bold text-purple-600">
-              From command to control — this is your national brand cockpit.
+              From command to control this is your national brand cockpit.
             </p>
           </div>
         </div>
