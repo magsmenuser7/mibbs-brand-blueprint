@@ -67,12 +67,19 @@ const Navbar = () => {
                 {user.username || user.name}
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
-                <Link to="/dashboard">
-                  <User className="w-6 h-6" />
-                  Login
-                </Link>
-              </Button>
+              // <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
+              //   <Link to="/dashboard">
+              //     <User className="w-6 h-6" />
+              //     Login
+              //   </Link>
+              // </Button>
+
+                <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
+                  <Link to="/user-type-selection">
+                    <User className="w-6 h-6" />
+                    Login
+                  </Link>
+                </Button>
             )}
            
           </div>

@@ -58,6 +58,7 @@ import BudgetingQuestionnaire from "./components/budgeting/BudgetingQuestionnair
 import BudgetReport from "./components/budgeting/BudgetReport";
 import CMSDashboard from "./components/cms/CMSDashboard";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import UserTypeSelection from "./components/UserTypeSelection";
 
 const queryClient = new QueryClient();
 
@@ -213,9 +214,13 @@ const App = () => (
               <Route path="/dashboard/*" element={<AppContent />} />
               <Route path="/onboarding" element={<WelcomeOnboarding onComplete={() => {}} />} />
               <Route path="/cms-dashboard" element={<CMSDashboard />} />
+              
 
               <Route path="/agency-login" element={<AuthScreen />} />
               <Route path="/agency/*" element={<AgencyPortal />} />
+
+
+              <Route path="/user-type-selection" element={<UserTypeSelection />} />
 
 
 
