@@ -17,7 +17,7 @@ const SuccessStories = () => {
       agency: "Brand Builders Co.",
       location: "Bangalore",
       growth: "Reduced proposal time by 70%",
-      testimonial: "The proposal builder and direct client access saved us countless hours. We can focus on what we do best - creating great brands.",
+      testimonial: "The proposal builder and direct client access saved us countless hours. We can focus on what we do best creating great brands.",
       avatar: "BB",
       rating: 5,
       projects: 18,

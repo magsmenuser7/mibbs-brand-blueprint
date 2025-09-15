@@ -49,7 +49,7 @@ const Certification = () => {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Why Get Certified</h3>
               <p className="text-xl text-gray-600 leading-relaxed">
                 Trust isn't built with a logo. It's built with standards. That's why MIBBS certification 
-                exists—to spotlight agencies that deliver, consistently.
+                exists to spotlight agencies that deliver, consistently.
               </p>
             </div>
 

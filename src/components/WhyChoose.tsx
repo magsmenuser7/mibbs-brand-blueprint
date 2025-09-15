@@ -24,7 +24,7 @@ const WhyChoose = () => {
     {
       icon: DollarSign,
       title: "Your Prices, Their Budget",
-      description: "When businesses budget on MIBBS, your packages are factored in. You're not adjusting to them—they're aligning to you.",
+      description: "When businesses budget on MIBBS, your packages are factored in. You're not adjusting to them they're aligning to you.",
       color: "orange"
     }
   ];

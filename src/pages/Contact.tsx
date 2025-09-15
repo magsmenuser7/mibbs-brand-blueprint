@@ -74,7 +74,7 @@ const Contact = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-navy">Email Us</h3>
                     <p className="text-navy-light mb-1">For general inquiries:</p>
-                    <a href="mailto:hello@mibbs.in" className="text-[#64378e] hover:underline">hello@mibbs.in</a>
+                    <a href="mailto:hello@mibbs.ai" className="text-[#64378e] hover:underline">hello@mibbs.ai</a>
                   </div>
                 </div>
                 
@@ -87,7 +87,7 @@ const Contact = () => {
                   <div>
                     <h3 className="text-lg font-semibold text-navy">Call Us</h3>
                     <p className="text-navy-light mb-1">Monday to Friday, 9am to 6pm IST</p>
-                    <a href="tel:+919876543210" className="text-[#64378e] hover:underline">+91 98765 43210</a>
+                    <a href="tel:+919044910449" className="text-[#64378e] hover:underline">+91 90449 10449</a>
                   </div>
                 </div>
                 
