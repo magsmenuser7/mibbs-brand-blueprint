@@ -148,7 +148,7 @@ const Footer = () => {
               {/* <span className="text-gray-400">Made with ❤️ in India</span> */}
               <span className="text-gray-400">Made In India</span>
               <div className="flex items-center space-x-4">
-                <a href="#privacy" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy</a>
+                <a href="/privacy-policy" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy</a>
                 <a href="#terms" className="text-gray-400 hover:text-purple-400 transition-colors">Terms</a>
                 <a href="#cookies" className="text-gray-400 hover:text-purple-400 transition-colors">Cookies</a>
               </div>
