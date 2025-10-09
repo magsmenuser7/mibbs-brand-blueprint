@@ -6,8 +6,6 @@ import { loginWithGoogle } from '@/lib/api/auth';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-
-
 interface GoogleUser {
   name: string;
   email: string;
@@ -26,88 +24,41 @@ const SignupModal: React.FC<SignupModalProps> = ({
   isOpen, onComplete, onClose,
 }) => {
   const { signup, login } = useAuth();
-
   const { user } = useAuth();
   const navigate = useNavigate();
-  
 
-
-  // const BASE_URL = "http://127.0.0.1:8000/api";
   const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
-  // 🟢 Normal signup logic first
-  await signup(userData);
+    await signup(userData);
 
-  // 🟢 Now check if assessment data exists
-  const savedData = localStorage.getItem("pending_assessment");
-  if (savedData && userData?.email) {
-    const payload = JSON.parse(savedData);
-    payload.username = userData.firstName || userData.username;
-    payload.email = userData.email;
-    payload.phone = userData.phone || "";
+    const savedData = localStorage.getItem("pending_assessment");
+    if (savedData && userData?.email) {
+      const payload = JSON.parse(savedData);
+      payload.username = userData.firstName || userData.username;
+      payload.email = userData.email;
+      payload.phone = userData.phone || "";
 
-    try {
-      const response = await fetch(`${BASE_URL}/assessment/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      try {
+        const response = await fetch(`${BASE_URL}/assessment/`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
 
-      if (response.ok) {
-        console.log("✅ Assessment saved with user details!");
-        localStorage.removeItem("pending_assessment");
-      } else {
-        console.error("❌ Failed to save assessment:", await response.text());
+        if (response.ok) {
+          console.log("✅ Assessment saved with user details!");
+          localStorage.removeItem("pending_assessment");
+        } else {
+          console.error("❌ Failed to save assessment:", await response.text());
+        }
+      } catch (err) {
+        console.error("⚠️ Network error saving assessment:", err);
       }
-    } catch (err) {
-      console.error("⚠️ Network error saving assessment:", err);
     }
-  }
-};
-
-
-
+  };
 
   const [isLoginMode, setIsLoginMode] = useState(false);
-
-
-// const handleGoogleSuccess = async (credentialResponse: any) => {
-//   try {
-//     if (!credentialResponse?.credential) {
-//       console.error("No credential found in Google response");
-//       return;
-//     }
-
-//     // ✅ Decode Google token for user info
-//     const decoded = jwtDecode<GoogleUser>(credentialResponse.credential);
-//     console.log("Decoded User Info:", decoded);
-
-//     // ✅ Store basic user info locally
-//     localStorage.setItem("username", decoded.name);
-//     localStorage.setItem("email", decoded.email);
-//     if (decoded.picture) {
-//       localStorage.setItem("profilePicture", decoded.picture);
-//     }
-
-//     // ✅ Send credential to backend for verification
-//     const response = await loginWithGoogle(credentialResponse.credential);
-//     console.log("Backend Response:", response?.data || response);
-
-//     // ✅ Store backend user data
-//     localStorage.setItem(
-//       "user",
-//       JSON.stringify(response?.data || response || {})
-//     );
-
-//     // Optional redirect / success message
-//     console.log("Google login successful!");
-//     // navigate("/dashboard"); // uncomment if needed
-//   } catch (error) {
-//     console.error("Google Login Error:", error);
-//   }
-// };
-    
 
   const handleGoogleSuccess = async (credentialResponse: any) => {
     try {
@@ -116,18 +67,18 @@ const SignupModal: React.FC<SignupModalProps> = ({
 
       localStorage.setItem("username", decoded.name);
 
-      // Send token to backend using auth.js
       const response = await loginWithGoogle(credentialResponse.credential);
       console.log("Backend Response:", response.data);
 
-      // Optional: redirect user
-      // navigate("/dashboard");
+      // ✅ Mimic manual login behavior: next step automatically
+      setTimeout(() => {
+        onComplete(response.data.user);
+      }, 1200);
+
     } catch (error) {
       console.error("Google Login Error:", error);
     }
   };
-
-
 
   const [formData, setFormData] = useState({
     username: '',
@@ -169,8 +120,6 @@ const SignupModal: React.FC<SignupModalProps> = ({
     return Object.keys(newErrors).length === 0;
   };
 
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
@@ -195,7 +144,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           localStorage.setItem("user", JSON.stringify(data.user));
           setTimeout(() => {
             setSuccessMessage("");
-            onComplete(data.user);
+            onComplete(data.user); // ✅ Automatically move to next step
           }, 1200);
         } else {
           setErrors({ general: data.message || "Invalid credentials." });
@@ -234,30 +183,16 @@ const SignupModal: React.FC<SignupModalProps> = ({
           return;
         }
 
-        // if (response.ok && data.user) {
-        //   setSuccessMessage("Account created successfully! Please login now.");
-        //   setIsLoginMode(true);
-        //   setFormData((prev) => ({
-        //     ...prev,
-        //     password: formData.password,
-        //     confirmPassword: "",
-        //     agreeToTerms: false,
-        //   }));
-        // } else {
-        //   setErrors({ general: data.message || "Failed to create account." });
-        // }
         if (response.ok && data.user) {
           setSuccessMessage("Account created successfully! Please login now.");
           setIsLoginMode(true);
 
-          // ✅ Call handleSignupSuccess to attach assessment data
           await handleSignupSuccess({
             username: data.user.username || formData.username,
             email: data.user.email || formData.email,
             phone: data.user.phone || formData.mobile,
           });
 
-          // Optional cleanup after success
           setFormData((prev) => ({
             ...prev,
             password: formData.password,
@@ -321,39 +256,22 @@ const SignupModal: React.FC<SignupModalProps> = ({
           </div>
         )}
 
-        {/* Google Login Button (only in login mode) */}
-        {/* {isLoginMode && (
-          <div className="mb-4">
-            <GoogleLogin
-              onSuccess={(handleGoogleSuccess) => {
-                console.log('Google Login Success', handleGoogleSuccess);
-                navigate('/budgetplanscreen');
-              }}
-              onError={() => {
-                console.error('Google Login Failed');
-              }}
-            />
-          </div>
-        )} */}
-
         <form onSubmit={handleSubmit} className="space-y-2 ">
           {!isLoginMode && (
-            <>
-              <div>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                  <input
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    className={`w-full pl-9 pr-3 py-2  border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.username ? 'border-red-300' : 'border-gray-300'}`}
-                    placeholder="Enter your username"
-                  />
-                </div>
-                {errors.username && <p className="text-xs text-red-600 mt-1">{errors.username}</p>}
+            <div>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  className={`w-full pl-9 pr-3 py-2  border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.username ? 'border-red-300' : 'border-gray-300'}`}
+                  placeholder="Enter your username"
+                />
               </div>
-            </>
+              {errors.username && <p className="text-xs text-red-600 mt-1">{errors.username}</p>}
+            </div>
           )}
 
           <div>
@@ -489,26 +407,18 @@ const SignupModal: React.FC<SignupModalProps> = ({
                 Sign In
               </button>
             </>
-            
           )}
 
-                  {/* Google Login Button (only in login mode) */}
-        {isLoginMode && (
-          <div className="mb-4 mt-5">
-            <GoogleLogin
-              onSuccess={(handleGoogleSuccess) => {
-                console.log('Google Login Success', handleGoogleSuccess);
-                navigate('/budgetplanscreen');
-              }}
-              onError={() => {
-                console.error('Google Login Failed');
-              }}
-            />
-          </div>
-        )}
+          {/* Google Login Button */}
+          {isLoginMode && (
+            <div className="mb-4 mt-4">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={() => console.error('Google Login Failed')}
+              />
+            </div>
+          )}
         </div>
-
-
       </div>
     </div>
   );
