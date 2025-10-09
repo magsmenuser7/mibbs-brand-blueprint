@@ -29,7 +29,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
   const { user } = useAuth();
 
 
-
+  // const BASE_URL = "http://127.0.0.1:8000/api";
+  const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
   // 🟢 Normal signup logic first
@@ -145,8 +146,7 @@ const handleGoogleSuccess = async (credentialResponse: any) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // const BASE_URL = "http://127.0.0.1:8000/api";
-  const BASE_URL = 'https://api.mibbs.ai/api';
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
