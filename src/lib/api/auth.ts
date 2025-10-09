@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // ✅ Production Base URL
-const API = "https://api.mibbs.ai/api";
+// const API = "https://api.mibbs.ai/api";
 const BASE_URL = "https://api.mibbs.ai/api";
 
 

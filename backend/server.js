@@ -1,4 +1,3 @@
-
 /// server.js
 const express = require("express");
 const cors = require("cors");
@@ -12,6 +11,8 @@ const allowedOrigins = ["https://api.mibbs.ai/api"];
 
 app.use(cors({
   origin: allowedOrigins,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
 
@@ -28,6 +29,50 @@ const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+
+
+
+
+// /// server.js
+// const express = require("express");
+// const cors = require("cors");
+// const app = express();
+// require("dotenv").config();
+
+// const authRoutes = require("./routes/auth");
+
+// // ✅ Allow only frontend origin
+// const allowedOrigins = ["https://api.mibbs.ai/api"];
+
+
+// app.use(cors({
+//   origin: allowedOrigins,
+//   methods: ["GET", "POST", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true,
+// }));
+
+// app.use(cors({
+//   origin: allowedOrigins,
+//   credentials: true,
+// }));
+
+
+
+// // ✅ Middleware
+// app.use(express.json());
+// app.use("/api/auth", authRoutes);
+
+// // ✅ Test route
+// app.get("/", (req, res) => {
+//   res.send("Backend is working!");
+// });
+
+// const PORT = 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server running at http://localhost:${PORT}`);
+// });
 
 
 
