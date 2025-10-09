@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import { loginWithGoogle } from '@/lib/api/auth';
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -27,6 +28,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
   const { signup, login } = useAuth();
 
   const { user } = useAuth();
+  const navigate = useNavigate();
+  
 
 
   // const BASE_URL = "http://127.0.0.1:8000/api";
@@ -69,42 +72,62 @@ const SignupModal: React.FC<SignupModalProps> = ({
   const [isLoginMode, setIsLoginMode] = useState(false);
 
 
-const handleGoogleSuccess = async (credentialResponse: any) => {
-  try {
-    if (!credentialResponse?.credential) {
-      console.error("No credential found in Google response");
-      return;
-    }
+// const handleGoogleSuccess = async (credentialResponse: any) => {
+//   try {
+//     if (!credentialResponse?.credential) {
+//       console.error("No credential found in Google response");
+//       return;
+//     }
 
-    // ✅ Decode Google token for user info
-    const decoded = jwtDecode<GoogleUser>(credentialResponse.credential);
-    console.log("Decoded User Info:", decoded);
+//     // ✅ Decode Google token for user info
+//     const decoded = jwtDecode<GoogleUser>(credentialResponse.credential);
+//     console.log("Decoded User Info:", decoded);
 
-    // ✅ Store basic user info locally
-    localStorage.setItem("username", decoded.name);
-    localStorage.setItem("email", decoded.email);
-    if (decoded.picture) {
-      localStorage.setItem("profilePicture", decoded.picture);
-    }
+//     // ✅ Store basic user info locally
+//     localStorage.setItem("username", decoded.name);
+//     localStorage.setItem("email", decoded.email);
+//     if (decoded.picture) {
+//       localStorage.setItem("profilePicture", decoded.picture);
+//     }
 
-    // ✅ Send credential to backend for verification
-    const response = await loginWithGoogle(credentialResponse.credential);
-    console.log("Backend Response:", response?.data || response);
+//     // ✅ Send credential to backend for verification
+//     const response = await loginWithGoogle(credentialResponse.credential);
+//     console.log("Backend Response:", response?.data || response);
 
-    // ✅ Store backend user data
-    localStorage.setItem(
-      "user",
-      JSON.stringify(response?.data || response || {})
-    );
+//     // ✅ Store backend user data
+//     localStorage.setItem(
+//       "user",
+//       JSON.stringify(response?.data || response || {})
+//     );
 
-    // Optional redirect / success message
-    console.log("Google login successful!");
-    // navigate("/dashboard"); // uncomment if needed
-  } catch (error) {
-    console.error("Google Login Error:", error);
-  }
-};
+//     // Optional redirect / success message
+//     console.log("Google login successful!");
+//     // navigate("/dashboard"); // uncomment if needed
+//   } catch (error) {
+//     console.error("Google Login Error:", error);
+//   }
+// };
     
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      const decoded = jwtDecode<GoogleUser>(credentialResponse.credential);
+      console.log("Decoded User Info:", decoded);
+
+      localStorage.setItem("username", decoded.name);
+
+      // Send token to backend using auth.js
+      const response = await loginWithGoogle(credentialResponse.credential);
+      console.log("Backend Response:", response.data);
+
+      // Optional: redirect user
+      // navigate("/dashboard");
+    } catch (error) {
+      console.error("Google Login Error:", error);
+    }
+  };
+
+
 
   const [formData, setFormData] = useState({
     username: '',
@@ -301,44 +324,15 @@ const handleGoogleSuccess = async (credentialResponse: any) => {
         {/* Google Login Button (only in login mode) */}
         {isLoginMode && (
           <div className="mb-4">
-<GoogleLogin
-  onSuccess={async (credentialResponse) => {
-    try {
-      setIsLoading(true);
-      if (!credentialResponse?.credential) {
-        setErrors({
-          general: "Google login failed. No credential returned.",
-        });
-        return;
-      }
-
-      // ✅ Call the same handler for decoding + backend
-      await handleGoogleSuccess(credentialResponse);
-
-      const userData = await loginWithGoogle(credentialResponse.credential);
-      if (userData) {
-        localStorage.setItem("user", JSON.stringify(userData));
-        setSuccessMessage("Login successful!");
-        setTimeout(() => {
-          setSuccessMessage("");
-          onComplete(userData);
-        }, 1200);
-      }
-    } catch (error) {
-      console.error("Google login failed:", error);
-      setErrors({ general: "Google login failed. Please try again." });
-    } finally {
-      setIsLoading(false);
-    }
-  }}
-  onError={() => {
-    setErrors({ general: "Google login failed. Please try again." });
-  }}
-  text="continue_with"
-  shape="rectangular"
-  size="large"
-  width="100%"
-/>
+            <GoogleLogin
+              onSuccess={(handleGoogleSuccess) => {
+                console.log('Google Login Success', handleGoogleSuccess);
+                navigate('/dashboard');
+              }}
+              onError={() => {
+                console.error('Google Login Failed');
+              }}
+            />
           </div>
         )}
 
