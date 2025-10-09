@@ -4,9 +4,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
 import { loginWithGoogle } from '@/lib/api/auth';
 import { jwtDecode } from "jwt-decode";
-import { BASE_URL } from "../../lib/api/config";
-
-
 
 
 

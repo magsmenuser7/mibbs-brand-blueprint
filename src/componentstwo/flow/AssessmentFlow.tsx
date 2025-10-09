@@ -8,6 +8,11 @@ import { useAuth } from "../../contexts/AuthContext";
 
 
 
+
+
+
+
+
 interface AssessmentData {
   brandStage: string;
   pincode: string;
@@ -35,6 +40,8 @@ interface AssessmentFlowProps {
 }
 
 const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cmsConfig }) => {
+// const BASE_URL = 'http://127.0.0.1:8000/api';
+// const BASE_URL = 'https://api.mibbs.ai/api';
 
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<AssessmentData>({
@@ -218,8 +225,6 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
 
 
 
-// const BASE_URL = 'http://127.0.0.1:8000/api';
-const BASE_URL = 'https://api.mibbs.ai/api';
 
 const handleNext = async () => {
   debugger;

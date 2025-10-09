@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://api.mibbs.ai/api';
+// export const BASE_URL = 'https://api.mibbs.ai/api';
