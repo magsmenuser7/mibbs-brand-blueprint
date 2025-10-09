@@ -145,7 +145,8 @@ const handleGoogleSuccess = async (credentialResponse: any) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const BASE_URL = "http://127.0.0.1:8000/api"; //
+  // const BASE_URL = "http://127.0.0.1:8000/api";
+  const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -243,9 +244,6 @@ const handleGoogleSuccess = async (credentialResponse: any) => {
         } else {
           setErrors({ general: data.message || "Failed to create account." });
         }
-
-
-
       } catch (error) {
         console.error("Signup error:", error);
         setErrors({ general: "Signup failed. Please try again." });
