@@ -322,19 +322,19 @@ const SignupModal: React.FC<SignupModalProps> = ({
         )}
 
         {/* Google Login Button (only in login mode) */}
-        {isLoginMode && (
+        {/* {isLoginMode && (
           <div className="mb-4">
             <GoogleLogin
               onSuccess={(handleGoogleSuccess) => {
                 console.log('Google Login Success', handleGoogleSuccess);
-                navigate('/dashboard');
+                navigate('/budgetplanscreen');
               }}
               onError={() => {
                 console.error('Google Login Failed');
               }}
             />
           </div>
-        )}
+        )} */}
 
         <form onSubmit={handleSubmit} className="space-y-2 ">
           {!isLoginMode && (
@@ -489,8 +489,26 @@ const SignupModal: React.FC<SignupModalProps> = ({
                 Sign In
               </button>
             </>
+            
           )}
+
+                  {/* Google Login Button (only in login mode) */}
+        {isLoginMode && (
+          <div className="mb-4 mt-5">
+            <GoogleLogin
+              onSuccess={(handleGoogleSuccess) => {
+                console.log('Google Login Success', handleGoogleSuccess);
+                navigate('/budgetplanscreen');
+              }}
+              onError={() => {
+                console.error('Google Login Failed');
+              }}
+            />
+          </div>
+        )}
         </div>
+
+
       </div>
     </div>
   );

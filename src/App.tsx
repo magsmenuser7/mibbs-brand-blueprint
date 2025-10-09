@@ -28,6 +28,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LoginForm from "./components/auth/LoginForm";
 import Logo from "./components/Logo";
 import MIBBSApp from './componentstwo/MIBBSApp';
+import BudgetPlanScreen from './componentstwo/flow/BudgetPlanScreen'
 
 
 
@@ -225,6 +226,9 @@ const App = () => (
 
 
               <Route path="/user-type-selection" element={<UserTypeSelection />} />
+              <Route path="/budgetplanscreen" element={<BudgetPlanScreen budgetData={undefined} assessmentData={undefined} onContinueToDashboard={function (): void {
+                throw new Error("Function not implemented.");
+              } } />} />
               
               
               
