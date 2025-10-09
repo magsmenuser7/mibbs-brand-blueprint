@@ -4,12 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 import AuthModal from "@/components/AuthModal";
 import { ArrowRight, Building, LogIn, LogOut, User, UserPlus } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const auth = useAuth();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user') || 'null');
 
@@ -28,11 +30,31 @@ const Navbar = () => {
     setIsLoggedIn(!!token);
   }, [showAuthModal]); // update when modal closes after login
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    navigate("/"); // Optional redirect
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   setIsLoggedIn(false);
+  //   navigate("/"); // Optional redirect
+  // };
+
+
+const handleLogout = () => {
+  console.log("Logout clicked");               // debug
+  // remove any storage keys you use
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");             // if you store user object
+  // if you use axios defaults:
+  // delete axios.defaults.headers.common['Authorization'];
+
+  // update app state so UI re-renders
+  if (auth && typeof (auth as any).setUser === "function") {
+    (auth as any).setUser(null);
+  }
+  // if you also have a local flag
+  setIsLoggedIn && setIsLoggedIn(false);
+
+  // navigate (works only if component is inside Router)
+  navigate("/");  // or "/" or wherever you want
+};
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all shadow-md duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}>
@@ -61,26 +83,29 @@ const Navbar = () => {
             </Button>
 
 
-            {user ? (
-              <Button variant="ghost" size="sm">
-                <User className="w-6 h-6" />
-                {user.username || user.name}
-              </Button>
-            ) : (
-              // <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
-              //   <Link to="/dashboard">
-              //     <User className="w-6 h-6" />
-              //     Login
-              //   </Link>
-              // </Button>
-
-                <Button variant="ghost" size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
-                  <Link to="/user-type-selection">
-                    <User className="w-6 h-6" />
-                    Login
-                  </Link>
-                </Button>
-            )}
+{user ? (
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleLogout}
+          className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300"
+        >
+          <User className="w-6 h-6" />
+          Logout
+        </Button>
+      ) : (
+        <Button
+          variant="ghost"
+          size="sm"
+          asChild
+          className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105"
+        >
+          <Link to="/mibbsapp">
+            <User className="w-6 h-6" />
+            Login
+          </Link>
+        </Button>
+      )}
            
           </div>
 

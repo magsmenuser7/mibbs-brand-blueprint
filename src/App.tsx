@@ -27,6 +27,8 @@ import Generate from "./pages/Generate";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LoginForm from "./components/auth/LoginForm";
 import Logo from "./components/Logo";
+import MIBBSApp from './componentstwo/MIBBSApp';
+
 
 
 
@@ -51,6 +53,7 @@ import PrivacyPolicyNew from './components/UpdatedHomePage/PrivacyPolicy';
 
 
 // User Dashboard  Authenticartion
+import { AuthenticateProvider } from "./contexts/AuthenticationContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import AuthPage from "./components/auth/AuthPage";
 import WelcomeOnboarding from "./components/onboarding/WelcomeOnboarding";
@@ -218,9 +221,26 @@ const App = () => (
 
               <Route path="/agency-login" element={<AuthScreen />} />
               <Route path="/agency/*" element={<AgencyPortal />} />
+              <Route path="/login" element={<Login />} />
 
 
               <Route path="/user-type-selection" element={<UserTypeSelection />} />
+              
+              
+              
+              <Route
+                path="/mibbsapp"
+                element={
+                  <AuthenticateProvider>
+                    <MIBBSApp />
+                
+                  </AuthenticateProvider>
+                }
+              />
+
+
+
+              
 
 
 

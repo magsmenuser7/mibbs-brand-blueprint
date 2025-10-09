@@ -1,18 +1,18 @@
 import React from 'react';
 import { Users, UserPlus, ArrowRight, Building2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-const UserTypeSelection: React.FC = () => {
-  const navigate = useNavigate();
+interface UserTypeSelectionProps {
+  onSelectUserType: (type: 'existing' | 'new') => void;
+}
 
+const UserTypeSelection: React.FC<UserTypeSelectionProps> = ({ onSelectUserType }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-mibbs-light via-white to-pink-50 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <div className="w-16 h-16 bg-mibbs-gradient rounded-2xl flex items-center justify-center">
-              {/* <Building2 className="w-8 h-8 text-white" /> */}
-              <span className="text-white font-bold text-xl">M</span>
+              <Building2 className="w-8 h-8 text-white" />
             </div>
             <span className="text-4xl font-bold text-gray-900">MIBBS</span>
           </div>
@@ -27,7 +27,7 @@ const UserTypeSelection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Existing User */}
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => onSelectUserType('existing')}
             className="group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-primary"
           >
             <div className="text-center">
@@ -47,7 +47,7 @@ const UserTypeSelection: React.FC = () => {
 
           {/* First Time User */}
           <button
-            onClick={() => navigate('/mibbsapp')}
+            onClick={() => onSelectUserType('new')}
             className="group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-accent"
           >
             <div className="text-center">

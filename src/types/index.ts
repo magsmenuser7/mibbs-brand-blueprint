@@ -1,4 +1,5 @@
 export interface User {
+  [x: string]: string;
   avatar: any;
   name: ReactNode;
   id: string;

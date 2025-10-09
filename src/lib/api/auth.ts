@@ -2,6 +2,7 @@ import axios from "axios";
 
 // ✅ Production Base URL
 const API = "https://api.mibbs.ai/api";
+const BASE_URL = "https://api.mibbs.ai/api";
 
 
 export const registerUser = async (name: string, email: string, password: string) => {
@@ -34,3 +35,30 @@ export const loginWithGoogle = async (credential: string) => {
 };
 
 // const API = "http://localhost:5000/api/auth";
+
+
+
+
+export const register = async (username: string, email: string, phone: string, password: string) => {
+  return axios.post(
+    `${BASE_URL}/register/`,
+    { username, email, phone, password },
+    { withCredentials: true }
+  );
+};
+
+export const login = async (email: string, password: string) => {
+  return axios.post(
+    `${BASE_URL}/login/`,
+    { email, password },
+    { withCredentials: true }
+  );
+};
+
+export const saveAssessment = async (assessmentData: any) => {
+  return axios.post(
+    `${BASE_URL}/assessment/`,
+    assessmentData,
+    { withCredentials: true }
+  );
+};

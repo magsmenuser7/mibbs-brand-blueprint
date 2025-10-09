@@ -28,7 +28,7 @@ interface GoogleUser {
 }
 
 const LoginForm = () => {
-  const BASE_URL = 'https://api.mibbs.ai/api';
+  // const BASE_URL = 'https://api.mibbs.ai/api';
   const navigate = useNavigate();
 
   const [loginMethod, setLoginMethod] = useState<'email' | 'phone'>('email');
@@ -123,7 +123,7 @@ const LoginForm = () => {
           if (res.ok) {
             alert('Login successful');
             localStorage.setItem('user', JSON.stringify(data.user));
-            navigate('/budgeting-dashboard');
+            navigate('/budgetplanscreen');
           } else {
             alert(data.error || 'Invalid credentials');
             console.error('Login Error:', data);

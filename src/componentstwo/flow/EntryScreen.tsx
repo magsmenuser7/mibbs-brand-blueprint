@@ -1,18 +1,18 @@
 import React from 'react';
 import { Users, UserPlus, ArrowRight, Building2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
-const UserTypeSelection: React.FC = () => {
-  const navigate = useNavigate();
+interface EntryScreenProps {
+  onUserTypeSelection: (type: 'existing' | 'new') => void;
+}
 
+const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-mibbs-light via-white to-pink-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-mibbs-light via-white to-pink-50 flex items-center justify-center p-4 animate-fadeIn">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="w-16 h-16 bg-mibbs-gradient rounded-2xl flex items-center justify-center">
-              {/* <Building2 className="w-8 h-8 text-white" /> */}
-              <span className="text-white font-bold text-xl">M</span>
+            <div className="w-16 h-16 bg-mibbs-gradient rounded-2xl flex items-center justify-center animate-float">
+              <Building2 className="w-8 h-8 text-white" />
             </div>
             <span className="text-4xl font-bold text-gray-900">MIBBS</span>
           </div>
@@ -27,8 +27,8 @@ const UserTypeSelection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Existing User */}
           <button
-            onClick={() => navigate('/dashboard')}
-            className="group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-primary"
+            onClick={() => onUserTypeSelection('existing')}
+            className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-primary"
           >
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-mibbs-primary to-mibbs-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
@@ -47,8 +47,8 @@ const UserTypeSelection: React.FC = () => {
 
           {/* First Time User */}
           <button
-            onClick={() => navigate('/mibbsapp')}
-            className="group bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-accent"
+            onClick={() => onUserTypeSelection('new')}
+            className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-accent"
           >
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-mibbs-accent to-mibbs-pink rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
@@ -56,10 +56,10 @@ const UserTypeSelection: React.FC = () => {
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">First Time User</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                New to MIBBS? Let's create your personalized brand budget plan and connect you with the right agencies.
+                Start my brand budgeting (1 credit). Let's create your personalized brand budget plan and connect you with the right agencies.
               </p>
               <div className="flex items-center justify-center space-x-2 text-mibbs-accent font-semibold group-hover:text-mibbs-pink transition-colors">
-                <span>Start Your Journey</span>
+                <span>Start My Brand Budgeting</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
@@ -87,4 +87,4 @@ const UserTypeSelection: React.FC = () => {
   );
 };
 
-export default UserTypeSelection;
+export default EntryScreen;
