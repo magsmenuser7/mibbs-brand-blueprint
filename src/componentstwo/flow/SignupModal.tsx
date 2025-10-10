@@ -7,6 +7,8 @@ import { loginWithGoogle } from '@/lib/api/auth';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
+
+
 interface GoogleUser {
   name: string;
   email: string;
@@ -32,9 +34,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
 
 
   // const BASE_URL = "http://127.0.0.1:8000/api";
-  // const BASE_URL = 'https://api.mibbs.ai/api';
-
-  const BASE_URL = process.env.REACT_APP_API_URL;
+  const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
   // 🟢 Normal signup logic first

@@ -7,6 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/AuthContext";
 
 
+
+
+
+
+
+
 interface AssessmentData {
   brandStage: string;
   pincode: string;
@@ -62,6 +68,11 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     phone: ""
   });
 
+
+
+  
+   
+  
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [selectedIndustryData, setSelectedIndustryData] = useState<IndustryData | null>(null);
   const [tempIndustry, setTempIndustry] = useState('');
@@ -215,86 +226,57 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
 
 
 
-// const handleNext = async () => {
-//   debugger;
-
-//   if (currentStep < totalSteps) {
-//     setCurrentStep(currentStep + 1);
-//   } else {
-//     // try {
-//     //   // ✅ Send data to Django backend when assessment is complete
-//     //   const response = await fetch(`${BASE_URL}/assessment/`, {
-//     //     method: 'POST',
-//     //     headers: {
-//     //       'Content-Type': 'application/json',
-//     //     },
-//     //     body: JSON.stringify(data),
-//     //   });
-
-//     //   if (response.ok) {
-//     //     const result = await response.json();
-//     //     console.log('✅ Assessment saved successfully:', result);
-
-//     //     // Optionally clear local storage draft
-//     //     localStorage.removeItem('mibbs_assessment_draft');
-
-//     //     // Continue app flow
-//     //     onComplete(data);
-//     //   } else {
-//     //     console.error('❌ Failed to save assessment:', await response.text());
-//     //     alert('Something went wrong while saving. Please try again.');
-//     //   }
-//     // } 
-//     // catch (error) {
-//     //   console.error('⚠️ Error saving assessment:', error);
-//     //   alert('Network error. Please check your connection.');
-//     // }
-
-//      try {
-//     // 🟡 Instead of sending to backend directly, save in localStorage
-//     localStorage.setItem("pending_assessment", JSON.stringify(data));
-
-//     console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
-
-//     // Continue flow → show signup/login modal
-//     onComplete(data);
-
-//   } catch (error) {
-//     console.error("⚠️ Error saving assessment draft:", error);
-//     alert("Something went wrong while saving your assessment.");
-//   }
-//   }
-// };
-
-const BASE_URL = process.env.REACT_APP_API_URL;
-
 const handleNext = async () => {
+  debugger;
+
   if (currentStep < totalSteps) {
     setCurrentStep(currentStep + 1);
   } else {
-    try {
-      const response = await fetch(`${BASE_URL}/assessment/`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+    // try {
+    //   // ✅ Send data to Django backend when assessment is complete
+    //   const response = await fetch(`${BASE_URL}/assessment/`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data),
+    //   });
 
-      if (response.ok) {
-        localStorage.removeItem('mibbs_assessment_draft');
-        const result = await response.json();
-        console.log('✅ Assessment saved:', result);
-        onComplete(data);
-      } else {
-        const errorText = await response.text();
-        console.error('❌ Failed to save:', errorText);
-        alert('Failed to save data. Please try again.');
-      }
-    } catch (error) {
-      console.error('⚠️ Network error:', error);
-      alert('Network error. Please check your connection.');
-    }
+    //   if (response.ok) {
+    //     const result = await response.json();
+    //     console.log('✅ Assessment saved successfully:', result);
+
+    //     // Optionally clear local storage draft
+    //     localStorage.removeItem('mibbs_assessment_draft');
+
+    //     // Continue app flow
+    //     onComplete(data);
+    //   } else {
+    //     console.error('❌ Failed to save assessment:', await response.text());
+    //     alert('Something went wrong while saving. Please try again.');
+    //   }
+    // } 
+    // catch (error) {
+    //   console.error('⚠️ Error saving assessment:', error);
+    //   alert('Network error. Please check your connection.');
+    // }
+
+     try {
+    // 🟡 Instead of sending to backend directly, save in localStorage
+    localStorage.setItem("pending_assessment", JSON.stringify(data));
+
+    console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
+
+    // Continue flow → show signup/login modal
+    onComplete(data);
+
+  } catch (error) {
+    console.error("⚠️ Error saving assessment draft:", error);
+    alert("Something went wrong while saving your assessment.");
+  }
   }
 };
+
 
 
   const handlePrevious = () => {
