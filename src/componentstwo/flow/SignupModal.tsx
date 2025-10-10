@@ -34,14 +34,16 @@ const SignupModal: React.FC<SignupModalProps> = ({
   const { signup, login } = useAuth();
   const { user } = useAuth();
   const navigate = useNavigate();
+
+const BASE_URL = process.env.REACT_APP_API_URL;
   
   // Determines whether the app is pointing to the local dev server or production server
   // const BASE_URL = "http://127.0.0.1:8000/api"; 
 //   const BASE_URL = 'https://api.mibbs.ai/api';
-const BASE_URL =
-  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? ""
-    : "https://api.mibbs.ai/api";
+// const BASE_URL =
+//   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+//     ? ""
+//     : "https://api.mibbs.ai/api";
 
   // This function handles two main tasks:
   // 1. Updates the Auth context (client-side session).

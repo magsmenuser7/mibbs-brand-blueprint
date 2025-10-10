@@ -221,10 +221,12 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
   const handleNext = async () => {
     debugger;
 
-    const BASE_URL =
-      window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-        ? ""
-        : "https://api.mibbs.ai/api"; // Set this to your production API base URL
+    // const BASE_URL =
+    //   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    //     ? ""
+    //     : "https://api.mibbs.ai/api"; 
+    
+    const BASE_URL = process.env.REACT_APP_API_URL;
 
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
