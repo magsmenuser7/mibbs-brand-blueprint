@@ -62,11 +62,6 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     phone: ""
   });
 
-
-
-  
-   
-  
   const [showIndustryModal, setShowIndustryModal] = useState(false);
   const [selectedIndustryData, setSelectedIndustryData] = useState<IndustryData | null>(null);
   const [tempIndustry, setTempIndustry] = useState('');
@@ -218,62 +213,6 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
   // };
 
 
-  const handleNext = async () => {
-    debugger;
-
-    // const BASE_URL =
-    //   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    //     ? ""
-    //     : "https://api.mibbs.ai/api"; 
-    
-    const BASE_URL = process.env.REACT_APP_API_URL;
-
-    if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      // Save to backend in production, localStorage in development
-      try {
-        if (BASE_URL) {
-          // Production: Send to backend
-          const response = await fetch(`${BASE_URL}/assessment/`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            console.log("✅ Assessment saved successfully:", result);
-
-            // Optionally clear local storage draft
-            localStorage.removeItem("mibbs_assessment_draft");
-
-            // Continue app flow
-            onComplete(data);
-            return; // exit after success
-          } else {
-            console.error("❌ Failed to save assessment:", await response.text());
-            alert("Something went wrong while saving. Please try again.");
-            return; // exit after error
-          }
-        }
-
-        // Development fallback: Save to localStorage
-        localStorage.setItem("pending_assessment", JSON.stringify(data));
-        console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
-        onComplete(data);
-
-      } catch (error) {
-        console.error("⚠️ Error saving assessment draft:", error);
-        alert("Something went wrong while saving your assessment.");
-      }
-    }
-  };
-
-
-
 
 
 // const handleNext = async () => {
@@ -327,6 +266,35 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
 //   }
 // };
 
+const BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
+
+const handleNext = async () => {
+  if (currentStep < totalSteps) {
+    setCurrentStep(currentStep + 1);
+  } else {
+    try {
+      const response = await fetch(`${BASE_URL}/assessment/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        localStorage.removeItem('mibbs_assessment_draft');
+        const result = await response.json();
+        console.log('✅ Assessment saved:', result);
+        onComplete(data);
+      } else {
+        const errorText = await response.text();
+        console.error('❌ Failed to save:', errorText);
+        alert('Failed to save data. Please try again.');
+      }
+    } catch (error) {
+      console.error('⚠️ Network error:', error);
+      alert('Network error. Please check your connection.');
+    }
+  }
+};
 
 
   const handlePrevious = () => {
