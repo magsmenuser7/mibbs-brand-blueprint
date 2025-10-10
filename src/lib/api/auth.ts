@@ -3,7 +3,7 @@ import axios from "axios";
 // ✅ Production Base URL
 // const API = "https://api.mibbs.ai/api";
 // const BASE_URL = "https://api.mibbs.ai/api";
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 
 export const registerUser = async (name: string, email: string, password: string) => {
