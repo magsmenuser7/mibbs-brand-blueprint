@@ -7,12 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/AuthContext";
 
 
-
-
-
-
-
-
 interface AssessmentData {
   brandStage: string;
   pincode: string;
@@ -224,58 +218,112 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
   // };
 
 
+  const handleNext = async () => {
+    debugger;
+
+    const BASE_URL =
+      window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+        ? ""
+        : "https://api.mibbs.ai/api"; // Set this to your production API base URL
+
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      // Save to backend in production, localStorage in development
+      try {
+        if (BASE_URL) {
+          // Production: Send to backend
+          const response = await fetch(`${BASE_URL}/assessment/`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            console.log("✅ Assessment saved successfully:", result);
+
+            // Optionally clear local storage draft
+            localStorage.removeItem("mibbs_assessment_draft");
+
+            // Continue app flow
+            onComplete(data);
+            return; // exit after success
+          } else {
+            console.error("❌ Failed to save assessment:", await response.text());
+            alert("Something went wrong while saving. Please try again.");
+            return; // exit after error
+          }
+        }
+
+        // Development fallback: Save to localStorage
+        localStorage.setItem("pending_assessment", JSON.stringify(data));
+        console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
+        onComplete(data);
+
+      } catch (error) {
+        console.error("⚠️ Error saving assessment draft:", error);
+        alert("Something went wrong while saving your assessment.");
+      }
+    }
+  };
 
 
-const handleNext = async () => {
-  debugger;
 
-  if (currentStep < totalSteps) {
-    setCurrentStep(currentStep + 1);
-  } else {
-    // try {
-    //   // ✅ Send data to Django backend when assessment is complete
-    //   const response = await fetch(`${BASE_URL}/assessment/`, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   });
 
-    //   if (response.ok) {
-    //     const result = await response.json();
-    //     console.log('✅ Assessment saved successfully:', result);
 
-    //     // Optionally clear local storage draft
-    //     localStorage.removeItem('mibbs_assessment_draft');
+// const handleNext = async () => {
+//   debugger;
 
-    //     // Continue app flow
-    //     onComplete(data);
-    //   } else {
-    //     console.error('❌ Failed to save assessment:', await response.text());
-    //     alert('Something went wrong while saving. Please try again.');
-    //   }
-    // } 
-    // catch (error) {
-    //   console.error('⚠️ Error saving assessment:', error);
-    //   alert('Network error. Please check your connection.');
-    // }
+//   if (currentStep < totalSteps) {
+//     setCurrentStep(currentStep + 1);
+//   } else {
+//     // try {
+//     //   // ✅ Send data to Django backend when assessment is complete
+//     //   const response = await fetch(`${BASE_URL}/assessment/`, {
+//     //     method: 'POST',
+//     //     headers: {
+//     //       'Content-Type': 'application/json',
+//     //     },
+//     //     body: JSON.stringify(data),
+//     //   });
 
-     try {
-    // 🟡 Instead of sending to backend directly, save in localStorage
-    localStorage.setItem("pending_assessment", JSON.stringify(data));
+//     //   if (response.ok) {
+//     //     const result = await response.json();
+//     //     console.log('✅ Assessment saved successfully:', result);
 
-    console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
+//     //     // Optionally clear local storage draft
+//     //     localStorage.removeItem('mibbs_assessment_draft');
 
-    // Continue flow → show signup/login modal
-    onComplete(data);
+//     //     // Continue app flow
+//     //     onComplete(data);
+//     //   } else {
+//     //     console.error('❌ Failed to save assessment:', await response.text());
+//     //     alert('Something went wrong while saving. Please try again.');
+//     //   }
+//     // } 
+//     // catch (error) {
+//     //   console.error('⚠️ Error saving assessment:', error);
+//     //   alert('Network error. Please check your connection.');
+//     // }
 
-  } catch (error) {
-    console.error("⚠️ Error saving assessment draft:", error);
-    alert("Something went wrong while saving your assessment.");
-  }
-  }
-};
+//      try {
+//     // 🟡 Instead of sending to backend directly, save in localStorage
+//     localStorage.setItem("pending_assessment", JSON.stringify(data));
+
+//     console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
+
+//     // Continue flow → show signup/login modal
+//     onComplete(data);
+
+//   } catch (error) {
+//     console.error("⚠️ Error saving assessment draft:", error);
+//     alert("Something went wrong while saving your assessment.");
+//   }
+//   }
+// };
 
 
 
