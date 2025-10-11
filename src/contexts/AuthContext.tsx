@@ -29,6 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     const savedUser = localStorage.getItem('mibbs_user');
+    const savedToken = localStorage.getItem('access_token');
     if (savedUser) {
       const user = JSON.parse(savedUser);
       setAuthState({
@@ -37,9 +38,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isLoading: false,
       });
     } else {
+      // Ensure token is cleared if user is missing, and vice-versa
+      if (!savedUser) localStorage.removeItem('access_token');
       setAuthState(prev => ({ ...prev, isLoading: false }));
     }
   }, []);
+  //   } else {
+  //     setAuthState(prev => ({ ...prev, isLoading: false }));
+  //   }
+  // }, []);
 
   const login = async (email: string, password: string) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
@@ -58,6 +65,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       avatar: undefined
     };
 
+    const mockToken = 'mock_jwt_token_' + Date.now(); 
+    localStorage.setItem('access_token', mockToken); 
     localStorage.setItem('mibbs_user', JSON.stringify(user));
     setAuthState({
       user,
@@ -77,6 +86,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       createdAt: new Date().toISOString(),
     };
 
+    const mockToken = 'mock_jwt_token_' + Date.now(); 
+    localStorage.setItem('access_token', mockToken);
     localStorage.setItem('mibbs_user', JSON.stringify(user));
     setAuthState({
       user,
@@ -87,6 +98,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = () => {
     localStorage.removeItem('mibbs_user');
+    localStorage.removeItem('access_token');
     setAuthState({
       user: null,
       isAuthenticated: false,

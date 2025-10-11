@@ -8,11 +8,6 @@ import { useAuth } from "../../contexts/AuthContext";
 
 
 
-
-
-
-
-
 interface AssessmentData {
   brandStage: string;
   pincode: string;

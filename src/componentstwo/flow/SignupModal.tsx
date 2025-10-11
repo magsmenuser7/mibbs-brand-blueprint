@@ -40,6 +40,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
   // 🟢 Normal signup logic first
   await signup(userData);
 
+  const token = localStorage.getItem('access_token'); 
+
   // 🟢 Now check if assessment data exists
   const savedData = localStorage.getItem("pending_assessment");
   if (savedData && userData?.email) {
@@ -51,7 +53,11 @@ const SignupModal: React.FC<SignupModalProps> = ({
     try {
       const response = await fetch(`${BASE_URL}/assessment/`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+                   "Authorization": `Bearer ${token}`,  
+
+        },
+        
         body: JSON.stringify(payload),
       });
 
@@ -133,6 +139,11 @@ const SignupModal: React.FC<SignupModalProps> = ({
         if (response.ok && data.user) {
           setSuccessMessage("Login successful!");
           localStorage.setItem("user", JSON.stringify(data.user));
+          await handleSignupSuccess({
+            username: data.user.username, // Assuming this exists on the user object
+            email: data.user.email,
+            phone: data.user.phone || '',
+          });
           setTimeout(() => {
             setSuccessMessage("");
             onComplete(data.user);
