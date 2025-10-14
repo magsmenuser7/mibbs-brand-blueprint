@@ -1,0 +1,51 @@
+/*
+  Custom CSS for the circular loader animation.
+  This file must be created in the same directory as Preloader.tsx
+*/
+
+/* --- Keyframe for the custom slow spin (if you decide to use it) --- */
+/* The previous React code didn't use this, but it's good practice
+   if you want a continuous element rotation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* --- Ensure smooth transitions for all transformed elements --- */
+/* The 'transition-transform' utility class in Tailwind handles the parent rotation.
+   We ensure the dots and numbers transition smoothly as well. */
+.transition-transform {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 950ms; /* Matches the 950ms interval in useEffect */
+}
+
+/* --- Ensure smooth opacity and color changes for the steps --- */
+.transition-opacity {
+    transition-property: opacity, background-color, transform, width, height;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* You might want a custom font to match the 'Wove' style, 
+   but for now, we'll ensure a clean look with system fonts. */
+.font-sans {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Utility to ensure fixed positioning covers the whole screen */
+.fixed.inset-0 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

@@ -1,18 +1,25 @@
 import React from 'react';
 import { Users, UserPlus, ArrowRight, Building2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+
 
 interface EntryScreenProps {
   onUserTypeSelection: (type: 'existing' | 'new') => void;
 }
 
 const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
+    const navigate = useNavigate();
+    
+
+    
   return (
     <div className="min-h-screen bg-gradient-to-br from-mibbs-light via-white to-pink-50 flex items-center justify-center p-4 animate-fadeIn">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <div className="w-16 h-16 bg-mibbs-gradient rounded-2xl flex items-center justify-center animate-float">
-              <Building2 className="w-8 h-8 text-white" />
+              {/* <Building2 className="w-8 h-8 text-white" /> */}
+               <span className="text-white font-bold text-xl">M</span>
             </div>
             <span className="text-4xl font-bold text-gray-900">MIBBS</span>
           </div>
@@ -26,8 +33,7 @@ const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Existing User */}
-          <button
-            onClick={() => onUserTypeSelection('existing')}
+          <button onClick={() => { onUserTypeSelection('existing'); navigate('/dashboard'); }}
             className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-primary"
           >
             <div className="text-center">
