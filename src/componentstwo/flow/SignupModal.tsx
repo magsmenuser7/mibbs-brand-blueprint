@@ -5,6 +5,8 @@ import { GoogleLogin } from '@react-oauth/google';
 import { loginWithGoogle } from '@/lib/api/auth';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import budgetvideo from '../../assets/budget-background-video.mp4'
+import budgetimage from '../../assets/BUDGET-IMAGE3.jpeg' 
 
 interface GoogleUser {
   name: string;
@@ -242,15 +244,27 @@ const SignupModal: React.FC<SignupModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-5">
+<div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={budgetvideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div className="rounded-2xl shadow-2xl w-full max-w-md p-5 bg-white/30 backdrop-blur-lg border border-white/30">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-mibbs-gradient rounded-lg flex items-center justify-center">
               <h2 className='text-white'>M</h2>
             </div>
             <h2 className="text-1xl font-bold text-gray-900">
-              {isLoginMode ? 'Login' : 'Create Account'}
+              {isLoginMode ? 'MIBBS' : 'MIBBS'}
             </h2>
           </div>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 p-2 rounded-lg transition-colors">
@@ -278,13 +292,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
           {!isLoginMode && (
             <div>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-black-600" />
                 <input
                   type="text"
                   name="username"
                   value={formData.username}
                   onChange={handleChange}
-                  className={`w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors border-gray-300`}
+                  className={`bg-white/30 backdrop-blur-lg w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors border-gray-300 placeholder-gray-600`}
                   placeholder="Enter your username"
                 />
               </div>
@@ -294,13 +308,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
           {/* Email field */}
           <div>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-black-400" />
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.email ? 'border-red-300' : 'border-gray-300'}`}
+                className={`bg-white/30 backdrop-blur-lg w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors placeholder-gray-600 ${errors.email ? 'border-red-300' : 'border-gray-300'}`}
                 placeholder="Enter your email address"
               />
             </div>
@@ -311,13 +325,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
           {!isLoginMode && (
             <div>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-black-400" />
                 <input
                   type="tel"
                   name="mobile"
                   value={formData.mobile}
                   onChange={handleChange}
-                  className={`w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.mobile ? 'border-red-300' : 'border-gray-300'}`}
+                  className={`bg-white/30 backdrop-blur-lg w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors placeholder-gray-600 ${errors.mobile ? 'border-red-300' : 'border-gray-300'}`}
                   placeholder="Enter your mobile number"
                 />
               </div>
@@ -333,13 +347,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`w-full pl-3 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.password ? 'border-red-300' : 'border-gray-300'}`}
+                className={`bg-white/30 backdrop-blur-lg w-full pl-3 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors placeholder-gray-600 ${errors.password ? 'border-red-300' : 'border-gray-300'}`}
                 placeholder={isLoginMode ? "Enter your password" : "Enter your password"}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-600"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -355,13 +369,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className={`w-full pl-3 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors ${errors.confirmPassword ? 'border-red-300' : 'border-gray-300'}`}
+                  className={`bg-white/30 backdrop-blur-lg w-full pl-3 pr-10 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-mibbs-primary transition-colors placeholder-gray-600 ${errors.confirmPassword ? 'border-red-300' : 'border-gray-300'}`}
                   placeholder="Re-enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 hover:text-gray-600"
                 >
                   {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -401,7 +415,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           </button>
         </form>
 
-        <div className="mt-2 text-left text-gray-600">
+        <div className="mt-2 text-left text-white">
           {isLoginMode ? (
             <>
               Don't have an account?{' '}
@@ -419,7 +433,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           )}
         </div>
       </div>
-    </div>
+</div>
   );
 };
 
