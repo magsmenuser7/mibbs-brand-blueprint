@@ -14,10 +14,6 @@ const PlanSummary: React.FC = () => {
     }).format(amount);
   };
 
-  // New formula: 5% of monthly revenue for monthly budget, annualizes for annual.
-  const monthlyBudget = (budgetData?.monthlyRevenue || 0) * 0.05;
-  const annualBudget = monthlyBudget * 12;
-
   if (!budgetData) {
     return (
       <div className="space-y-6">
@@ -25,6 +21,7 @@ const PlanSummary: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-900">Budget Plans</h2>
           <p className="text-gray-600 mt-1">Saved plans and drafts</p>
         </div>
+        
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-12 text-center">
           <FileText className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-900 mb-2">No saved plans yet</h3>
@@ -68,12 +65,12 @@ const PlanSummary: React.FC = () => {
           <div className="text-center p-6 bg-blue-50 rounded-lg">
             <TrendingUp className="w-8 h-8 text-blue-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600">Annual Budget</p>
-            <p className="text-2xl font-bold text-gray-900">{formatCurrency(annualBudget)}</p>
+            <p className="text-2xl font-bold text-gray-900">{formatCurrency(budgetData.annualBudget)}</p>
           </div>
           <div className="text-center p-6 bg-green-50 rounded-lg">
             <PieChart className="w-8 h-8 text-green-600 mx-auto mb-2" />
             <p className="text-sm text-gray-600">Monthly Average</p>
-            <p className="text-2xl font-bold text-gray-900">{formatCurrency(monthlyBudget)}</p>
+            <p className="text-2xl font-bold text-gray-900">{formatCurrency(budgetData.monthlyBudget)}</p>
           </div>
           <div className="text-center p-6 bg-purple-50 rounded-lg">
             <FileText className="w-8 h-8 text-purple-600 mx-auto mb-2" />
@@ -138,3 +135,4 @@ const PlanSummary: React.FC = () => {
 };
 
 export default PlanSummary;
+
