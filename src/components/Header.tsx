@@ -190,12 +190,19 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-100 animate-fadeInUp">
-            <div className="flex flex-col space-y-4">
-              <a href="#how-it-works" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2">
-                How It Works
-              </a>
-              <a href="#pricing" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2">
+            <div className="md:hidden py-4 border-t border-gray-100 animate-fadeInUp">
+              <div className="flex flex-col space-y-4">
+                <a
+                  href="/"
+                  className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2 relative group"
+                >
+                  Home
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-mibbs-primary to-mibbs-accent group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#how-it-works" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2">
+                  How It Works
+                </a>
+                <a href="#pricing" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2">
                 Pricing
               </a>
               <a href="#dashboard-preview" className="text-gray-700 hover:text-mibbs-primary transition-all duration-300 font-medium hover:translate-x-2">
@@ -209,7 +216,8 @@ const Header = () => {
               </a>
               <div className="pt-4 border-t border-gray-100">
                 <button 
-                  onClick={() => setIsSignInOpen(true)}
+                  // onClick={() => setIsSignInOpen(true)}
+                  onClick={() => navigate("/agency-login")}
                   className="w-full text-left text-mibbs-primary hover:text-mibbs-accent font-medium mb-3 transition-all duration-300 hover:translate-x-2"
                 >
                   Sign In

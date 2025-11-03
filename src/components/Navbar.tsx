@@ -74,8 +74,8 @@ const handleLogout = () => {
 
 
 
-          <div className="flex items-center space-x-4">
-             <Button size="sm" asChild className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
+          <div className="flex items-center space-x-2">
+             <Button size="sm" asChild className="text-xs bg-gradient-to-r from-purple-600 to-pink-500 text-white px-2 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105">
               <Link to="/landing">
                 <Building className="w-4 h-4" />
                 Agency
@@ -88,7 +88,7 @@ const handleLogout = () => {
           variant="ghost"
           size="sm"
           onClick={handleLogout}
-          className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300"
+          className="flex items-center gap-2 bg-red-500 text-white px-2 py-2 rounded-lg hover:bg-red-600 transition-all duration-300"
         >
           <User className="w-6 h-6" />
           Logout
@@ -98,7 +98,7 @@ const handleLogout = () => {
           variant="ghost"
           size="sm"
           asChild
-          className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105"
+          className="text-xs bg-gradient-to-r from-purple-600 to-pink-500 text-white px-2 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-600 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 transform hover:-translate-y-1 hover:scale-105"
         >
           <Link to="/mibbsapp">
             <User className="w-6 h-6" />
@@ -152,6 +152,7 @@ const handleLogout = () => {
           <div className="md:hidden bg-white absolute top-full left-0 right-0 shadow-md animate-fade-in">
             <div className="flex flex-col space-y-4 p-6">
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Home</Link>
+              <Link to="/enterprises" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors"> Enterprises </Link>              
               <Link to="/how-it-works" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">How It Works</Link>
               <Link to="/tools" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
               <Link to="/about" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">About</Link>

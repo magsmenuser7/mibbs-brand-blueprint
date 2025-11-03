@@ -29,7 +29,8 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ activeSection, onSe
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-mibbs-gradient rounded-lg flex items-center justify-center">
-            <Building2 className="w-5 h-5 text-white" />
+            {/* <Building2 className="w-5 h-5 text-white" /> */}
+            <span className="text-white font-bold text-xl">M</span>
           </div>
           <span className="text-xl font-bold text-gray-900">MIBBS</span>
         </div>
