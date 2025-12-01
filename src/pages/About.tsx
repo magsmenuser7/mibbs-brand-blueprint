@@ -1,6 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import teamimage1 from '../assets/sandeep.png';
+import teamimage2 from '../assets/koushik.jpeg';
+import teamimage3 from '../assets/bhagyashree.jpeg';
+import teamimage4 from '../assets/manimala.jpeg';
+import teamimage5 from '../assets/vamsikiran.jpeg';
+import teamimage6 from '../assets/suresh.jpeg';
+
 
 const About = () => {
   const navigate = useNavigate();
@@ -423,7 +430,7 @@ const About = () => {
         {/* Team Member 1 - Founding */}
         <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-[50%] mx-auto">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_tbp9lktbp9lktbp9.png"
+            src={teamimage1}
             alt="CEO-&-Founder"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />
@@ -440,7 +447,7 @@ const About = () => {
         {/* Team Member 2 - Strategy */}
         <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_9oyg799oyg799oyg.png"
+            src={teamimage2}
             alt="Brand-Strategist"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />
@@ -451,7 +458,7 @@ const About = () => {
         {/* Team Member 3 - Strategy */}
         <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_b6fv2eb6fv2eb6fv.png"
+            src={teamimage3}
             alt="Brand-Strategist"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />
@@ -469,7 +476,7 @@ const About = () => {
 
           <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_7ce4717ce4717ce4.png"
+            src={teamimage4}
             alt="Manimala-Gavvala"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />
@@ -481,7 +488,7 @@ const About = () => {
 
           <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_c6qewec6qewec6qe.png"
+            src={teamimage5}
             alt="Vamsi Kiran"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />
@@ -492,7 +499,7 @@ const About = () => {
         {/* Placeholder for additional Support Team Member 2 */}
         <div className="bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 text-center w-full">
           <img
-            src="./lovable-uploads/Gemini_Generated_Image_rdjausrdjausrdja.png"
+            src={teamimage6}
             alt="Web-Developer"
             className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-[#64378e]"
           />

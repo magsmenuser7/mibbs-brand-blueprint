@@ -291,7 +291,7 @@ const MIBBSAdvisoryCircle = () => {
                     </div>
                   </div>
                 </div>
-                <span className={`px-2 py-1 text-xs rounded-full ${getStatusColor(session.status)}`}>
+                <span className={`px-1 py-1 text-xs rounded-full ${getStatusColor(session.status)}`}>
                   {session.status.toUpperCase()}
                 </span>
               </div>
@@ -329,8 +329,8 @@ const MIBBSAdvisoryCircle = () => {
 
       {/* Past Insights & Impact */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-gray-900">Past Insights & Impact</h3>
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">Past Insights & Impact</h3>
           <select 
             value={selectedQuarter}
             onChange={(e) => setSelectedQuarter(e.target.value)}

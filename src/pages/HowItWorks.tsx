@@ -7,7 +7,7 @@ const HowItWorks = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-white to-gray-50">
+      <section className="pt-32 pb-16 bg-gradient-to-br from-white to-gray-50" id="how-it-works">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-navy mb-6">How MIBBS<span className="text-accent text-sm align-super">™</span> Works</h1>

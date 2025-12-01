@@ -21,13 +21,35 @@ interface AssessmentData {
   competitorNotes: string;
   businessName: string;
   industryDetails?: IndustryData;
+  monthlyBudget: number,
+  annualBudget: number,
+  barChartData: { name: string; percentage: number; amount: number; }[],   // e.g., [{ channel: 'Google Ads', percent: 40, amount: 5000 }]
+  pieChartData?: { name: string; value: number; amount: number; color: string; }[];
+  channelFocuses: { name: string; percentage: number; amount: number; }[]  
+  budgetAllocations?: { name: string; percentage: number; amount: number; }[]
+  
 }
+
+interface barChartDataInput {
+  name: string;
+  percentage: number;
+  amount: number;
+}
+
+interface PieChartInput {
+  name: string;
+  amount: number;
+  value: number;
+  color: string | null;
+}
+
 
 interface AssessmentFlowProps {
   onComplete: (data: AssessmentData) => void;
   onBack: () => void;
   cmsConfig: any;
 }
+
 
 const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cmsConfig }) => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -46,8 +68,93 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     positioning: '',
     competitorNotes: '',
     businessName: '',
-    industryDetails: undefined
+    industryDetails: undefined,
+    monthlyBudget: 0,
+    annualBudget: 0,
+    barChartData: [],   // aligns with { channel, percent, amount }[]
+    pieChartData: [],
+    channelFocuses: [],    // aligns with { name, percentage, amount }[]
+    budgetAllocations: []    // aligns with { name, percentage, amount }[]
   });
+
+
+
+
+  const computeBudgetsAndPie = (assessment: Partial<AssessmentData>) => {
+    const monthlyRevenue = Number(assessment.monthlyRevenue || 0);
+    const monthlyBudget = Math.round(monthlyRevenue * 0.05); // 5% of revenue
+    const annualBudget = Math.round(monthlyBudget * 12);
+
+    // --------- 1️⃣ Channel Focus (dynamic channels) ---------
+    const barChartDataInputs: barChartDataInput[] =
+      assessment?.barChartData?.length > 0
+        ? assessment.barChartData.map((item: any) => ({
+          name: item.name,
+          amount: Number(item.amount) || 0,
+          percentage: Number(item.percentage) || 0, // keep backend percentage if available
+        }))
+        : [
+          { name: 'Digital', amount: Math.round(annualBudget * 0.5), percentage: 50 },
+          { name: 'TV', amount: Math.round(annualBudget * 0.3), percentage: 30 },
+          { name: 'Print', amount: Math.round(annualBudget * 0.2), percentage: 20 },
+        ];
+
+    // ---- Calculate dynamic totals ----
+    const totalBarAmount = barChartDataInputs.reduce(
+      (sum: number, item: barChartDataInput) => sum + (Number(item.amount) || 0),
+      0
+    );
+
+    // ---- Final computed normalized channel focus values ----
+    const channelFocuses = barChartDataInputs.map((item: any) => ({
+      name: item.name,
+      amount: Number(item.amount) || 0,
+      percentage:
+        item.percentage && item.percentage > 0
+          ? parseFloat(item.percentage.toFixed(1)) // keep backend original %
+          : totalBarAmount > 0
+            ? parseFloat(((item.amount / totalBarAmount) * 100).toFixed(1)) // compute if missing
+            : 0,
+    }));
+
+    // --------- 2️⃣ Pie Chart Data (dynamic entries) ---------
+    const pieChartInput: PieChartInput[] =
+      assessment?.pieChartData?.length > 0
+        ? assessment.pieChartData.map((item: any) => ({
+          name: item.name,
+          amount: Number(item.amount) || 0,
+          value: Number(item.value) || 0,   // keep if backend saved percentage
+          color: item.color || null,        // use backend color if exists
+        }))
+        : [
+          { name: 'Digital Marketing', amount: Math.round(annualBudget * 0.4), value: 40, color: '#4F46E5' },
+          { name: 'Brand & Creative', amount: Math.round(annualBudget * 0.25), value: 25, color: '#EC4899' },
+          { name: 'Traditional Media', amount: Math.round(annualBudget * 0.2), value: 20, color: '#10B981' },
+          { name: 'Events & PR', amount: Math.round(annualBudget * 0.15), value: 15, color: '#F59E0B' },
+        ];
+
+    // ---- Calculate total dynamically ----
+    const totalPieAmount = pieChartInput.reduce((sum: number, c: PieChartInput) => sum + (Number(c.amount) || 0), 0);
+
+    // ---- Default fallback colors if backend doesn't include ----
+    const fallbackColors = ["#6366F1", "#F43F5E", "#FACC15", "#22C55E", "#10B981", "#F97316"];
+
+    // ---- Final pie chart formatted dataset ----
+    const pieChartData = pieChartInput.map((c, i) => ({
+      name: c.name,
+      amount: Number(c.amount) || 0,
+      value:
+        c.value && c.value > 0
+          ? parseFloat(c.value.toFixed(1)) // if backend saved percentage → keep it
+          : totalPieAmount > 0
+            ? parseFloat(((Number(c.amount) / totalPieAmount) * 100).toFixed(1)) // else auto compute
+            : 0,
+      color: c.color || fallbackColors[i % fallbackColors.length], // ensure every item has a color
+    }));
+
+    return { monthlyBudget, annualBudget, channelFocuses, pieChartData };
+  };
+
 
   const [unlockData, setUnlockData] = useState({
     username: "",
@@ -173,17 +280,29 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     }
   };
 
-  const handleNext = async () => {
+const handleNext = async () => {
     if (currentStep < totalSteps) {
       setCurrentStep(currentStep + 1);
     } else {
       try {
-        localStorage.setItem("pending_assessment", JSON.stringify(data));
-        console.log("✅ Assessment temporarily saved. Waiting for user signup/login.");
-        onComplete(data);
+        const computed = computeBudgetsAndPie(data);
+
+        const merged = {
+          ...data,
+          monthlyBudget: computed.monthlyBudget,
+          annualBudget: computed.annualBudget,
+          // budgetAllocations: computed.budgetAllocations,
+          channelFocuses: computed.channelFocuses,
+          pieChartData: computed.pieChartData
+        };
+
+        setData(merged);
+        localStorage.setItem("pending_assessment", JSON.stringify(merged));
+        console.log("✅ Final Assessment with pieChartData:", merged);
+        onComplete(merged);
       } catch (error) {
-        console.error("⚠️ Error saving assessment draft:", error);
-        alert("Something went wrong while saving your assessment.");
+        console.error("⚠️ Error completing assessment:", error);
+        alert("Something went wrong while finishing your assessment.");
       }
     }
   };
@@ -505,7 +624,7 @@ return (
           <div className="flex items-center justify-between">
             <button
               onClick={handlePrevious}
-              className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-gray-800 transition-colors"
+              className="flex items-center space-x-2 py-3 text-gray-600 hover:text-gray-800 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
               <span>Previous</span>
@@ -514,7 +633,7 @@ return (
             <button
               onClick={handleNext}
               disabled={!canProceed()}
-              className="flex items-center space-x-2 px-8 py-4 bg-mibbs-gradient text-white rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="flex items-center space-x-2 px-8 py-2 bg-mibbs-gradient text-white rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <span>{currentStep === totalSteps ? 'Complete Assessment' : 'Continue'}</span>
               <ChevronRight className="w-5 h-5" />

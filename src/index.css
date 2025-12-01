@@ -81,3 +81,13 @@
 
 
 }
+
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+button, input, select {
+  touch-action: manipulation;
+}

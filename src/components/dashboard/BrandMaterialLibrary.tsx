@@ -230,9 +230,9 @@ const BrandMaterialLibrary = () => {
       </div>
 
       {/* Filters and Upload */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-4">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 ">
+        <div className="flex flex-col lg:flex-row  items-center justify-between mb-6">
+          <div className="flex flex-col lg:flex-row items-center space-x-4">
             <div className="relative">
               <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
               <input
@@ -245,7 +245,7 @@ const BrandMaterialLibrary = () => {
             <select 
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 mb-6 mt-6"
             >
               {categories.map(category => (
                 <option key={category.id} value={category.id}>{category.name}</option>
@@ -255,7 +255,7 @@ const BrandMaterialLibrary = () => {
             <select 
               value={selectedRegion}
               onChange={(e) => setSelectedRegion(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 mb-6"
             >
               {regions.map(region => (
                 <option key={region.id} value={region.id}>{region.name}</option>

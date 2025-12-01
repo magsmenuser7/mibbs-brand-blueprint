@@ -40,12 +40,14 @@ const AllocationCard: React.FC<{ allocation: any; formatCurrency: (amount: numbe
 interface BudgetPlanScreenProps {
     budgetData: any;
     assessmentData: any;
+    userData?: any;
     onContinueToDashboard: () => void;
 }
 
 const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
     budgetData,
     assessmentData,
+    userData,
     onContinueToDashboard
 }) => {
     const [showChatbot, setShowChatbot] = useState(false);
@@ -69,7 +71,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
         const input = document.getElementById("budget-report");
         const paywallBanner = document.getElementById("paywall-banner");
         const actionButtonsSection = document.getElementById("action-buttons-section"); // Target the new section
-        
+
         if (!input || !paywallBanner || !actionButtonsSection) return;
 
         // 1. TEMPORARILY HIDE both sections
@@ -90,7 +92,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
 
             const imgWidth = 210; // A4 width in mm
             const pageHeight = 297; // A4 height in mm
-            
+
             const imgHeight = (canvas.height * imgWidth) / canvas.width;
             let heightLeft = imgHeight;
 
@@ -105,7 +107,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
 
                 // The Y position is negative to scroll the content up for the next slice
                 pdf.addImage(canvas.toDataURL("image/jpeg", 1.0), 'JPEG', 0, position, imgWidth, imgHeight);
-                
+
                 heightLeft -= pageHeight;
                 position -= pageHeight; // Shift the canvas image up
             }
@@ -113,7 +115,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
             pdf.save(`${budgetData?.businessName || 'Brand'}_Budget_Recommendation_Report.pdf`);
         } catch (error) {
             // Ensure both sections are re-shown even if an error occurs
-            paywallBanner.style.display = 'block'; 
+            paywallBanner.style.display = 'block';
             actionButtonsSection.style.display = 'block';
             console.error("PDF generation error:", error);
             alert("Failed to generate PDF. Please try again.");
@@ -138,7 +140,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
 
         const channels = budgetData.industryData.channels;
         const parameters = budgetData.industryData.parameters;
-        
+
         // Combine channels and parameters for the bar chart
         const allItems = [...channels, ...parameters];
         // Dynamic: total distributed by array length and slight variation
@@ -147,7 +149,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
             // Slight variation ensures bars aren't identical and total approx 100%
             const variation = (index % 3) * 3; // Reduced variation for realism
             let percentage = Math.round(totalBasePercentage + (index % 2 === 0 ? variation : -variation));
-            
+
             // Basic normalization to ensure total doesn't stray too far
             if (index === allItems.length - 1) {
                 const currentTotal = allItems.slice(0, allItems.length - 1).reduce((sum, _, i) => {
@@ -159,7 +161,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
             }
 
             if (percentage < 5) percentage = 5; // Minimum 5%
-            
+
             const amount = Math.round((totalAnnualBudget * percentage) / 100);
             return {
                 name: item,
@@ -168,6 +170,23 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
             };
         });
     };
+
+
+
+    // const handleSaveAndFinish = async () => {
+    //     try {
+    //         const result = await postAssessment({ budgetData, assessmentData, userData });
+    //         if (result && result.pending) {
+    //             alert('Saved locally — please login/signup to persist to the database.');
+    //         } else {
+    //             alert('Budget plan saved to server!');
+    //             onContinueToDashboard();
+    //         }
+    //     } catch (e) {
+    //         alert('Error saving plan. Try again.');
+    //     }
+    // };
+
 
     const handleSavePlan = () => {
         const savedPlan = {
@@ -189,7 +208,100 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
         };
     });
 
+    // Bar chart data derived from industry channels / parameters
     const barChartData = getIndustryChannels();
+
+     const BASE_URL = 'https://api.mibbs.ai/api'; // or your backend URL
+
+
+
+const postAssessment = async (opts: {
+  budgetData: any,
+  assessmentData: any,
+  userData?: any
+}) => {
+  try {
+    const { budgetData, assessmentData, userData } = opts;
+
+    // ensure budgets are computed (BudgetPlanScreen already computes them)
+    const monthlyRevenue = Number(budgetData.monthlyRevenue || assessmentData.monthlyRevenue || 0);
+    const monthlyBudget = Math.round(monthlyRevenue * 0.05);
+    const annualBudget = Math.round(monthlyBudget * 12);
+
+    const allocations = (budgetData.allocations || []).map((item: any) => ({
+      channel: item.channel,
+      percent: item.percent ?? item.percentage ?? 0,
+      amount: item.amount ?? Math.round((annualBudget * (item.percent ?? item.percentage ?? 0)) / 100)
+    }));
+
+    const barChartData = getIndustryChannels(); // reuse existing helper
+
+    const payload = {
+      username: userData?.username || '',
+      email: userData?.email || '',
+      phone: userData?.phone || '',
+
+      businessName: budgetData.businessName || assessmentData.businessName || '',
+      brandStage: assessmentData.brandStage || '',
+      pincode: budgetData.location?.pincode || assessmentData.pincode || '',
+      city: budgetData.location?.city || assessmentData.city || '',
+      state: budgetData.location?.state || assessmentData.state || '',
+      industry: budgetData.industry || assessmentData.industry || '',
+
+      yearsInBusiness: assessmentData.yearsInBusiness || 0,
+      digitalMaturity: assessmentData.digitalMaturity || '',
+      primaryGoals: assessmentData.primaryGoals || [],
+
+      monthlyRevenue: monthlyRevenue,
+      marketingSpendBand: assessmentData.marketingSpendBand || '',
+      exactMarketingSpend: assessmentData.exactMarketingSpend || 0,
+
+      positioning: assessmentData.positioning || '',
+      competitorNotes: assessmentData.competitorNotes || '',
+      industryDetails: budgetData.industryDetails || assessmentData.industryDetails || null,
+
+      monthlyBudget: monthlyBudget,
+      annualBudget: annualBudget,
+
+      budgetAllocations: allocations,
+      channelFocuses: barChartData.map((i: any) => ({ name: i.name, percentage: i.percentage, amount: i.amount }))
+    };
+
+    const token = localStorage.getItem('access_token'); // or where you store token
+
+    const res = await fetch(`${BASE_URL}/assessments/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {})
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.status === 401 || res.status === 403) {
+      // Save pending draft if not logged in — frontend will post after login
+      localStorage.setItem('pending_assessment', JSON.stringify(payload));
+      return { pending: true };
+    }
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ detail: 'Unknown error' }));
+      throw new Error(err.detail || 'Failed to save assessment');
+    }
+
+    const json = await res.json();
+    localStorage.removeItem('pending_assessment');
+    return json;
+  } catch (err) {
+    console.error('postAssessment error', err);
+    throw err;
+  }
+};
+
+
+
+
+
 
     return (
         // Added 'id' for PDF generation
@@ -206,7 +318,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                             style={{ maxWidth: 160 }}
                         />
                         <div className="text-center sm:text-left">
-                            <h1 className="text-lg sm:text-2xl font-black text-indigo-900 whitespace-nowrap">
+                            <h1 className="text-md sm:text-2xl font-black text-indigo-900 whitespace-nowrap">
                                 Brand Budget Recommendation Report
                             </h1>
                             <div className="text-xs sm:text-sm text-gray-600 mt-1">
@@ -226,7 +338,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                             <span>Why MIBBS?</span>
                         </h2>
                         <p className="text-sm text-center max-w-3xl mx-auto opacity-90 leading-relaxed">
-                            At Magsmen, we've seen brands struggle not because they lacked ideas, but because they lacked intelligent budget planning. MIBBS is **India's first intelligent brand budgeting system**, a structured, data-driven model crafted to align your brand ambitions with financial discipline, helping you invest smarter, grow faster, and build a stronger market position.
+                            At Magsmen, we've seen brands struggle not because they lacked ideas, but because they lacked intelligent budget planning. MIBBS is India's first intelligent brand budgeting system, a structured, data-driven model crafted to align your brand ambitions with financial discipline, helping you invest smarter, grow faster, and build a stronger market position.
                         </p>
                     </div>
                 </div>
@@ -479,7 +591,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                                 <p className="text-purple-100 mt-1 font-light">Get Spend Tracker, Agency Discovery, and Premium Tools.</p>
                             </div>
                         </div>
-                        <div className="text-right flex flex-col items-end">
+                        <div className="text-right flex flex-col items-center">
                             <div className="text-3xl font-black">₹999</div>
                             <div className="text-purple-200 text-sm">per month</div>
                             <button className="mt-3 bg-white text-purple-700 px-6 py-3 rounded-full font-bold shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-purple-50">
@@ -499,13 +611,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                         
                         {/* Primary Action */}
                         
-                        <button
-                            onClick={onContinueToDashboard}
-                            className="flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-xl font-bold hover:from-indigo-700 hover:to-blue-600 transition-all duration-300 shadow-xl hover:shadow-2xl flex-grow"
-                        >
-                            <span>Go to Dashboard</span>
-                            <ArrowRight className="w-5 h-5 ml-2" />
-                        </button>
+                       
 
                         {/* Secondary Actions */}
                         <button
@@ -522,6 +628,14 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                             <Download className="w-4 h-4" />
                             <span>Download PDF</span>
                         </button>
+
+                         <button
+                            onClick={onContinueToDashboard}
+                            className="flex items-center justify-center space-x-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-blue-500 text-white rounded-xl font-bold hover:from-indigo-700 hover:to-blue-600 transition-all duration-300 shadow-xl hover:shadow-2xl flex-grow"
+                        >
+                            <span>Go to Dashboard</span>
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                        </button>
                     </div>
                     
                     {/* Chatbot Link */}
@@ -535,7 +649,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
                 </div>
                 {/* About Magsmen Section - Footer style */}
                 <footer className="max-w-7xl mx-auto pb-8">
-                    <div className="bg-indigo-900 rounded-3xl p-6 text-white shadow-xl">
+                    <div className="bg-indigo-900 p-6 text-white shadow-xl">
                         <h2 className="text-lg font-semibold text-center mb-2 tracking-wide border-b border-blue-200 pb-2">About Magsmen, Your Brand Consultants</h2>
                         <p className="text-sm text-center font-light leading-relaxed opacity-90">
                             Magsmen is a renowned brand consulting firm that helps businesses grow by making them easy to understand and trust. We believe every business has a unique story and we help you tell it in a simple and powerful way. We guide you to turn your business into a strong, well-known brand without complex ideas or inflated budgets.
@@ -557,6 +671,7 @@ const BudgetPlanScreen: React.FC<BudgetPlanScreenProps> = ({
 };
 
 export default BudgetPlanScreen;
+
 
 
 

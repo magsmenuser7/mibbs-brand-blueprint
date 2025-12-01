@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { X, Mail, User, Phone, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -29,7 +30,9 @@ const SignupModal: React.FC<SignupModalProps> = ({
   const { user } = useAuth();
   const navigate = useNavigate();
 
-//   const BASE_URL = "http://127.0.0.1:8000/api";
+
+
+  // const BASE_URL = "http://127.0.0.1:8000/api";
   const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
@@ -146,6 +149,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
       checkDuplicate("mobile", value);
     }
   };
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -438,6 +443,13 @@ const SignupModal: React.FC<SignupModalProps> = ({
 };
 
 export default SignupModal;
+
+
+
+
+
+
+
 
 
 
@@ -884,6 +896,7 @@ export default SignupModal;
 // };
 
 // export default SignupModal;
+
 
 
 

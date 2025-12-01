@@ -214,8 +214,8 @@ const SecureAccessSystem = () => {
 
       {/* Access Logs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-gray-900">Recent Access Logs</h3>
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">Recent Access Logs</h3>
           <select 
             value={selectedDepartment}
             onChange={(e) => setSelectedDepartment(e.target.value)}

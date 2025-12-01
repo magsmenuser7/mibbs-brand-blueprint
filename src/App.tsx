@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -28,6 +28,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import LoginForm from "./components/auth/LoginForm";
 import Logo from "./components/Logo";
 import MIBBSApp from './componentstwo/MIBBSApp';
+import BudgetPlanScreen from './componentstwo/flow/BudgetPlanScreen';
 
 
 
@@ -47,6 +48,28 @@ import FAQNew from './components/UpdatedHomePage/FAQ';
 import FinalCTA from './components/UpdatedHomePage/FinalCTA';
 import FooterNew from './components/UpdatedHomePage/Footer';
 import PrivacyPolicyNew from './components/UpdatedHomePage/PrivacyPolicy';
+
+
+
+
+
+
+// second updated home page 
+import { HeroSection } from './componentsthree/HeroSection';
+import { TrustStrip } from './componentsthree/TrustStrip';
+import { ProblemSection } from './componentsthree/ProblemSection';
+import { HowItWorksSection } from './componentsthree/HowItWorksSection';
+import { BenefitsSection } from './componentsthree/BenefitsSection';
+import { WhoItsForSection } from './componentsthree/WhoItsForSection';
+import { ProofSection } from './componentsthree/ProofSection';
+import { FinalCTASection } from './componentsthree/FinalCTASection';
+import { CursorGradient } from './componentsthree/animations/CursorGradient';
+import { ScrollReveal } from './componentsthree/animations/ScrollReveal';
+import  AboutPage  from './componentsthree/about/AboutPage';
+import HowItWorksReact from './componentsthree/howitworks/HowItWorksReact';
+import ToolsTemplatesPage from './pages/ToolsTemplatesPage';
+
+
 
 
 
@@ -95,14 +118,15 @@ import FAQ from "./components/FAQ";
 
 
 
-
-
 // --- AppContent that uses useAuth for user dashboard  ---
 const AppContent: React.FC = () => {
   const { isAuthenticated, user, isLoading } = useAuth();
   const [showOnboarding, setShowOnboarding] = React.useState(false);
   const [showBudgetReport, setShowBudgetReport] = React.useState(false);
   const [budgetData, setBudgetData] = React.useState<any>(null);
+  
+
+
 
   if (isLoading) {
     return (
@@ -152,6 +176,7 @@ const AppContent: React.FC = () => {
 
 // --- Final App ---
 const App = () => (
+  
   <GoogleOAuthProvider clientId="1064045400562-lljdlndc03j31gh3e3njeegd4p79ms4l.apps.googleusercontent.com">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -165,12 +190,12 @@ const App = () => (
               {/* Public Pages */}
               <Route element={<Layout />}>
 
-                {/* ✅ Homepage Route */}
-                <Route
+             
+                {/* <Route
                   path="/"
                   element={
                     <div className="min-h-screen bg-gray-50 text-gray-800">
-                      {/* <HeaderNew /> */}
+                      
                       <HeroNew />
                       <Problem />
                       <Features />
@@ -181,19 +206,63 @@ const App = () => (
                       <FAQNew />
                       <FinalCTA />
                       <FooterNew />
-                      {/* <PrivacyPolicyNew /> */}
+                     
+                    </div>
+                  }
+                /> */}
+
+
+
+
+                {/* second updated homepage  */}
+                <Route
+                  path="/"
+                  element={
+                    <div className="min-h-screen bg-white relative">
+                      <CursorGradient />
+                      <HeroSection />
+                      <ScrollReveal>
+                        <TrustStrip />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <ProblemSection />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <HowItWorksSection />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <BenefitsSection />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <WhoItsForSection />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <ProofSection />
+                      </ScrollReveal>
+                      <ScrollReveal>
+                        <FinalCTASection />
+                      </ScrollReveal>
+                      <FooterNew />
+                      
                     </div>
                   }
                 />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/how-it-works" element={<HowItWorksReact />} />
+              <Route path="/tools-and-templates" element={<ToolsTemplatesPage />} />
+
+                
+                
+                
 
 
 
                 {/* <Route path="/" element={<Home />} /> */}
-                <Route path="/how-it-works" element={<HowItWorks />} />
-                <Route path="/tools" element={<Tools />} />
+                {/* <Route path="/how-it-works" element={<HowItWorks />} /> */}
+                {/* <Route path="/tools" element={<Tools />} /> */}
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/brand-budget-planner" element={<BudgetingFormPage />} />
-                <Route path="/about" element={<About />} />
+                {/* <Route path="/about" element={<About />} /> */}
                 <Route path="/pricing" element={<Pricing />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
@@ -206,6 +275,17 @@ const App = () => (
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="*" element={<NotFound />} />
                 {/* <Route path="/budgeting-dashboard" element={<Dashboard />} /> */}
+                <Route
+                  path="/budget-plan-screen"
+                  element={
+                    <BudgetPlanScreen
+                      budgetData={{} as any}
+                      assessmentData={{} as any}
+                      onContinueToDashboard={() => {}}
+                    />
+                  }
+                />
+                
 
                 {/* Enterprises Dashboard */}
                 <Route path="/enterprises" element={<LandingPage />} />
@@ -226,6 +306,8 @@ const App = () => (
 
 
               <Route path="/user-type-selection" element={<UserTypeSelection />} />
+
+  
 
               
               
@@ -275,6 +357,13 @@ const App = () => (
       </TooltipProvider>
     </QueryClientProvider>
   </GoogleOAuthProvider>
+
+
+
+
+
+
+
 );
 
 export default App;

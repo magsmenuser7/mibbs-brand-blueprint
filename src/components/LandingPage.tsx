@@ -82,7 +82,7 @@ const LandingPage = () => {
             <div className="flex items-center space-x-4">
               <button 
                 onClick={() => navigate('/')}
-                className="text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                className="text-purple-600 hover:text-purple-700 font-medium transition-colors px-3"
               >
                 Home
               </button>
@@ -94,7 +94,7 @@ const LandingPage = () => {
               </button>
               <button 
                 onClick={() => navigate('/enterprises-login')}
-                className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-3 py-2 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                className="text-sm  bg-gradient-to-r from-purple-600 to-pink-500 text-white px-3 py-2 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               >
                 Request Enterprise Access
               </button>
@@ -143,7 +143,7 @@ const LandingPage = () => {
                   onClick={() => navigate('/enterprises-login')}
                   className="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
                 >
-                  <span>Request Enterprise Access</span>
+                  <span className=' '>Request Enterprise Access</span>
                   <ArrowRight className="w-5 h-5" />
                 </button>
                 <button
@@ -488,8 +488,8 @@ const LandingPage = () => {
 
       <footer className="py-8 bg-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-between relative">
+            <div className="flex items-center justify-between space-x-5">
               {/* <img 
                 src="/src/assets/mibbs-1.png" 
                 alt="MIBBS Logo" 
@@ -497,7 +497,10 @@ const LandingPage = () => {
               /> */}
               <span className="text-xl font-bold">Enterprise</span>
             </div>
-            <p className="text-gray-400">© 2025 MIBBS. All rights reserved.</p>
+            <div>
+  <p className="text-gray-400">© 2025 MIBBS. All rights reserved.</p>
+            </div>
+          
           </div>
         </div>
       </footer>

@@ -56,7 +56,7 @@ const Hero = () => {
                 Start Free Today
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
               </button>
-              <button  onClick={() => navigate("/how-it-works")}  
+              <button onClick={() => navigate("/how-it-works")}  
               className="group border-2 border-purple-300 text-purple-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-purple-500 hover:text-purple-600 hover:bg-purple-50 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-2 hover:scale-105 flex items-center justify-center">
                 <Play className="mr-2 w-5 h-5" />
                 See How It Works
