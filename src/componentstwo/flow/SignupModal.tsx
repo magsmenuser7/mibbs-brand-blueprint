@@ -420,7 +420,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
           </button>
         </form>
 
-        <div className="mt-2 text-left text-white">
+        <div className="mt-2 text-left text-black">
           {isLoginMode ? (
             <>
               Don't have an account?{' '}
