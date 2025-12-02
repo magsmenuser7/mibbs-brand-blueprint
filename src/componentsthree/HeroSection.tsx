@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { MagneticButton } from './animations/MagneticButton';
 import { ParticleField } from './animations/ParticleField';
 import { CountingNumber } from './animations/CountingNumber';
+import { Link } from "react-router-dom";
 
 export function HeroSection() {
   const sectionRef = useRef(null);
@@ -149,18 +150,22 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.6 }}
           >
-            <MagneticButton className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg flex items-center justify-center gap-2">
-              Get Your Free Budget
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </MagneticButton>
+            <Link to="/mibbsapp">
+              <MagneticButton className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg flex items-center justify-center gap-2">
+                Get Your Budgeting Data
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </MagneticButton>
+            </Link>
 
-            <motion.button
-              className="bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gray-200 hover:border-purple-300 hover:bg-gray-50 transition-all duration-200"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              See How It Works
-            </motion.button>
+            <Link to="/how-it-works">
+              <motion.button
+                className="bg-white text-gray-700 px-8 py-4 rounded-xl text-lg font-semibold border-2 border-gray-200 hover:border-purple-300 hover:bg-gray-50 transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                See How It Works
+              </motion.button>
+            </Link>
           </motion.div>
 
           {/* Micro-copy */}
@@ -177,13 +182,13 @@ export function HeroSection() {
         {/* Right: Dashboard Preview with Parallax */}
         <motion.div
           className="relative mt-10"
-          // style={{ y: dashboardY, opacity: dashboardOpacity }}
-          // initial={{ opacity: 0, y: 100, scale: 0 }}
-          // animate={{ opacity: 1, y: 0, scale: 1 }}
+        // style={{ y: dashboardY, opacity: dashboardOpacity }}
+        // initial={{ opacity: 0, y: 100, scale: 0 }}
+        // animate={{ opacity: 1, y: 0, scale: 1 }}
         >
           <div ref={dashboardRef} className={`relative transition-all duration-1000 delay-300 ${isVisible ? '' : ''}`}>
-          {/* Dashboard Image Placeholder */}
-          {/* Right Visual */}
+            {/* Dashboard Image Placeholder */}
+            {/* Right Visual */}
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl p-6 transform hover:scale-105 transition-transform duration-300">
                 <div className="flex items-center justify-between mb-6">
@@ -194,7 +199,7 @@ export function HeroSection() {
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4 rounded-lg shadow-lg">
                     <div className="text-2xl font-bold">₹2.4L</div>
@@ -237,11 +242,11 @@ export function HeroSection() {
                 </div>
               </div>
 
-            
+
               <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white p-3 rounded-lg shadow-lg animate-bounce">
                 <div className="text-sm font-semibold">+₹45K Saved</div>
               </div>
-              
+
               <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-3 rounded-lg shadow-lg animate-bounce delay-500">
                 <div className="text-sm font-semibold">AI Optimized</div>
               </div>

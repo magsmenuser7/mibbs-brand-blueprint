@@ -1,4 +1,5 @@
 import { Shield } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 export function FinalCTASection() {
   return (
@@ -32,9 +33,12 @@ export function FinalCTASection() {
         </div>
 
         {/* Primary CTA */}
+      <Link to="/mibbsapp" className="inline-block">
         <button className="w-full md:w-auto bg-white text-purple-600 px-12 py-5 rounded-xl text-lg font-bold shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-200 mb-6">
           Build My Brand Budget — Free Forever →
         </button>
+      </Link>
+        
 
         {/* Trust Signals */}
         <div className="space-y-2 mb-10">

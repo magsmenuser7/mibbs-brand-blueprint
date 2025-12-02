@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+
+
 export function ProofSection() {
   const testimonials = [
     {
@@ -64,12 +67,14 @@ export function ProofSection() {
               </div>
             </div>
 
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
-              Create My Budget Now →
-            </button>
+            <Link to="/mibbsapp">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
+                Create My Budget Now →
+              </button>
+            </Link>
           </div>
 
-          {/* Dashboard Visual */}
+          { }
           <div className="relative">
             <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl p-8 shadow-2xl border-4 border-white relative">
               <div className="text-center">
