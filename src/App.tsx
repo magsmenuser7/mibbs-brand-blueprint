@@ -69,7 +69,8 @@ import  AboutPage  from './componentsthree/about/AboutPage';
 import HowItWorksReact from './componentsthree/howitworks/HowItWorksReact';
 import ToolsTemplatesPage from './pages/ToolsTemplatesPage';
 
-
+// pricing related all pages added here
+import PricingPageWrapper from './pages/PricingPageWrapper';
 
 
 
@@ -250,6 +251,7 @@ const App = () => (
               <Route path="/about" element={<AboutPage />} />
               <Route path="/how-it-works" element={<HowItWorksReact />} />
               <Route path="/tools-and-templates" element={<ToolsTemplatesPage />} />
+              <Route path="/pricing" element={<PricingPageWrapper />} />
 
                 
                 
@@ -263,7 +265,7 @@ const App = () => (
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/brand-budget-planner" element={<BudgetingFormPage />} />
                 {/* <Route path="/about" element={<About />} /> */}
-                <Route path="/pricing" element={<Pricing />} />
+                {/* <Route path="/pricing" element={<Pricing />} /> */}
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
