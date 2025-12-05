@@ -1,5 +1,7 @@
 import { Briefcase, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import magsmenlogo from '../../assets/magsmen-new-version.png';
+import magsmenlogoold from '../../assets/magsmen-new-version-removebg-preview.png';
 
 const Hero = () => {
   return (
@@ -123,9 +125,9 @@ const Hero = () => {
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="w-20 h-12 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              className="w-40 h-40  rounded-lg flex items-center justify-center text-white font-bold text-sm  transition-shadow duration-300 cursor-pointer"
             >
-              MAGSMEN
+              <img src={magsmenlogoold} alt="magsmenlogo" />
             </motion.div>
           </div>
         </motion.div>

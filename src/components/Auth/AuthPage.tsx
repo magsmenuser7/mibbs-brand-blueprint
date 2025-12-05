@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import LoginForm from './LoginForm';
+import LoginForm from '../../components/auth/LoginForm';
 import SignupForm from './SignupForm';
 
 const AuthPage: React.FC = () => {

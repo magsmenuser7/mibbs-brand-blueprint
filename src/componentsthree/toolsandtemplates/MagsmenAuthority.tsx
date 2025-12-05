@@ -1,11 +1,12 @@
 import { Award, Building2, IndianRupee } from 'lucide-react';
 import { motion } from 'framer-motion';
+import magsmenlogoold from '../../assets/magsmen-new-version-removebg-preview.png';
 
 const MagsmenAuthority = () => {
   const stats = [
     {
       icon: Award,
-      value: '15+',
+      value: '8+',
       label: 'Years',
       sublabel: 'Brand Expertise'
     },
@@ -56,17 +57,18 @@ const MagsmenAuthority = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, type: 'spring', stiffness: 200 }}
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className="w-24 h-14 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-base shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer relative overflow-hidden"
+            className="w-40 h-40 rounded-lg flex items-center justify-center text-white font-bold text-base  transition-shadow duration-300 cursor-pointer relative overflow-hidden"
           >
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-700"
+              className="absolute inset-0 "
               animate={{
                 x: ['-100%', '100%'],
               }}
               transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
               style={{ opacity: 0.3 }}
             />
-            <span className="relative z-10">MAGSMEN</span>
+            {/* <span className="relative z-10">MAGSMEN</span> */}
+             <img src={magsmenlogoold} alt="magsmenlogo" />
           </motion.div>
         </div>
 

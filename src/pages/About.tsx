@@ -7,6 +7,7 @@ import teamimage3 from '../assets/bhagyashree.jpeg';
 import teamimage4 from '../assets/manimala.jpeg';
 import teamimage5 from '../assets/vamsikiran.jpeg';
 import teamimage6 from '../assets/suresh.jpeg';
+import sandeepimgoo from '../assets/sandeep-img-oo.png';
 
 
 const About = () => {

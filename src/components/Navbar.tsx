@@ -6,6 +6,7 @@ import AuthModal from "@/components/AuthModal";
 import { ArrowRight, Building, LogIn, LogOut, User, UserPlus } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);

@@ -69,7 +69,8 @@ const SignupForm: React.FC<SignupFormProps> = ({ onToggleMode }) => {
       <div className="text-center mb-8">
         <div className="flex items-center justify-center space-x-3 mb-4">
           <div className="w-12 h-12 bg-mibbs-gradient rounded-xl flex items-center justify-center">
-            <Building2 className="w-6 h-6 text-white" />
+            {/* <Building2 className="w-6 h-6 text-white" /> */}
+             <span className="text-white font-bold text-xl">M</span>
           </div>
           <span className="text-2xl font-bold text-gray-900">MIBBS</span>
         </div>

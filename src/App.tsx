@@ -29,6 +29,10 @@ import LoginForm from "./components/auth/LoginForm";
 import Logo from "./components/Logo";
 import MIBBSApp from './componentstwo/MIBBSApp';
 import BudgetPlanScreen from './componentstwo/flow/BudgetPlanScreen';
+import EntryScreen from './componentstwo/flow/EntryScreen';
+import SignupModal from './componentstwo/flow/SignupModal';
+import AssessmentFlow from './componentstwo/flow/AssessmentFlow';
+
 
 
 
@@ -170,6 +174,9 @@ const AppContent: React.FC = () => {
 
   return <CMSDashboard />;
 };
+
+
+
 
 
 
@@ -323,6 +330,7 @@ const App = () => (
                   </AuthenticateProvider>
                 }
               />
+              
 
 
 

@@ -2,9 +2,13 @@ import { motion } from 'framer-motion';
 import { MapPin, Building2, Rocket, BarChart3 } from 'lucide-react';
 import { useCountUp } from '../../hooks/useCountUp';
 import IntelligenceLayersChart from './charts/IntelligenceLayersChart';
+import sandeepimgoo from '../../assets/sandeep-img-oo.png';
+import aboutpageimage from '../../assets/aboutimage.png';
+
+
 
 const statsData = [
-  { icon: '📜', number: 15, suffix: '+', label: 'Years Experience', color: '#5A4A6A' },
+  { icon: '📜', number: 8, suffix: '+', label: 'Years Experience', color: '#5A4A6A' },
   { icon: '🏢', number: 300, suffix: '+', label: 'Brands Built', color: '#9333EA' },
   { icon: '₹', number: 500, suffix: 'Cr+', label: 'Value Created', color: '#EC4899' }
 ];
@@ -228,67 +232,69 @@ export default function Act3MagsmenExpertise() {
         <IntelligenceLayersChart />
 
         {/* Founder Section */}
-        <div className="founder-section mt-16">
-          <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-10 items-start max-w-4xl mx-auto">
-            <motion.div
-              className="founder-photo mx-auto md:mx-0"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                className="w-48 h-48 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-[#5A4A6A] to-[#9333EA] flex items-center justify-center text-white text-6xl font-bold shadow-lg"
-              >
-                SN
-              </motion.div>
-            </motion.div>
+<div className="founder-section mt-16">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center max-w-5xl mx-auto">
+    
+    {/* LEFT COLUMN — Image */}
+    <div className="flex justify-center md:justify-start">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.img
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+          src={aboutpageimage}
+          alt="sandeepimgoo"
+          className="w-56 h-56 md:w-[100%] md:h-[100%] rounded-lg object-cover shadow-xl"
+        />
+      </motion.div>
+    </div>
 
-            <motion.div
-              className="founder-bio text-center md:text-left"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              <h3 className="text-2xl font-semibold text-[#5A4A6A] mb-1">
-                Meet Sandeep N.
-              </h3>
-              <p className="text-gray-600 mb-4">Founder & Chief Architect</p>
+    {/* RIGHT COLUMN — Text */}
+    <motion.div
+      className="founder-bio text-center md:text-left"
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+    >
+      <h3 className="text-2xl font-semibold text-[#5A4A6A] mb-1">
+        Meet Sandeep N.
+      </h3>
+      <p className="text-gray-600 mb-4">Founder & Chief Architect</p>
 
-              <p className="text-lg text-gray-800 leading-relaxed mb-4">
-                Sandeep is a visionary brand strategist who's redefined how Indian businesses build lasting identities.
-              </p>
+      <p className="text-lg text-gray-800 leading-relaxed mb-4">
+        Sandeep is a visionary brand strategist who's redefined how Indian businesses build lasting identities.
+      </p>
 
-              <p className="text-lg text-gray-800 leading-relaxed mb-4">
-                As founder of Magsmen Brand Consultants, he's been the strategic force behind Fortune 25 companies, IPL sponsors, and 2,500+ entrepreneurs.
-              </p>
+      <p className="text-lg text-gray-800 leading-relaxed mb-4">
+        As founder of Magsmen Brand Consultants, he's been the strategic force behind Fortune 25 companies, IPL sponsors, and 2,500+ entrepreneurs.
+      </p>
 
-              <p className="text-lg text-gray-800 leading-relaxed mb-4">
-                Recognized as one of India's Top 100 Marketing Leaders and named 'Consultant of the Year 2023', Sandeep's philosophy is clear:
-              </p>
+      <p className="text-lg text-gray-800 leading-relaxed mb-4">
+        Recognized as one of India's Top 100 Marketing Leaders and named 'Consultant of the Year 2023', Sandeep's philosophy is clear:
+      </p>
 
-              <motion.blockquote
-                className="border-l-4 border-[#5A4A6A] pl-5 mt-6 text-xl italic text-[#5A4A6A]"
-                initial={{ opacity: 0, borderLeftWidth: 0 }}
-                whileInView={{
-                  opacity: 1,
-                  borderLeftWidth: 4
-                }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 1 }}
-              >
-                "Brands must be engineered, not left to chance."
-              </motion.blockquote>
+      <motion.blockquote
+        className="border-l-4 border-[#5A4A6A] pl-5 mt-6 text-xl italic text-[#5A4A6A]"
+        initial={{ opacity: 0, borderLeftWidth: 0 }}
+        whileInView={{ opacity: 1, borderLeftWidth: 4 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 1 }}
+      >
+        "Brands must be engineered, not left to chance."
+      </motion.blockquote>
 
-              <p className="text-lg text-gray-800 leading-relaxed mt-6">
-                MIBBS is built to bring that vision to every business in India.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+      <p className="text-lg text-gray-800 leading-relaxed mt-6">
+        MIBBS is built to bring that vision to every business in India.
+      </p>
+    </motion.div>
+  </div>
+</div>
+
       </div>
     </section>
   );
