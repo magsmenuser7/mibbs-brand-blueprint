@@ -111,11 +111,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-navy">Visit Us</h3>
-                    <p className="text-navy-light mb-1">Magsmen Headquarters</p>
+                    <p className="text-navy-light mb-1">Mibbs Headquarters</p>
                     <address className="text-navy-light not-italic">
-                      123 Business Avenue<br />
-                      Koramangala, Bangalore 560034<br />
-                      India
+                      4th floor, icon spaces 5-98-57/5, 6th Lane,<br />
+                      Brodipet, Beside Brodipet, Police Station,<br />
+                      Guntur-522002, Andhra Pradesh, India
                     </address>
                   </div>
                 </div>
