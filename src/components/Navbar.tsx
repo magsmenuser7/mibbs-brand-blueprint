@@ -155,7 +155,7 @@ const handleLogout = () => {
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Home</Link>
               <Link to="/enterprises" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors"> Enterprises </Link>              
               <Link to="/how-it-works" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">How It Works</Link>
-              <Link to="/tools" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
+              <Link to="/tools-and-templates" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Tools & Templates</Link>
               <Link to="/about" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">About</Link>
               <Link to="/pricing" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Pricing</Link>
               <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="font-medium text-navy hover:text-accent transition-colors">Contact</Link>
