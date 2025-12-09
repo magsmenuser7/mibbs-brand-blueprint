@@ -16,6 +16,12 @@ interface GoogleUser {
   sub: string;
 }
 
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+  }
+}
+
 interface SignupModalProps {
   isOpen: boolean;
   onComplete: (userData: any) => void;
@@ -32,8 +38,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
 
 
 
-  // const BASE_URL = "http://127.0.0.1:8000/api";
-  const BASE_URL = 'https://api.mibbs.ai/api';
+  const BASE_URL = "http://127.0.0.1:8000/api";
+  // const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
     await signup(userData);
@@ -59,6 +65,15 @@ const SignupModal: React.FC<SignupModalProps> = ({
         if (response.ok) {
           console.log("✅ Assessment saved with user details!");
           localStorage.removeItem("pending_assessment");
+
+
+          // ⭐ FIXED FACEBOOK PIXEL TRACKING CODE
+          const fbq = (window as any).fbq;
+          if (fbq) {
+            fbq("track", "SubmitApplication");
+          }
+          
+
         } else {
           console.error("❌ Failed to save assessment:", await response.text());
         }
