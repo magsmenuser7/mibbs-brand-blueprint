@@ -38,8 +38,8 @@ const SignupModal: React.FC<SignupModalProps> = ({
 
 
 
-  const BASE_URL = "http://127.0.0.1:8000/api";
-  // const BASE_URL = 'https://api.mibbs.ai/api';
+  // const BASE_URL = "http://127.0.0.1:8000/api";
+  const BASE_URL = 'https://api.mibbs.ai/api';
 
   const handleSignupSuccess = async (userData) => {
     await signup(userData);
