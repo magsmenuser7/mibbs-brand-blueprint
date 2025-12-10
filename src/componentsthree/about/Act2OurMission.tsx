@@ -50,7 +50,7 @@ export default function Act2OurMission() {
 
         {/* Mission Statement */}
         <motion.div
-          className="text-center text-xl md:text-2xl font-medium text-gray-800 leading-relaxed mb-12 max-w-3xl mx-auto space-y-4"
+          className="text-center text-xl md:text-2xl font-medium text-gray-800 leading-relaxed mb-12 max-w-4xl mx-auto space-y-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -136,6 +136,7 @@ export default function Act2OurMission() {
         >
           <p>We believe every rupee deserves intention.<br />
           Every brand deserves clarity.
+          
           And every business deserves to grow with confidence, not fear.</p>
 
           <p className="mt-6 font-semibold">That's why MIBBS exists.</p>

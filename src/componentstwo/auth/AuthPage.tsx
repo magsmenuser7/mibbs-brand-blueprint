@@ -26,7 +26,16 @@ const AuthPage: React.FC = () => {
               <span className="text-xs text-gray-600">MSME Certified</span>
             </div>
             <div className="flex items-center space-x-1">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+             <div
+  className="w-3 h-3 rounded-full"
+  style={{
+    background: `
+      linear-gradient(to bottom, #FF9933 33%, white 33%, white 66%, #128807 66%),
+      radial-gradient(circle at center, #000080 20%, transparent 21%)
+    `,
+    backgroundBlendMode: "overlay",
+  }}
+></div>
               <span className="text-xs text-gray-600">Made in India</span>
             </div>
             <div className="flex items-center space-x-1">

@@ -67,12 +67,12 @@ const SignupModal: React.FC<SignupModalProps> = ({
           localStorage.removeItem("pending_assessment");
 
 
-          // ⭐ FIXED FACEBOOK PIXEL TRACKING CODE
-          const fbq = (window as any).fbq;
-          if (fbq) {
-            fbq("track", "SubmitApplication");
-          }
-          
+          // // ⭐ FIXED FACEBOOK PIXEL TRACKING CODE
+          // const fbq = (window as any).fbq;
+          // if (fbq) {
+          //   fbq("track", "SubmitApplication");
+          // }
+
 
         } else {
           console.error("❌ Failed to save assessment:", await response.text());
@@ -417,7 +417,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
                 <span className="text-sm text-gray-600">
                   I agree to the{' '}
                   <a href="#" className="text-mibbs-primary hover:text-mibbs-secondary">Terms of Service</a> and{' '}
-                  <a href="#" className="text-mibbs-primary hover:text-mibbs-secondary">Privacy Policy</a>
+                  <a href="/privacy-policy" className="text-mibbs-primary hover:text-mibbs-secondary">Privacy Policy</a>
                 </span>
               </label>
               {errors.agreeToTerms && <p className="text-xs text-red-600 mt-1">{errors.agreeToTerms}</p>}

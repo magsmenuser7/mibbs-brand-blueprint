@@ -27,7 +27,7 @@ const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
             Welcome to MIBBS
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Budget Smarter, Grow Faster - Your AI-powered brand building companion for MSMEs
+            Budget Smarter, Grow Faster Your AI powered brand building companion for MSMEs
           </p>
         </div>
 
@@ -83,7 +83,16 @@ const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
               <span>8,000+ Businesses Trust Us</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 bg-mibbs-accent rounded-full"></div>
+              <div
+                className="w-3 h-3 rounded-full"
+                style={{
+                  background: `
+      linear-gradient(to bottom, #FF9933 33%, white 33%, white 66%, #128807 66%),
+      radial-gradient(circle at center, #000080 20%, transparent 21%)
+    `,
+                  backgroundBlendMode: "overlay",
+                }}
+              ></div>
               <span>Made in India</span>
             </div>
           </div>

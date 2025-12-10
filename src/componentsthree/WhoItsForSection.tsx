@@ -149,7 +149,7 @@ export function WhoItsForSection() {
                   <p className="text-sm text-gray-600">
                     <em className="text-purple-600 font-semibold">"{persona.proof.quote}"</em>
                     <br />
-                    <span className="text-xs">— {persona.proof.author}</span>
+                    <span className="text-xs">{persona.proof.author}</span>
                   </p>
                 </div>
               </div>

@@ -13,7 +13,6 @@ const BrandStrategyGuides = () => {
     setIsToastVisible(true);
     console.log(`Downloading ${guideName}`);
   };
-
   return (
     <section id="strategy-guides" className="w-full px-4 py-10 sm:px-6 sm:py-16 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -29,7 +28,7 @@ const BrandStrategyGuides = () => {
             title="Brand Positioning Guide"
             problem="What makes my brand different?"
             description="Learn how to position your brand in the market. Includes examples from Indian businesses and fill-in-the-blank worksheets."
-            buttonText="Download Guide"
+            buttonText="Preview Guide"
             buttonVariant="solid"
             onAction={() => handleDownload('Brand Positioning Guide')}
             badge="PDF Guide (15 pages)"
@@ -40,7 +39,7 @@ const BrandStrategyGuides = () => {
             title="Pricing Framework"
             problem="How should I price my products?"
             description="Calculate the right price using cost-plus, competitor, and value-based methods. Includes Indian market examples."
-            buttonText="Download Guide"
+            buttonText="Preview Guide"
             buttonVariant="solid"
             onAction={() => handleDownload('Pricing Framework')}
             badge="PDF + Calculator (Excel)"
@@ -51,7 +50,7 @@ const BrandStrategyGuides = () => {
             title="Launch Roadmap"
             problem="How do I launch a new product?"
             description="90-day launch plan covering pre-launch, launch day, and post-launch activities. Perfect for new products or services."
-            buttonText="Download Guide"
+            buttonText="Preview Guide"
             buttonVariant="solid"
             onAction={() => handleDownload('Launch Roadmap')}
             badge="PDF Roadmap (12 pages)"

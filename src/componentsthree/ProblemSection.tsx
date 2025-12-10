@@ -90,7 +90,7 @@ export function ProblemSection() {
         {/* Bottom Statement */}
         <div className="text-center p-10 bg-gradient-to-br from-purple-50 to-white rounded-2xl border-2 border-purple-200">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-            MIBBS Fixes All Three — In Minutes
+            MIBBS Fixes All Three In Minutes
           </h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Get a clear budget plan, know where to spend, and connect with trusted agencies.

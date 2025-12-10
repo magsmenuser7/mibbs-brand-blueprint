@@ -4,6 +4,8 @@ import { useCountUp } from '../../hooks/useCountUp';
 import IntelligenceLayersChart from './charts/IntelligenceLayersChart';
 import sandeepimgoo from '../../assets/sandeep-img-oo.png';
 import aboutpageimage from '../../assets/aboutimage.png';
+import logohighres from '../../assets/logo-high-res.svg'
+
 
 
 
@@ -123,7 +125,7 @@ export default function Act3MagsmenExpertise() {
         </motion.div>
 
         {/* Magsmen Authority Block */}
-        <div className="magsmen-block max-w-3xl mx-auto mb-12 bg-white rounded-2xl p-8 shadow-sm">
+        <div className="magsmen-block max-w-5xl mx-auto mb-12 rounded-2xl p-8">
           <motion.div
             className="flex flex-col md:flex-row items-center gap-8"
             initial={{ opacity: 0, y: 20 }}
@@ -138,8 +140,8 @@ export default function Act3MagsmenExpertise() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="w-32 h-32 bg-gradient-to-br from-[#5A4A6A] to-[#9333EA] rounded-2xl flex items-center justify-center text-white text-4xl font-bold">
-                M
+              <div className="w-52 h-52  flex items-center justify-center text-white text-4xl font-bold">
+                <img src={logohighres} alt="" />
               </div>
             </motion.div>
 

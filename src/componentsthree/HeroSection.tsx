@@ -118,7 +118,7 @@ export function HeroSection() {
             {[
               { icon: '🎯', text: 'Simple budget plan in 5 minutes' },
               { icon: '📍', text: 'Based on your city and industry' },
-              { icon: '✨', text: 'Free forever – no credit card needed' }
+              { icon: '✨', text: 'Free forever no credit card needed' }
             ].map((item, i) => (
               <motion.div
                 key={i}

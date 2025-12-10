@@ -14,7 +14,7 @@ export function FinalCTASection() {
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl mb-10 opacity-95 max-w-2xl mx-auto">
-          Join 10,000+ Indian businesses who know exactly where to spend their marketing money — and where not to.
+          Join 10,000+ Indian businesses who know exactly where to spend their marketing money and where not to.
         </p>
 
         {/* Features Grid */}

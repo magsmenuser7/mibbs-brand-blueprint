@@ -5,7 +5,7 @@ export function ProofSection() {
   const testimonials = [
     {
       rating: 5,
-      text: 'Before MIBBS, I was spending ₹80,000/month on random ads. Now I spend ₹60,000 smartly and my sales grew by 40%. This system is a game-changer for small businesses.',
+      text: 'Before MIBBS, I was spending ₹80,000/month on random ads. Now I spend ₹60,000 smartly and my sales grew by 40%. This system is a game changer for small businesses.',
       author: 'Vijay Kumar',
       role: 'Sweet Shop Owner, Vijayawada',
       result: '+40% Business Growth',
@@ -13,7 +13,7 @@ export function ProofSection() {
     },
     {
       rating: 5,
-      text: 'I run a skincare D2C brand. MIBBS showed me I was overspending on Instagram and underspending on Google. Fixed it in one month — my ROAS went from 2.1x to 3.8x.',
+      text: 'I run a skincare D2C brand. MIBBS showed me I was overspending on Instagram and underspending on Google. Fixed it in one month my ROAS went from 2.1x to 3.8x.',
       author: 'Priya Sharma',
       role: 'Founder, Glow Naturals (D2C Brand)',
       result: 'ROAS: 2.1x → 3.8x',
@@ -47,7 +47,7 @@ export function ProofSection() {
               </span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              A complete brand budget breakdown — personalized to your business, city, and industry.
+              A complete brand budget breakdown personalized to your business, city, and industry.
               Ready to share with your team or accountant.
             </p>
 

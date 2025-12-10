@@ -29,7 +29,7 @@ const MarketingTemplates = () => {
             title="Social Media Calendar"
             problem="How do I plan my posts?"
             description="Plan 30 days of posts across Facebook, Instagram, and WhatsApp. Includes festival dates and trending topics."
-            buttonText="Download Template"
+            buttonText="Preview Template"
             buttonVariant="solid"
             onAction={() => handleDownload('Social Media Calendar')}
             badge="Excel & PDF"
@@ -40,7 +40,7 @@ const MarketingTemplates = () => {
             title="Ad Spend Tracker"
             problem="Am I spending too much on ads?"
             description="Track daily ad spending on Google, Facebook, and Instagram. See what's working and what's wasting money."
-            buttonText="Download Template"
+            buttonText="Preview Template"
             buttonVariant="solid"
             onAction={() => handleDownload('Ad Spend Tracker')}
             badge="Google Sheets & Excel"
@@ -51,7 +51,7 @@ const MarketingTemplates = () => {
             title="Competitor Checklist"
             problem="What are my competitors doing?"
             description="Track competitors' prices, offers, social media activity, and customer reviews. Stay ahead in your market."
-            buttonText="Download Template"
+            buttonText="Preview Template"
             buttonVariant="solid"
             onAction={() => handleDownload('Competitor Checklist')}
             badge="PDF Checklist"

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function HowItWorksSection() {
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
@@ -11,7 +13,7 @@ export function HowItWorksSection() {
             Simple Process
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            How MIBBS Works – In 3 Simple Steps
+            How MIBBS Works In 3 Simple Steps
           </h2>
           <p className="text-lg text-gray-600">
             From confusion to clarity in less than 5 minutes
@@ -57,7 +59,7 @@ export function HowItWorksSection() {
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Share basic details: your industry, your city, your goals, and your monthly budget.
-              We keep it simple—no complicated forms.
+              We keep it simple no complicated forms.
             </p>
 
             <div className="space-y-3">
@@ -86,7 +88,7 @@ export function HowItWorksSection() {
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Our AI creates a personalized plan showing exactly how much to spend on digital,
-              branding, content, offline, and more—based on real data from your industry and location.
+              branding, content, offline, and more based on real data from your industry and location.
             </p>
 
             <div className="space-y-3">
@@ -173,11 +175,11 @@ export function HowItWorksSection() {
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               We show you verified agencies in your city who can help you execute your plan.
-              Browse profiles, see reviews, and connect directly—all within MIBBS.
+              Browse profiles, see reviews, and connect directly all within MIBBS.
             </p>
 
             <div className="space-y-3">
-              {['Only verified, trusted agencies', 'Real reviews from businesses', 'Direct connect—no middlemen'].map((feature) => (
+              {['Only verified, trusted agencies', 'Real reviews from businesses', 'Direct connect no middlemen'].map((feature) => (
                 <div key={feature} className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
                   <span className="text-base text-gray-700">{feature}</span>
@@ -189,9 +191,13 @@ export function HowItWorksSection() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-12 py-5 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200">
-            Get My Free Budget Plan →
-          </button>
+          <Link to="/mibbsapp">
+            <button
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-12 py-5 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
+            >
+              Get My Free Budget Plan →
+            </button>
+          </Link>
           <p className="text-sm text-gray-500 mt-4">
             Takes 5 minutes • No credit card needed
           </p>

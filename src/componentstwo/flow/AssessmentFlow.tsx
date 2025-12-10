@@ -372,6 +372,7 @@ export const stateDataMap: Record<string, StateData> = {
 
 // ----------------- AssessmentFlow Component -----------------
 interface AssessmentData {
+  monthsInBusiness: number;
   brandStage: string;
   pincode: string;
   city: string;
@@ -423,6 +424,7 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     state: '',
     industry: '',
     yearsInBusiness: 0,
+    monthsInBusiness:0,
     digitalMaturity: '',
     primaryGoals: [],
     monthlyRevenue: 0,
@@ -437,7 +439,8 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
     barChartData: [],
     pieChartData: [],
     channelFocuses: [],
-    budgetAllocations: []
+    budgetAllocations: [],
+    
   });
 
   // -------------------- Compute Budgets & Pie --------------------
@@ -507,10 +510,10 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
   }, []);
 
   const brandStages = [
-    { id: 'new', label: 'New', icon: '🌱', description: 'Just starting my entrepreneurial journey' },
-    { id: 'growing', label: 'Growing', icon: '📈', description: 'Have some traction, ready to scale' },
-    { id: 'established', label: 'Established', icon: '🏢', description: 'Stable business, expanding reach' },
-    { id: 'enterprise', label: 'Enterprise', icon: '🚀', description: 'Large scale operations' }
+    { id: 'Early', label: 'Early', icon: '🌱', description: 'Just getting started : My business is in the early stage.' },
+    { id: 'growing', label: 'Growing', icon: '📈', description: 'I’ve begun seeing some customers and sales and now I want to grow more.' },
+    { id: 'established', label: 'Established', icon: '🏢', description: 'My  business is running smoothly and steadily :  I want to reach more people.' },
+    { id: 'enterprise', label: 'Enterprise', icon: '🚀', description: 'I have a  big business with large operations :  looking for advanced growth and expansion.' }
   ];
 
   const industries = [
@@ -518,10 +521,10 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
   ];
 
   const digitalMaturityOptions = [
-    { id: 'not-present', label: 'Not present', description: 'No digital presence' },
-    { id: 'basic', label: 'Basic (social)', description: 'WhatsApp/Facebook only' },
-    { id: 'growing', label: 'Growing (ads, analytics)', description: 'Running ads with tracking' },
-    { id: 'digital-first', label: 'Digital-first', description: 'Advanced analytics & integrations' }
+    { id: 'Not Present', label: 'Not present', description: 'No online presence yet' },
+    { id: 'basic', label: 'Basic (social)', description: 'Only using WhatsApp/Facebook to talk to customers' },
+    { id: 'growing', label: 'Growing (ads, analytics)', description: 'Running ads and checking basic results' },
+    { id: 'digital-first', label: 'Digital-first', description: 'Strong online setup with advanced tracking and tools' }
   ];
 
   const primaryGoalsOptions = ['Awareness','Leads','Online Sales','New Markets','Product Launch','Retention','Pro Image','Compete Bigger'];
@@ -610,7 +613,7 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">What type of business do you run?</h2>
-              <p className="text-mibbs-primary italic">Tell us who you are today this frames your budget story.</p>
+              <p className="text-mibbs-primary italic">Tell us where your business stands today, this helps us suggest the right budget for you.</p>
             </div>
 
             <div className="space-y-4">
@@ -671,7 +674,7 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
           <div className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Which industry best describes your business?</h2>
-              <p className="text-mibbs-primary italic">Pick the lane you play in. The system tailors budgets industry by industry.</p>
+              <p className="text-mibbs-primary italic">Pick your business type so we can share a budget that fits your industry.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -692,32 +695,59 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
           </div>
         );
         case 4:
-        return (
-          <div className="space-y-6">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">How many years have you been in business?</h2>
-            </div>
-            <div className="text-center">
-              <input
-                type="number"
-                min="0"
-                max="50"
-                value={data.yearsInBusiness || ''}
-                onChange={(e) => updateData('yearsInBusiness', parseInt(e.target.value) || 0)}
-                className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
-                placeholder="0"
-              />
-              <p className="text-gray-600 mt-4">years</p>
-            </div>
-          </div>
-        );
+return (
+  <div className="space-y-6">
+    <div className="text-center mb-8">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        How long have you been in business?
+      </h2>
+    </div>
+
+    <div className="flex items-center justify-center gap-5"> 
+
+      {/* YEARS INPUT */}
+      <div className="text-center">
+        <input
+          type="number"
+          min="0"
+          max="50"
+          value={data.yearsInBusiness || ''}
+          onChange={(e) =>
+            updateData('yearsInBusiness', parseInt(e.target.value) || 0)
+          }
+          className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
+          placeholder="0"
+        />
+        <p className="text-gray-600 mt-2">Years</p>
+      </div>
+
+      {/* MONTHS INPUT */}
+      <div className="text-center">
+        <input
+          type="number"
+          min="0"
+          max="12"
+          value={data.monthsInBusiness || ''}
+          onChange={(e) =>
+            updateData('monthsInBusiness', parseInt(e.target.value) || 0)
+          }
+          className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
+          placeholder="0"
+        />
+        <p className="text-gray-600 mt-2">Months</p>
+      </div>
+
+    </div>
+  </div>
+);
+
 
       case 5:
         return (
           <div className="space-y-6">
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">How digitally scaled is your brand?</h2>
-              <p className="text-mibbs-primary italic">Your digital readiness defines how far your money travels.</p>
+              <p className="text-mibbs-primary italic">Your digital setup decides how much impact your budget can create.</p>
             </div>
             <div className="space-y-4">
               {digitalMaturityOptions.map(option => (
@@ -742,8 +772,8 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
         return (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">What are your primary brand objectives?</h2>
-              <p className="text-sm text-gray-600">Select up to 4 objectives</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">What are your main brand goals?</h2>
+              <p className="text-sm text-gray-600">Choose up to 4 things you want to achieve.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {primaryGoalsOptions.map(goal => (
