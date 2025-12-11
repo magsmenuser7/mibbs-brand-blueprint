@@ -56,7 +56,7 @@ export default function Act2OurMission() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p>MIBBS is not a tool.<br />It's a financial operating system for brand spending.</p>
+          <p>MIBBS is not a tool.It's a financial operating system for brand spending.</p>
 
           <p className="mt-6">We exist to turn India's unstructured branding chaos into a system of:</p>
 

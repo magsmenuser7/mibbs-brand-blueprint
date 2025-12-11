@@ -9,6 +9,9 @@ import {
   Building2
 } from 'lucide-react';
 
+
+import mibbs1 from '../../assets/mibbs-1.png'
+
 interface DashboardSidebarProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
@@ -30,9 +33,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ activeSection, onSe
         <div className="flex items-center space-x-3">
           <div className="w-8 h-8 bg-mibbs-gradient rounded-lg flex items-center justify-center">
             {/* <Building2 className="w-5 h-5 text-white" /> */}
-            <span className="text-white font-bold text-xl">M</span>
+            {/* <span className="text-white font-bold text-xl">M</span> */}
+            <img src={mibbs1} alt="mibbs-logo" />
           </div>
-          <span className="text-xl font-bold text-gray-900">MIBBS</span>
+          {/* <span className="text-xl font-bold text-gray-900">MIBBS</span> */}
         </div>
       </div>
       
