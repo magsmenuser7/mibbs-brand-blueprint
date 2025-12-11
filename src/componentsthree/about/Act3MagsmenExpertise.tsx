@@ -264,7 +264,7 @@ export default function Act3MagsmenExpertise() {
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
     >
       <h3 className="text-2xl font-semibold text-[#5A4A6A] mb-1">
-        Meet Sandeep N.
+      Sandeep N.
       </h3>
       <p className="text-gray-600 mb-4">Founder & Chief Architect</p>
 
