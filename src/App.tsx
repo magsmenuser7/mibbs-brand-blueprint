@@ -25,6 +25,9 @@ import Analytics from "./pages/Analytics";
 import StartBudgetingForm from "./pages/StartBudgetingForm";
 import Generate from "./pages/Generate";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsandConditions from "./pages/TermsandConditions";
+import CoockiesPolicy from "./pages/CoockiesPolicy";
+import DataProcessingProtectionAgreement from "./pages/DataProcessingProtectionAgreement";
 import LoginForm from "./components/auth/LoginForm";
 import Logo from "./components/Logo";
 import MIBBSApp from './componentstwo/MIBBSApp';
@@ -282,6 +285,9 @@ const App = () => (
                 <Route path="/start-budgeting-form" element={<StartBudgetingForm />} />
                 <Route path="/generate" element={<Generate />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-and-conditions" element={<TermsandConditions />} />
+                <Route path="/coockies-policy" element={<CoockiesPolicy />} />
+                <Route path="/dataprocessing-protectionagreement" element={<DataProcessingProtectionAgreement />} />
                 <Route path="*" element={<NotFound />} />
                 {/* <Route path="/budgeting-dashboard" element={<Dashboard />} /> */}
                 <Route

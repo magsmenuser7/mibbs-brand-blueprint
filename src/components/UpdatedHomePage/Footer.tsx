@@ -37,8 +37,9 @@ const Footer = () => {
       title: 'Legal',
       links: [
         { label: 'Privacy Policy', href: '/privacy-policy' },
-        { label: 'Terms of Service', href: '#terms' },
-        { label: 'Cookie Policy', href: '#cookies' },
+        { label: 'Terms of Service', href: '/terms-and-conditions' },
+        { label: 'Cookie Policy', href: '/coockies-policy' },
+        { label: 'Data Processing Protection Agreement', href: '/dataprocessing-protectionagreement' },
         { label: 'GDPR', href: '#gdpr' },
         { label: 'Refund Policy', href: '#refunds' }
       ]
@@ -148,9 +149,9 @@ const Footer = () => {
               {/* <span className="text-gray-400">Made with ❤️ in India</span> */}
               <span className="text-gray-400">Made In India</span>
               <div className="flex items-center space-x-4">
-                <a href="/privacy-policy" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy</a>
-                <a href="#terms" className="text-gray-400 hover:text-purple-400 transition-colors">Terms</a>
-                <a href="#cookies" className="text-gray-400 hover:text-purple-400 transition-colors">Cookies</a>
+                <a href="/privacy-policy" className="text-gray-400 hover:text-purple-400 transition-colors">Privacy Policy</a>
+                <a href="/terms-and-conditions" className="text-gray-400 hover:text-purple-400 transition-colors">Terms and Conditions</a>
+                <a href="/coockies-policy" className="text-gray-400 hover:text-purple-400 transition-colors">Cookies Policy</a>
               </div>
             </div>
           </div>

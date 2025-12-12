@@ -8,165 +8,58 @@ const PrivacyPolicy = () => {
         {/* Header Section */}
         <header className="text-center mb-10 md:mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#1a2b4b] leading-tight">
-            Privacy Policy
+            MIBBS – Privacy Policy 
           </h1>
           <p className="text-base md:text-lg text-gray-600 mt-2">
-            Effective Date: July 24, 2025
+            Effective Date: 12-12-2025
           </p>
         </header>
 
         {/* Introduction */}
         <section className="mb-8">
           <p className="text-gray-700 leading-relaxed">
-            Grofessor’s Innovations Private Limited ("MIBBS", "we", "us", or "our") is committed to protecting the privacy and personal data of our users. MIBBS is an AI-powered platform that enables Indian businesses—whether MSMEs, startups, or large enterprises—to analyze, plan, and optimize their budgets for marketing, planning, and advertising initiatives. This Privacy Policy describes how we collect, use, store, share, and safeguard your information when you access or use our website at <a href="https://www.mibbs.ai" className="text-[#64378e] hover:underline">https://www.mibbs.ai</a>, any associated mobile/web applications, or any service governed under the MIBBS platform (collectively referred to as "Services"). This policy is applicable to users within the Republic of India and is crafted in accordance with Indian data protection laws, including the Information Technology Act, 2000, the SPDI Rules, and the Digital Personal Data Protection Act, 2023.
-          </p>
+This Privacy Policy describes how MIBBS (Magsmen Intelligent Brand Budgeting System) collects, uses, stores, processes, and protects personal and business information when you access or use the MIBBS platform (“Service”). By using MIBBS, you consent to the practices outlined in this Policy. If you do not agree, discontinue use immediately.          </p>
           <p className="text-gray-700 leading-relaxed mt-4">
-            By using our Services, you agree to the practices outlined in this Privacy Policy. If you do not agree with any part of this Policy, please discontinue use of the Services. If you are entering into this agreement on behalf of an organization, you confirm that you are authorized to bind that organization.
-          </p>
-        </section>
+MIBBS collects information provided directly by users during onboarding, including name, business details, location, industry classification, budget amounts, strategic objectives, and contact information. The platform also collects technical data such as device identifiers, IP addresses, browser details, interaction logs, and cookies. Additionally, users may upload or input business budgets, campaign details, agency information, documents, or any other data relevant to generating recommendations and using platform features. Agencies may submit service details, pricing, credentials, and portfolio information.          
+</p>
 
-        {/* Content Sections */}
-        <section className="space-y-8">
-          {/* Collection of Personal and Business Data */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Collection of Personal and Business Data
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              MIBBS collects certain categories of data either directly from users or through automated means. The personal and business information we collect may include business name, business contact details (name, phone number, email address), GSTIN, business sector, employee strength, annual turnover, and marketing budget allocations. In addition, we collect account credentials, interaction data (clicks, page views), and device/browser metadata such as IP address, operating system, session logs, and unique identifiers for security, analytics, and performance optimization.
-            </p>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              We do not knowingly collect sensitive personal data unless voluntarily submitted and necessary for service delivery. Sensitive personal data refers to financial information, authentication credentials, or other data as defined under Rule 3 of the SPDI Rules and the DPDP Act. We specifically instruct users not to submit data related to religious beliefs, biometric identifiers, or personal health information, unless essential and agreed to by both parties under separate consent.
-            </p>
-          </div>
+<p className="text-gray-700 leading-relaxed mt-3">
+  MIBBS uses the collected information to operate and improve the Service, generate brand-budget recommendations, provide analytics, conduct benchmarking, match users with agencies, process payments, enable integrations, enhance user experience, and maintain platform security. MIBBS may also use anonymized or aggregated data for research, reporting, product development, and statistical insights. No personal or business-sensitive data is sold to third parties.
+</p>
 
-          {/* Purpose and Legal Basis of Processing */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Purpose and Legal Basis of Processing
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              Your data is collected and processed only for lawful purposes, including to create and maintain your account, deliver Services, personalize the user experience, enhance AI performance, conduct usage analytics, respond to support queries, detect fraud, and fulfill contractual or legal obligations. The primary legal bases for data processing include: (i) consent as provided under Section 6 of the DPDP Act, (ii) performance of a contract between you and MIBBS, (iii) compliance with applicable Indian laws, and (iv) our legitimate business interest in improving our platform and user experience, subject to your rights under Indian law.
-            </p>
-          </div>
+<p className="text-gray-700 leading-relaxed mt-3">
+  Your information may be shared with third-party service providers strictly for operational purposes, including hosting infrastructure, analytics partners, payment gateways, communication tools, and authentication services. These third parties are required to protect your data in accordance with applicable laws. MIBBS does not authorize them to use your data for unrelated purposes. Where required by law, regulation, or court order, MIBBS may disclose information to government authorities or legal bodies.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+  Payment-related information submitted through the Service is processed by third-party payment gateways. MIBBS does not store or access full card details, bank credentials, or UPI PINs. Transaction data may be retained for financial compliance, auditing, or dispute resolution. In cases where escrow workflows are used, MIBBS may store status updates, approvals, and transactional metadata but not sensitive payment credentials.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+You are responsible for ensuring that all information submitted is accurate and updated. You may request corrections or deletion of certain data, subject to legal and operational constraints. MIBBS may retain information as long as required to provide the Service, comply with law, resolve disputes, or enforce agreements. Cached or anonymized versions of data may persist beyond account deletion for compliance, analytics, or fraud-prevention purposes.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+MIBBS implements administrative, technical, and physical safeguards to protect user information; however, no digital platform can guarantee absolute security. By using the Service, you acknowledge the inherent risks of internet-based systems. MIBBS is not responsible for unauthorized access arising from user-side vulnerabilities, device compromises, weak passwords, or third-party networks.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+The Service is not intended for individuals below 18 years of age. MIBBS does not knowingly collect information from minors. If such data is discovered, it will be deleted promptly upon verification.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+MIBBS may transfer data across regions or jurisdictions where its servers, partners, or service providers operate. Such transfers will comply with applicable data protection laws to the best extent possible. Use of the platform implies consent to these transfers.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+The Service may contain links to third-party websites or integrated tools. MIBBS is not responsible for their privacy practices or content. Users should review third-party privacy policies before interacting with external services.
+</p>
 
-          {/* Data Sharing and Disclosure */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Data Sharing and Disclosure
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              We do not sell or trade personal or business data to any third party. However, we may share data with authorized service providers such as cloud hosting vendors, analytics partners, and payment gateways. All third parties are contractually obligated to follow confidentiality and security requirements that are at least equivalent to this Policy and Indian law.
-            </p>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              MIBBS may disclose data to government authorities under lawful directions, including requests under Section 69 of the IT Act or relevant provisions of the BNSS. Disclosures will be made only to the extent required and after verifying legal validity. We will notify the user where possible and legally permitted.
-            </p>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              In the event of a merger, acquisition, restructuring, or transfer of assets, your data may be transferred to the new entity subject to this same policy and applicable legal safeguards.
-            </p>
-          </div>
-
-          {/* Cookies and Tracking Technologies */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Cookies and Tracking Technologies
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              We use cookies and related technologies to improve service delivery, measure performance, personalize user experience, and conduct analytics. Cookies help us store your session preferences, detect unusual behavior, and improve usability. By using our platform, you consent to our use of cookies. You can modify your browser settings to block cookies; however, doing so may affect functionality.
-            </p>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              We use only essential cookies by default. Any marketing or third-party analytical cookies (e.g. from tools like Google Analytics) are deployed only after explicit consent and can be managed via our cookie settings interface.
-            </p>
-          </div>
-
-          {/* Children’s Data */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Children’s Data
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              MIBBS does not knowingly collect or process personal data of individuals under the age of 18. If it is brought to our attention that such data has been submitted without valid consent from a guardian, we will delete the data as per law. Users represent that they are above 18 years of age when using the Services.
-            </p>
-          </div>
-
-          {/* Data Security and Retention */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Data Security and Retention
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              We use appropriate technical and organizational security measures to protect user data. This includes encryption in transit (TLS 1.2 or higher), encryption at rest, multi-factor authentication for internal access, firewalls, and periodic penetration testing. Access to user data is strictly limited to authorized personnel and based on role-specific access control.
-            </p>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              All personal and business data is retained only for as long as necessary for the purposes stated in this policy, or as required under Indian law (including but not limited to the Companies Act, Income Tax Act, or relevant state regulations). Generally, business data is retained for 5 years from the end of the user relationship, unless longer retention is required by legal, tax, or regulatory authorities.
-            </p>
-          </div>
-
-          {/* Your Rights and Control */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Your Rights and Control
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              Under Indian law, you have the right to:
-            </p>
-            <ul className="list-disc pl-8 text-gray-700 leading-relaxed mt-2 space-y-1">
-              <li>Access and obtain a copy of your personal data held by us.</li>
-              <li>Request correction or updating of your data.</li>
-              <li>Withdraw consent for processing (where applicable).</li>
-              <li>Request deletion of your data, subject to legal and operational exceptions.</li>
-              <li>Lodge a complaint with the Data Protection Board under the DPDP Act once operational.</li>
-            </ul>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              To exercise any of the above rights, please email <a href="mailto:privacy@mibbs.ai" className="text-[#64378e] hover:underline">privacy@mibbs.ai</a>. We aim to respond within 30 days in compliance with Indian regulatory timelines. We may require identity verification before fulfilling your request.
-            </p>
-          </div>
-
-          {/* International Data Transfers */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              International Data Transfers
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              At present, all personal and business data collected by MIBBS is stored on servers located within India. If we engage global cloud service providers in the future, we will ensure that data transfers comply with applicable cross-border data transfer regulations under the DPDP Act, including standard contractual clauses or government-prescribed safeguards.
-            </p>
-          </div>
-
-          {/* Changes to This Policy */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Changes to This Policy
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              We may update this Privacy Policy from time to time to reflect changes in technology, legal obligations, or our practices. Any significant updates will be notified via email and/or through a platform banner at least 15 days in advance, unless mandated sooner by law. Continued use of the Services after such notice shall constitute acceptance of the revised policy.
-            </p>
-          </div>
-
-          {/* Contact Us */}
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2b4b] mb-4">
-              Contact Us
-            </h2>
-            <p className="text-gray-700 leading-relaxed">
-              If you have any questions or complaints about this Privacy Policy or wish to exercise your rights, you may contact our Data Protection Officer (DPO) at:
-            </p>
-            <ul className="text-gray-700 mt-2 space-y-1">
-              <li>
-                <span className="font-semibold">Email:</span>{' '}
-                <a href="mailto:support@mibbs.ai" className="text-[#64378e] hover:underline">support@mibbs.ai</a>
-              </li>
-              <li>
-                <span className="font-semibold">Mailing Address:</span>
-                <address className="not-italic inline">
-                  <br />Grofessor’s Innovations Private Limited
-                  <br />4th floor, icon spaces, beside arundalpet police station, Guntur
-                </address>
-              </li>
-            </ul>
-            <p className="text-gray-700 leading-relaxed mt-3">
-              We are committed to resolving any concerns you may have about your data and privacy rights under Indian law.
-            </p>
-          </div>
+<p className="text-gray-700 leading-relaxed mt-3">
+MIBBS may update this Privacy Policy periodically. Continued use of the Service after updates constitutes acceptance of the revised Policy. Users are encouraged to review this Policy regularly.
+</p>
+<p className="text-gray-700 leading-relaxed mt-3">
+For questions or concerns, you may contact contact Grofessors innovations private limited at <a
+  href="mailto:ceo@grofessors.com?subject=Inquiry"
+  className="underline"
+>
+  ceo@grofessors.com
+</a> 
+</p>
         </section>
 
       </div>
