@@ -447,7 +447,7 @@ const SignupModal: React.FC<SignupModalProps> = ({
                     />
                     <span className="text-sm text-gray-600">
                       I agree to the{' '}
-                      <a href="#" className="text-mibbs-primary hover:text-mibbs-secondary">Terms of Service</a> and{' '}
+                      <a href="/terms-and-conditions" className="text-mibbs-primary hover:text-mibbs-secondary">Terms of Service</a> and{' '}
                       <a href="/privacy-policy" className="text-mibbs-primary hover:text-mibbs-secondary">Privacy Policy</a>
                     </span>
                   </label>
