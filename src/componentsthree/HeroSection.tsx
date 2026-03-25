@@ -23,7 +23,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-white min-h-[85vh] flex items-center px-4 py-20 md:px-10 md:py-32 overflow-hidden"
+      className="relative bg-white min-h-[85vh] flex items-center px-4 py-20 md:px-10 overflow-hidden"
     >
       {/* Animated Morphing Background */}
       <motion.div
@@ -57,6 +57,15 @@ export function HeroSection() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             India's First Brand Budgeting System
+          </motion.p>
+
+          <motion.p
+            className="text-sm font-semibold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+          Built on eight years of Indian market research across 10,000 plus pincodes.
           </motion.p>
 
           {/* Main Headline - Word by Word Reveal */}
@@ -246,10 +255,10 @@ export function HeroSection() {
               <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white p-3 rounded-lg shadow-lg animate-bounce">
                 <div className="text-sm font-semibold">+₹45K Saved</div>
               </div>
-
+{/* 
               <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-3 rounded-lg shadow-lg animate-bounce delay-500">
                 <div className="text-sm font-semibold">AI Optimized</div>
-              </div>
+              </div> */}
             </div>
 
             {/* Floating Stat Cards with Enhanced Animation */}

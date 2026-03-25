@@ -7,10 +7,16 @@ export function TrustStrip() {
   const isInView = useInView(ref, { once: true });
 
   const stats = [
-    { value: 63, label: 'Indian Businesses', suffix: 'M+', color: 'text-purple-600' },
-    { value: 1000, label: 'Verified Agencies', suffix: '+', color: 'text-pink-600' },
-    { value: 1, label: 'Brand Budgeting System', prefix: '#', color: 'text-green-600' }
+    { value: 10000, label: 'Indian Pincodes Studied', suffix: '+', color: 'text-purple-600' },
+    { value: 1000, label: 'Brands Analysed', suffix: '+', color: 'text-pink-600' },
+    { value: 8, label: 'Market and Consumer Research', suffix: '+ Years', color: 'text-green-600' }
   ];
+
+  //   const stats = [
+  //   { value: 63, label: 'Indian Businesses', suffix: 'M+', color: 'text-purple-600' },
+  //   { value: 1000, label: 'Verified Agencies', suffix: '+', color: 'text-pink-600' },
+  //   { value: 1, label: 'Brand Budgeting System', prefix: '#', color: 'text-green-600' }
+  // ];
 
   return (
     <section ref={ref} className="bg-gray-50 py-8 border-t border-b border-gray-200">

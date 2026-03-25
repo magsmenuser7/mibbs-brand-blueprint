@@ -52,10 +52,16 @@ const EntryScreen: React.FC<EntryScreenProps> = ({ onUserTypeSelection }) => {
           </button>
 
           {/* First Time User */}
-          <button
+          {/* <button
             onClick={() => onUserTypeSelection('new')}
             className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-accent"
+          > */}
+
+          <button
+            onClick={() => navigate('/mibbs-questionnaire')}
+            className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-mibbs-accent"
           >
+            
             <div className="text-center">
               <div className="w-20 h-20 bg-gradient-to-br from-mibbs-accent to-mibbs-pink rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <UserPlus className="w-10 h-10 text-white" />

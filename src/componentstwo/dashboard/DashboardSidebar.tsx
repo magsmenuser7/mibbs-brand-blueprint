@@ -31,7 +31,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({ activeSection, onSe
     <div className="w-64 bg-white border-r border-gray-200 h-full flex flex-col fixed left-0 top-0">
       <div className="p-6 border-b border-gray-200">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 flex items-center justify-center">
+          <div className="flex items-center justify-center">
             {/* <Building2 className="w-5 h-5 text-white bg-mibbs-gradient" /> */}
             {/* <span className="text-white font-bold text-xl">M</span> */}
             <img src={mibbs1} alt="mibbs-logo" />

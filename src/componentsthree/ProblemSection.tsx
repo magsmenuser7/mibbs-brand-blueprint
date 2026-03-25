@@ -71,7 +71,8 @@ export function ProblemSection() {
                 </div>
 
                 {/* Emoji */}
-                <div className="text-5xl mb-4">{problem.emoji}</div>
+                 <div className="text-5xl mb-12"></div>
+                {/* <div className="text-5xl mb-10">{problem.emoji}</div> */}
 
                 {/* Title */}
                 <h3 className={`text-xl md:text-2xl font-bold ${colors.title} mb-3`}>

@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import PincodeInput from './PincodeInput';
 import { industryDataMap, IndustryData } from '../../data/industryData';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/AuthContext";
+import SignupModal from '../../componentstwo/flow/SignupModal';
 
 // data/stateData.ts
 export interface StateData {
@@ -580,7 +582,12 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
       case 1: return data.brandStage !== '' && data.businessName.trim() !== '';
       case 2: return data.pincode.length === 6 && data.city.trim() !== '' && data.state !== '';
       case 3: return data.industry !== '';
-      case 4: return data.yearsInBusiness > 0;
+      // case 4: return data.yearsInBusiness > 0;
+      case 4:
+      return (
+        (data.yearsInBusiness && data.yearsInBusiness > 0) ||
+        (data.monthsInBusiness && data.monthsInBusiness > 0)
+      );
       case 5: return data.digitalMaturity !== '';
       case 6: return data.primaryGoals.length > 0;
       case 7: return data.monthlyRevenue > 0 && data.marketingSpendBand !== '';
@@ -694,52 +701,52 @@ const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cms
             </div>
           </div>
         );
-        case 4:
-return (
-  <div className="space-y-6">
-    <div className="text-center mb-8">
-      <h2 className="text-3xl font-bold text-gray-900 mb-4">
-        How long have you been in business?
-      </h2>
-    </div>
+      case 4:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                How long have you been in business?
+              </h2>
+            </div>
 
-    <div className="flex items-center justify-center gap-5"> 
+            <div className="flex items-center justify-center gap-5">
 
-      {/* YEARS INPUT */}
-      <div className="text-center">
-        <input
-          type="number"
-          min="0"
-          max="50"
-          value={data.yearsInBusiness || ''}
-          onChange={(e) =>
-            updateData('yearsInBusiness', parseInt(e.target.value) || 0)
-          }
-          className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
-          placeholder="0"
-        />
-        <p className="text-gray-600 mt-2">Years</p>
-      </div>
+              {/* YEARS INPUT */}
+              <div className="text-center">
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  value={data.yearsInBusiness || ''}
+                  onChange={(e) =>
+                    updateData('yearsInBusiness', parseInt(e.target.value) || 0)
+                  }
+                  className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
+                  placeholder="0"
+                />
+                <p className="text-gray-600 mt-2">Years</p>
+              </div>
 
-      {/* MONTHS INPUT */}
-      <div className="text-center">
-        <input
-          type="number"
-          min="0"
-          max="12"
-          value={data.monthsInBusiness || ''}
-          onChange={(e) =>
-            updateData('monthsInBusiness', parseInt(e.target.value) || 0)
-          }
-          className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
-          placeholder="0"
-        />
-        <p className="text-gray-600 mt-2">Months</p>
-      </div>
+              {/* MONTHS INPUT */}
+              <div className="text-center">
+                <input
+                  type="number"
+                  min="0"
+                  max="12"
+                  value={data.monthsInBusiness || ''}
+                  onChange={(e) =>
+                    updateData('monthsInBusiness', parseInt(e.target.value) || 0)
+                  }
+                  className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-mibbs-primary"
+                  placeholder="0"
+                />
+                <p className="text-gray-600 mt-2">Months</p>
+              </div>
 
-    </div>
-  </div>
-);
+            </div>
+          </div>
+        );
 
 
       case 5:
@@ -918,6 +925,7 @@ return (
         return null;
     }
   };
+ 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
@@ -946,6 +954,844 @@ return (
 };
 
 export default AssessmentFlow;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import { ChevronLeft, ChevronRight, Lock, ClipboardCheck, ShieldCheck, Globe, Box } from 'lucide-react';
+// import PincodeInput from './PincodeInput';
+// import { industryDataMap, IndustryData } from '../../data/industryData';
+// import { useNavigate } from 'react-router-dom';
+// import { useAuth } from "../../contexts/AuthContext";
+// import SignupModal from '../../componentstwo/flow/SignupModal';
+
+// // --- Data Interfaces ---
+// export interface StateData {
+//   digitalPenetration: number;
+//   traditionalBranding: number;
+//   consumerTriggers: string;
+//   advertisingROI: number;
+//   budgetAllocation: { name: string; percentage: number }[];
+//   preferredChannels: string[];
+//   consumerTrustFactors: string[];
+//   budgetTrend: string;
+// }
+
+// export const stateDataMap: Record<string, StateData> = {
+//   'Andhra Pradesh': {
+//     digitalPenetration: 65,
+//     traditionalBranding: 35,
+//     consumerTriggers: 'Brand Familiarity, Festival Discounts',
+//     advertisingROI: 3.5,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 50 },
+//       { name: 'TV', percentage: 30 },
+//       { name: 'Print', percentage: 20 },
+//     ],
+//     preferredChannels: ['TV', 'Digital', 'Outdoor'],
+//     consumerTrustFactors: ['Celebrity Endorsements'],
+//     budgetTrend: 'Digital-first with a balance of traditional',
+//   },
+//   'Arunachal Pradesh': {
+//     digitalPenetration: 45,
+//     traditionalBranding: 55,
+//     consumerTriggers: 'Local Trust, Word of Mouth',
+//     advertisingROI: 2.8,
+//     budgetAllocation: [
+//       { name: 'Print', percentage: 40 },
+//       { name: 'Radio', percentage: 35 },
+//       { name: 'Community', percentage: 25 },
+//     ],
+//     preferredChannels: ['Print', 'Radio', 'Word of Mouth'],
+//     consumerTrustFactors: ['Community Leaders', 'Govt Endorsements'],
+//     budgetTrend: 'Rural-driven traditional media',
+//   },
+//   'Assam': {
+//     digitalPenetration: 50,
+//     traditionalBranding: 50,
+//     consumerTriggers: 'Festival-Based Purchases, Traditional Ties',
+//     advertisingROI: 3.2,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 45 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Social Media', 'Print', 'Retail'],
+//     consumerTrustFactors: ['Local Influencers', 'Assamese Content'],
+//     budgetTrend: 'Balanced budget',
+//   },
+//   'Bihar': {
+//     digitalPenetration: 35,
+//     traditionalBranding: 65,
+//     consumerTriggers: 'Price Sensitivity, Family Recommendations',
+//     advertisingROI: 4.0,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 40 },
+//       { name: 'Digital', percentage: 40 },
+//       { name: 'Outdoor', percentage: 20 },
+//     ],
+//     preferredChannels: ['Radio', 'WhatsApp', 'Local Ads'],
+//     consumerTrustFactors: ['Govt Schemes', 'Religious Leaders'],
+//     budgetTrend: 'Traditional-heavy branding',
+//   },
+//   'Chhattisgarh': {
+//     digitalPenetration: 40,
+//     traditionalBranding: 60,
+//     consumerTriggers: 'Local Network Trust, Social Influence',
+//     advertisingROI: 3.6,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Outdoor', 'Print', 'Digital'],
+//     consumerTrustFactors: ['Government Policies', 'Word of Mouth'],
+//     budgetTrend: 'Rural branding-focused',
+//   },
+//   'Goa': {
+//     digitalPenetration: 80,
+//     traditionalBranding: 20,
+//     consumerTriggers: 'Premium Branding, Tourism Influence',
+//     advertisingROI: 4.2,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 60 },
+//       { name: 'Print', percentage: 25 },
+//       { name: 'PR', percentage: 15 },
+//     ],
+//     preferredChannels: ['Influencers', 'Social Media'],
+//     consumerTrustFactors: ['Tourism Reviews', 'User-Generated Content'],
+//     budgetTrend: 'Digital-heavy, influencer-driven',
+//   },
+//   'Gujarat': {
+//     digitalPenetration: 70,
+//     traditionalBranding: 30,
+//     consumerTriggers: 'Business-Oriented, Entrepreneurial Appeal',
+//     advertisingROI: 3.9,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 45 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Print', 'Digital', 'Outdoor'],
+//     consumerTrustFactors: ['Business Trust', 'Trade Endorsements'],
+//     budgetTrend: 'Mix of traditional & digital',
+//   },
+//   'Haryana': {
+//     digitalPenetration: 55,
+//     traditionalBranding: 45,
+//     consumerTriggers: 'Political Endorsements, Sports Culture',
+//     advertisingROI: 3.8,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'Outdoor', percentage: 15 },
+//     ],
+//     preferredChannels: ['TV', 'Print', 'Digital'],
+//     consumerTrustFactors: ['Political Trust', 'Sports Sponsorships'],
+//     budgetTrend: 'Balanced branding',
+//   },
+//   'Himachal Pradesh': {
+//     digitalPenetration: 50,
+//     traditionalBranding: 50,
+//     consumerTriggers: 'Nature-Based Branding, Ethical Products',
+//     advertisingROI: 3.3,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 45 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Print', 'Digital', 'Outdoor'],
+//     consumerTrustFactors: ['Eco-Friendliness', 'Cultural Roots'],
+//     budgetTrend: 'Focus on eco-friendly branding',
+//   },
+//   'Jharkhand': {
+//     digitalPenetration: 38,
+//     traditionalBranding: 62,
+//     consumerTriggers: 'Word of Mouth, Govt Schemes',
+//     advertisingROI: 3.5,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'Events', percentage: 20 },
+//     ],
+//     preferredChannels: ['Outdoor', 'Print', 'WhatsApp'],
+//     consumerTrustFactors: ['Rural Networks', 'Government Ads'],
+//     budgetTrend: 'Rural-heavy advertising',
+//   },
+//   'Karnataka': {
+//     digitalPenetration: 75,
+//     traditionalBranding: 25,
+//     consumerTriggers: 'Tech-Focused, Premium Brand Perception',
+//     advertisingROI: 4.5,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 60 },
+//       { name: 'PR', percentage: 25 },
+//       { name: 'Print', percentage: 15 },
+//     ],
+//     preferredChannels: ['LinkedIn', 'Social Media'],
+//     consumerTrustFactors: ['Startup Endorsements', 'Tech Blogs'],
+//     budgetTrend: 'Digital-heavy branding',
+//   },
+//   'Kerala': {
+//     digitalPenetration: 70,
+//     traditionalBranding: 30,
+//     consumerTriggers: 'Education, Social Awareness Branding',
+//     advertisingROI: 3.9,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['TV', 'Digital', 'WhatsApp'],
+//     consumerTrustFactors: ['Intellectual Messaging', 'Malayalam Content'],
+//     budgetTrend: 'Balanced traditional & digital',
+//   },
+//   'Madhya Pradesh': {
+//     digitalPenetration: 45,
+//     traditionalBranding: 55,
+//     consumerTriggers: 'Rural Influence, Festival Spending',
+//     advertisingROI: 3.5,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Outdoor', 'Print', 'Digital'],
+//     consumerTrustFactors: ['Religious Leaders', 'Family Trust'],
+//     budgetTrend: 'Rural branding strategy',
+//   },
+//   'Maharashtra': {
+//     digitalPenetration: 80,
+//     traditionalBranding: 20,
+//     consumerTriggers: 'High-End Branding, Luxury Perception',
+//     advertisingROI: 4.6,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 60 },
+//       { name: 'TV', percentage: 25 },
+//       { name: 'PR', percentage: 15 },
+//     ],
+//     preferredChannels: ['Digital Ads', 'Influencers'],
+//     consumerTrustFactors: ['Brand Heritage', 'Celebrity Endorsements'],
+//     budgetTrend: 'Premium digital-first strategy',
+//   },
+//   'Manipur': {
+//     digitalPenetration: 55,
+//     traditionalBranding: 45,
+//     consumerTriggers: 'Handcrafted, Artistic Brands',
+//     advertisingROI: 3.4,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'Events', percentage: 15 },
+//     ],
+//     preferredChannels: ['Print', 'Community Ads'],
+//     consumerTrustFactors: ['Cultural Branding', 'Artisanal Trust'],
+//     budgetTrend: 'Localized branding approach',
+//   },
+//   'Meghalaya': {
+//     digitalPenetration: 52,
+//     traditionalBranding: 48,
+//     consumerTriggers: 'Tribal Culture, Eco-Friendliness',
+//     advertisingROI: 3.3,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 45 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 25 },
+//     ],
+//     preferredChannels: ['Print', 'Digital', 'Events'],
+//     consumerTrustFactors: ['NGO Endorsements', 'Community Trust'],
+//     budgetTrend: 'Sustainability-focused branding',
+//   },
+//   'Mizoram': {
+//     digitalPenetration: 60,
+//     traditionalBranding: 40,
+//     consumerTriggers: 'Fashion-Forward, High Awareness',
+//     advertisingROI: 3.7,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 55 },
+//       { name: 'Traditional', percentage: 35 },
+//       { name: 'PR', percentage: 10 },
+//     ],
+//     preferredChannels: ['Social Media', 'Print'],
+//     consumerTrustFactors: ['Church Networks', 'Local Influencers'],
+//     budgetTrend: 'Digital-first but community-led',
+//   },
+//   'Nagaland': {
+//     digitalPenetration: 62,
+//     traditionalBranding: 38,
+//     consumerTriggers: 'Community Influence, Fashion Trends',
+//     advertisingROI: 3.8,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 55 },
+//       { name: 'Traditional', percentage: 30 },
+//       { name: 'PR', percentage: 15 },
+//     ],
+//     preferredChannels: ['Social Media', 'Digital', 'Print'],
+//     consumerTrustFactors: ['Social Proof', 'Community Figures'],
+//     budgetTrend: 'Fashion-oriented branding',
+//   },
+//   'Odisha': {
+//     digitalPenetration: 50,
+//     traditionalBranding: 50,
+//     consumerTriggers: 'Religious Festivals, Traditional Appeal',
+//     advertisingROI: 3.5,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'Outdoor', percentage: 20 },
+//     ],
+//     preferredChannels: ['Print', 'Digital', 'TV'],
+//     consumerTrustFactors: ['Religious Leaders', 'Cultural Sentiment'],
+//     budgetTrend: 'Mix of traditional & digital',
+//   },
+//   'Punjab': {
+//     digitalPenetration: 65,
+//     traditionalBranding: 35,
+//     consumerTriggers: 'Celebrity Ads, Sports & Music Culture',
+//     advertisingROI: 4.0,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 55 },
+//       { name: 'Digital', percentage: 35 },
+//       { name: 'PR', percentage: 10 },
+//     ],
+//     preferredChannels: ['TV', 'Outdoor', 'Social Media'],
+//     consumerTrustFactors: ['Celebrity & Music Trust', 'Cultural Trends'],
+//     budgetTrend: 'Influencer-heavy branding',
+//   },
+//   'Rajasthan': {
+//     digitalPenetration: 45,
+//     traditionalBranding: 55,
+//     consumerTriggers: 'Festival & Heritage-Driven Branding',
+//     advertisingROI: 3.5,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['TV', 'Print', 'Digital'],
+//     consumerTrustFactors: ['Cultural Heritage', 'Tourism Branding'],
+//     budgetTrend: 'Traditional-heavy branding',
+//   },
+//   'Sikkim': {
+//     digitalPenetration: 55,
+//     traditionalBranding: 45,
+//     consumerTriggers: 'Sustainability, Eco-Friendly Branding',
+//     advertisingROI: 3.9,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 50 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 20 },
+//     ],
+//     preferredChannels: ['Digital', 'Print', 'Outdoor'],
+//     consumerTrustFactors: ['Environmental Branding', 'Word of Mouth'],
+//     budgetTrend: 'Green branding strategy',
+//   },
+//   'Tamil Nadu': {
+//     digitalPenetration: 72,
+//     traditionalBranding: 28,
+//     consumerTriggers: 'Tamil-Language Ads, Emotional Storytelling',
+//     advertisingROI: 4.2,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 55 },
+//       { name: 'Traditional', percentage: 30 },
+//       { name: 'Outdoor', percentage: 15 },
+//     ],
+//     preferredChannels: ['TV', 'Digital', 'Print'],
+//     consumerTrustFactors: ['Tamil-Language Messaging', 'Emotional Ads'],
+//     budgetTrend: 'Balanced branding',
+//   },
+//   'Telangana': {
+//     digitalPenetration: 75,
+//     traditionalBranding: 25,
+//     consumerTriggers: 'Startup Branding, Digital-First Approach',
+//     advertisingROI: 4.4,
+//     budgetAllocation: [
+//       { name: 'Digital', percentage: 60 },
+//       { name: 'PR', percentage: 30 },
+//       { name: 'Traditional', percentage: 10 },
+//     ],
+//     preferredChannels: ['Digital', 'OTT', 'Social Media'],
+//     consumerTrustFactors: ['Tech Influence', 'Business Growth'],
+//     budgetTrend: 'Digital-driven branding',
+//   },
+//   'Uttar Pradesh': {
+//     digitalPenetration: 40,
+//     traditionalBranding: 60,
+//     consumerTriggers: 'Political Ads, Family-Oriented Marketing',
+//     advertisingROI: 3.3,
+//     budgetAllocation: [
+//       { name: 'Traditional', percentage: 55 },
+//       { name: 'Digital', percentage: 30 },
+//       { name: 'PR', percentage: 15 },
+//     ],
+//     preferredChannels: ['TV', 'Radio', 'Print'],
+//     consumerTrustFactors: ['Religious Leaders', 'Political Messaging'],
+//     budgetTrend: 'Traditional-heavy branding',
+//   }
+// };
+
+// // --- AssessmentFlow Component ---
+// interface AssessmentData {
+//   offeringType: string;
+//   monthsInBusiness: number;
+//   brandStage: string;
+//   pincode: string;
+//   city: string;
+//   state: string;
+//   industry: string;
+//   yearsInBusiness: number;
+//   digitalMaturity: string;
+//   primaryGoals: string[];
+//   monthlyRevenue: number;
+//   marketingSpendBand: string;
+//   exactMarketingSpend: number;
+//   positioning: string;
+//   competitorNotes: string;
+//   businessName: string;
+//   websiteUrl?: string;
+//   industryDetails?: IndustryData;
+//   monthlyBudget: number;
+//   annualBudget: number;
+//   barChartData: { name: string; percentage: number; amount: number; }[];
+//   pieChartData?: { name: string; value: number; amount: number; color: string; }[];
+//   channelFocuses: { name: string; percentage: number; amount: number; }[],
+//   budgetAllocations?: { name: string; percentage: number; amount: number; }[]
+// }
+
+
+
+
+
+// interface AssessmentFlowProps {
+//   onComplete: (data: AssessmentData) => void;
+//   onBack: () => void;
+//   cmsConfig: any;
+// }
+
+// const AssessmentFlow: React.FC<AssessmentFlowProps> = ({ onComplete, onBack, cmsConfig }) => {
+//   const navigate = useNavigate();
+//   const { user } = useAuth(); // Assuming useAuth provides login status
+  
+//   // --- Step 1: Authentication State ---
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   // --- Step 2: Assessment State ---
+//   const [currentStep, setCurrentStep] = useState(1);
+//   const totalSteps = 8;
+//   const [data, setData] = useState<AssessmentData>({
+//     brandStage: '', pincode: '', city: '', state: '', industry: '',offeringType: '',websiteUrl: '',
+//     yearsInBusiness: 0, monthsInBusiness: 0, digitalMaturity: '',
+//     primaryGoals: [], monthlyRevenue: 0, marketingSpendBand: '',
+//     exactMarketingSpend: 0, positioning: '', competitorNotes: '',
+//     businessName: '', industryDetails: undefined, monthlyBudget: 0,
+//     annualBudget: 0, barChartData: [], pieChartData: [],
+//     channelFocuses: [], budgetAllocations: [],
+//   });
+
+//   // --- Effect: Sync Login Status ---
+//   useEffect(() => {
+//     const token = localStorage.getItem('access_token');
+//     if (token) setIsLoggedIn(true);
+//   }, []);
+
+//   // --- Auth Handler ---
+//   const handleAuthComplete = (userData: any) => {
+//     setIsLoggedIn(true);
+//     setIsModalOpen(false);
+//   };
+
+//   // --- Compute Budgets & Pie ---
+//   const computeBudgetsAndPie = (assessment: Partial<AssessmentData>) => {
+//     const monthlyRevenue = Number(assessment.monthlyRevenue || 0);
+//     const monthlyBudget = Math.round(monthlyRevenue * 0.05);
+//     const annualBudget = Math.round(monthlyBudget * 12);
+
+//     const stateInfo = assessment.state ? stateDataMap[assessment.state] : undefined;
+//     const barData = stateInfo && stateInfo.budgetAllocation
+//       ? stateInfo.budgetAllocation.map(item => ({
+//           name: item.name,
+//           amount: Math.round(annualBudget * (item.percentage / 100)),
+//           percentage: item.percentage
+//         }))
+//       : [
+//           { name: 'Digital', amount: Math.round(annualBudget * 0.5), percentage: 50 },
+//           { name: 'TV', amount: Math.round(annualBudget * 0.3), percentage: 30 },
+//           { name: 'Print', amount: Math.round(annualBudget * 0.2), percentage: 20 },
+//         ];
+
+//     const pieData = [
+//       { name: 'Digital Marketing', amount: Math.round(annualBudget * 0.4), value: 40, color: '#4F46E5' },
+//       { name: 'Brand & Creative', amount: Math.round(annualBudget * 0.25), value: 25, color: '#EC4899' },
+//       { name: 'Traditional Media', amount: Math.round(annualBudget * 0.2), value: 20, color: '#10B981' },
+//       { name: 'Events & PR', amount: Math.round(annualBudget * 0.15), value: 15, color: '#F59E0B' },
+//     ];
+
+//     return { monthlyBudget, annualBudget, channelFocuses: barData, pieChartData: pieData };
+//   };
+
+//   // --- Form Helpers ---
+//   const updateData = (field: string, value: any) => setData(prev => ({ ...prev, [field]: value }));
+//   const handleIndustrySelect = (industry: string) => { 
+//     updateData('industry', industry); 
+//     updateData('industryDetails', industryDataMap[industry] || null); 
+//   };
+  
+//   const toggleGoal = (goal: string) => {
+//     setData(prev => ({
+//       ...prev,
+//       primaryGoals: prev.primaryGoals.includes(goal)
+//         ? prev.primaryGoals.filter(g => g !== goal)
+//         : prev.primaryGoals.length < 4 ? [...prev.primaryGoals, goal] : prev.primaryGoals
+//     }));
+//   };
+
+//   const handleLocationUpdate = (locationData: { city: string; state: string; suggestedIndustry?: string }) => {
+//     updateData('city', locationData.city);
+//     updateData('state', locationData.state);
+//     if (locationData.suggestedIndustry && !data.industry) {
+//       updateData('industry', locationData.suggestedIndustry);
+//       updateData('industryDetails', industryDataMap[locationData.suggestedIndustry] || null);
+//     }
+//   };
+
+//   const canProceed = () => {
+//     switch (currentStep) {
+//       case 1: return data.brandStage !== '' && data.businessName.trim() !== '' && data.websiteUrl?.trim() !== '';
+//       case 2: return data.pincode.length === 6 && data.city.trim() !== '' && data.state !== '';
+//       case 3: return data.industry !== '';
+//       case 4: return (data.yearsInBusiness > 0 || data.monthsInBusiness > 0);
+//       case 5: return data.digitalMaturity !== '';
+//       case 6: return data.primaryGoals.length > 0;
+//       case 7: return data.monthlyRevenue > 0 && data.marketingSpendBand !== '';
+//       case 8: return data.positioning !== '';
+//       default: return false;
+//     }
+//   };
+
+//   const handleNext = () => {
+//     if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+//     else {
+//       const computed = computeBudgetsAndPie(data);
+//       const merged = { ...data, ...computed };
+//       onComplete(merged);
+//     }
+//   };
+
+//   const handlePrevious = () => { 
+//     currentStep === 1 ? onBack() : setCurrentStep(currentStep - 1); 
+//   };
+
+//   // --- Step Arrays ---
+//   const brandStages = [
+//     { id: 'Early', label: 'Early', icon: '🌱', description: 'Just getting started : My business is in the early stage.' },
+//     { id: 'growing', label: 'Growing', icon: '📈', description: 'I’ve begun seeing some customers and sales and now I want to grow more.' },
+//     { id: 'established', label: 'Established', icon: '🏢', description: 'My business is running smoothly and steadily.' },
+//     { id: 'enterprise', label: 'Enterprise', icon: '🚀', description: 'Large operations looking for advanced growth.' },
+//     { id: 'Have Not Stated Yet', label: 'Have Not Stated Yet', icon: '❓', description: 'I haven’t specified my business stage yet.' }
+//   ];
+//   const industries = ['FMCG','Retail','E-Commerce','Fashion/Apparel','Real Estate','Automotive','Media/Entertainment','Pharmaceuticals','SaaS / Tech','Healthcare','Education','Manufacturing','B2B / Professional Services','Hospitality / Travel','Financial Services / BFSI'];
+//   const digitalMaturityOptions = [
+//     { id: 'Not Present', label: 'Not present', description: 'No online presence yet' },
+//     { id: 'basic', label: 'Basic (social)', description: 'WhatsApp/Facebook only' },
+//     { id: 'growing', label: 'Growing (ads, analytics)', description: 'Running ads and tracking' },
+//     { id: 'digital-first', label: 'Digital-first', description: 'Strong setup with advanced tracking' }
+//   ];
+//   const primaryGoalsOptions = ['Awareness','Leads','Online Sales','New Markets','Product Launch','Retention','Pro Image','Compete Bigger'];
+//   const marketingSpendOptions = [
+//     { id: 'low', label: 'Less than ₹10,000 / month' },
+//     { id: 'medium', label: '₹10,000 to ₹1,00,000 / month' },
+//     { id: 'high', label: 'More than ₹1,00,000 / month' }
+//   ];
+//   const positioningOptions = [
+//     { id: 'leader', label: 'Market Leader', description: 'We dominate our category' },
+//     { id: 'challenger', label: 'Challenger', description: 'We compete with leaders' },
+//     { id: 'emerging', label: 'Emerging Player', description: 'We are new but growing' },
+//     { id: 'unsure', label: 'Unsure', description: 'Not sure where we stand' }
+//   ];
+
+//   // --- RENDERS ---
+
+//   // UI 1: LOGIN GATE (Show this first)
+//   if (!isLoggedIn) {
+//     return (
+//       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-6">
+//         <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10 text-center border border-gray-100">
+//           <div className="w-20 h-20 bg-mibbs-gradient rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
+//             <Lock className="w-10 h-10 text-white" />
+//           </div>
+//           <h1 className="text-3xl font-black text-gray-900 mb-4">Start Your Assessment</h1>
+//           <p className="text-gray-500 text-lg mb-10 leading-relaxed">
+//             Please sign in to unlock your personalized business growth report and budget analysis.
+//           </p>
+//           <div className="space-y-4">
+//             <button 
+//               onClick={() => setIsModalOpen(true)}
+//               className="w-full bg-mibbs-gradient text-white py-5 rounded-2xl font-bold text-lg hover:opacity-90 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3"
+//             >
+//               <ShieldCheck className="w-6 h-6" />
+//               Sign In to Begin
+//             </button>
+//             <p className="text-sm text-gray-400">Takes less than 2 minutes</p>
+//           </div>
+          
+//           <SignupModal 
+//             isOpen={isModalOpen} 
+//             onClose={() => setIsModalOpen(false)} 
+//             onComplete={handleAuthComplete} 
+//           />
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   // UI 2: ASSESSMENT QUESTIONNAIRE
+//   const renderStep = () => {
+//     switch (currentStep) {
+//       case 1:
+//         return (
+//           <div className="space-y-8">
+//             <div className="text-center">
+//               <h2 className="text-3xl font-bold text-gray-900 mb-4">What type of business do you run?</h2>
+//               <p className="text-mibbs-primary italic">Tell us where your business stands today.</p>
+//             </div>
+//             <div className="space-y-4">
+//               <label className="block text-sm font-medium text-gray-700">Business Name</label>
+//               <input
+//                 type="text"
+//                 value={data.businessName}
+//                 onChange={(e) => updateData('businessName', e.target.value)}
+//                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-mibbs-primary outline-none"
+//                 placeholder="Enter your business name"
+//               />
+//             </div>
+//               <div className="space-y-4">
+//               <label className="block text-sm font-medium text-gray-700">Website URL</label>
+//               <input
+//                 type="text"
+//                 value={data.websiteUrl}
+//                 onChange={(e) => updateData('websiteUrl', e.target.value)}
+//                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-mibbs-primary outline-none"
+//                 placeholder="Enter your website URL"
+//               />
+//             </div>
+//             <div className="space-y-4">
+//               {brandStages.map(stage => (
+//                 <button
+//                   key={stage.id}
+//                   onClick={() => updateData('brandStage', stage.id)}
+//                   className={`w-full p-6 rounded-xl border-2 transition-all text-left flex items-center space-x-4 ${
+//                     data.brandStage === stage.id ? 'border-mibbs-primary bg-mibbs-light' : 'border-gray-200 hover:border-gray-300'
+//                   }`}
+//                 >
+//                   <span className="text-3xl">{stage.icon}</span>
+//                   <div>
+//                     <div className="text-lg font-semibold text-gray-900">{stage.label}</div>
+//                     <div className="text-gray-600 text-sm">{stage.description}</div>
+//                   </div>
+//                 </button>
+//               ))}
+//             </div>
+
+// {/* <div className="grid grid-cols-2 gap-4">
+//   <button
+//     onClick={() => updateData('offeringType', 'products')}
+//     className={`p-4 rounded-xl border-2 transition-all ${
+//       data.offeringType === 'products'
+//         ? 'border-blue-600 bg-blue-50'
+//         : 'border-gray-100'
+//     }`}
+//   >
+//     <Box className="mx-auto mb-2" />
+//     <span className="font-semibold">Products</span>
+//   </button>
+
+//   <button
+//     onClick={() => updateData('offeringType', 'services')}
+//     className={`p-4 rounded-xl border-2 transition-all ${
+//       data.offeringType === 'services'
+//         ? 'border-blue-600 bg-blue-50'
+//         : 'border-gray-100'
+//     }`}
+//   >
+//     <Globe className="mx-auto mb-2" />
+//     <span className="font-semibold">Services</span>
+//   </button>
+// </div> */}
+            
+//           </div>
+//         );
+//       case 2:
+//         return (
+//           <div className="space-y-6 text-center">
+//             <h2 className="text-3xl font-bold text-gray-900 mb-4">Where is your business located?</h2>
+//             <PincodeInput
+//               pincode={data.pincode}
+//               city={data.city}
+//               state={data.state}
+//               onPincodeChange={(p) => updateData('pincode', p)}
+//               onLocationUpdate={handleLocationUpdate}
+//               confidenceThreshold={cmsConfig.confidenceThreshold}
+//             />
+//           </div>
+//         );
+//       case 3:
+//         return (
+//           <div className="space-y-6">
+//             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Which industry fits best?</h2>
+//             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+//               {industries.map(ind => (
+//                 <button
+//                   key={ind}
+//                   onClick={() => handleIndustrySelect(ind)}
+//                   className={`p-4 rounded-lg border-2 text-sm font-medium transition-all text-left ${
+//                     data.industry === ind ? 'border-mibbs-primary bg-mibbs-light text-mibbs-primary' : 'border-gray-200 hover:border-gray-300'
+//                   }`}
+//                 >
+//                   {ind}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+//         );
+//       case 4:
+//         return (
+//           <div className="space-y-6 text-center">
+//             <h2 className="text-3xl font-bold text-gray-900 mb-8">Business Tenure</h2>
+//             <div className="flex items-center justify-center gap-5">
+//               <div className="text-center">
+//                 <input type="number" min="0" value={data.yearsInBusiness || ''} onChange={(e) => updateData('yearsInBusiness', parseInt(e.target.value) || 0)} className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:border-mibbs-primary outline-none" placeholder="0" />
+//                 <p className="text-gray-600 mt-2">Years</p>
+//               </div>
+//               <div className="text-center">
+//                 <input type="number" min="0" max="12" value={data.monthsInBusiness || ''} onChange={(e) => updateData('monthsInBusiness', parseInt(e.target.value) || 0)} className="w-32 text-center text-3xl font-bold py-4 border-2 border-gray-300 rounded-xl focus:border-mibbs-primary outline-none" placeholder="0" />
+//                 <p className="text-gray-600 mt-2">Months</p>
+//               </div>
+//             </div>
+//           </div>
+//         );
+//       case 5:
+//         return (
+//           <div className="space-y-6">
+//             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Digital Maturity</h2>
+//             <div className="space-y-4">
+//               {digitalMaturityOptions.map(opt => (
+//                 <button key={opt.id} onClick={() => updateData('digitalMaturity', opt.id)} className={`w-full p-4 rounded-lg border-2 text-left ${data.digitalMaturity === opt.id ? 'border-mibbs-primary bg-mibbs-light' : 'border-gray-200 hover:border-gray-300'}`}>
+//                   <div className="font-medium text-gray-900">{opt.label}</div>
+//                   <div className="text-sm text-gray-600">{opt.description}</div>
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+//         );
+//       case 6:
+//         return (
+//           <div className="space-y-6">
+//             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Brand Goals</h2>
+//             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+//               {primaryGoalsOptions.map(goal => (
+//                 <button key={goal} onClick={() => toggleGoal(goal)} className={`p-4 rounded-lg border-2 text-sm font-medium transition-all ${data.primaryGoals.includes(goal) ? 'border-mibbs-primary bg-mibbs-light text-mibbs-primary' : 'border-gray-200 hover:border-gray-300'}`}>
+//                   {goal}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+//         );
+//       case 7:
+//         return (
+//           <div className="space-y-8">
+//             <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">Financial Overview</h2>
+//             <div>
+//               <label className="block text-sm font-medium text-gray-700 mb-2">Monthly Revenue</label>
+//               <div className="relative">
+//                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
+//                 <input type="text" inputMode="numeric" value={data.monthlyRevenue || ''} onChange={(e) => updateData('monthlyRevenue', Number(e.target.value.replace(/\D/g,'')))} className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg outline-none" placeholder="50000" />
+//               </div>
+//             </div>
+//             <div className="space-y-3">
+//               <label className="block text-sm font-medium text-gray-700">Marketing Spend Band</label>
+//               {marketingSpendOptions.map(opt => (
+//                 <button key={opt.id} onClick={() => updateData('marketingSpendBand', opt.id)} className={`w-full p-4 rounded-lg border-2 text-left ${data.marketingSpendBand === opt.id ? 'border-mibbs-primary bg-mibbs-light' : 'border-gray-200'}`}>
+//                   {opt.label}
+//                 </button>
+//               ))}
+//             </div>
+//           </div>
+//         );
+//       case 8:
+//         return (
+//           <div className="space-y-6">
+//             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Market Positioning</h2>
+//             <div className="space-y-4">
+//               {positioningOptions.map(opt => (
+//                 <button key={opt.id} onClick={() => updateData('positioning', opt.id)} className={`w-full p-4 rounded-lg border-2 text-left ${data.positioning === opt.id ? 'border-mibbs-primary bg-mibbs-light' : 'border-gray-200'}`}>
+//                   <div className="font-semibold text-gray-900">{opt.label}</div>
+//                   <div className="text-sm text-gray-600">{opt.description}</div>
+//                 </button>
+//               ))}
+//             </div>
+//             <textarea value={data.competitorNotes} onChange={(e) => updateData('competitorNotes', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg" rows={3} placeholder="Competitor notes (optional)..." />
+//           </div>
+//         );
+//       default: return null;
+//     }
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center p-4">
+//       <div className="w-full max-w-2xl">
+//         <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl p-8 border border-white/50">
+//           <div className="mb-8">
+//             <div className="flex items-center justify-between mb-4 text-sm font-medium text-gray-600">
+//               <span>Step {currentStep} of {totalSteps}</span>
+//               <span>{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
+//             </div>
+//             <div className="w-full bg-gray-200 rounded-full h-3">
+//               <div className="bg-mibbs-gradient h-3 rounded-full transition-all duration-500" style={{ width: `${(currentStep / totalSteps) * 100}%` }} />
+//             </div>
+//           </div>
+          
+//           <div className="mb-8 ">{renderStep()}</div>
+          
+//           <div className="flex items-center justify-between border-t pt-6">
+//             <button onClick={handlePrevious} className="flex items-center space-x-2 py-3 text-gray-600 hover:text-gray-800 font-semibold">
+//               <ChevronLeft className="w-4 h-4" /><span>Previous</span>
+//             </button>
+//             <button onClick={handleNext} disabled={!canProceed()} className="flex items-center space-x-2 px-10 py-3 bg-mibbs-gradient text-white rounded-xl font-bold hover:opacity-90 disabled:opacity-30 transition-all shadow-lg">
+//               <span>{currentStep === totalSteps ? 'Complete Assessment' : 'Continue'}</span>
+//               <ChevronRight className="w-5 h-5" />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AssessmentFlow;
+
+
+
+
+
+
+
+
+
 
 
 

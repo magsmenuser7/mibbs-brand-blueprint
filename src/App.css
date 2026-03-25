@@ -1,4 +1,72 @@
+/* Root layout */
 #root {
+max-width: 1280px;
+margin: 0 auto;
+padding: 2rem;
+text-align: center;
+}
+
+/* Global background */
+body {
+background-color: #0f172a;
+color: white;
+font-family: Arial, sans-serif;
+}
+
+/* Logo styles */
+.logo {
+height: 6em;
+padding: 1.5em;
+will-change: filter, transform;
+transition: filter 300ms, transform 300ms;
+}
+
+/* Hover effects */
+.logo:hover {
+filter: drop-shadow(0 0 2em #646cffaa);
+transform: scale(1.1);
+}
+
+.logo.react:hover {
+filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* Animation */
+@keyframes logo-spin {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}
+
+/* Apply animation (if motion allowed) */
+@media (prefers-reduced-motion: no-preference) {
+a:nth-of-type(2) .logo {
+animation: logo-spin infinite 20s linear;
+}
+}
+
+/* Card styling (improved) */
+.card {
+padding: 2em;
+border-radius: 12px;
+background: #1e293b;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+margin: 1rem 0;
+}
+
+/* Secondary text */
+.read-the-docs {
+color: #888;
+}
+
+
+
+
+
+/* #root {
   max-width: 1440px !important;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +107,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

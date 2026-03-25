@@ -1,9 +1,11 @@
+
 import React, { useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
+import Index from "./pages/Index.tsx";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import HowItWorks from "./pages/HowItWorks";
@@ -35,6 +37,8 @@ import BudgetPlanScreen from './componentstwo/flow/BudgetPlanScreen';
 import EntryScreen from './componentstwo/flow/EntryScreen';
 import SignupModal from './componentstwo/flow/SignupModal';
 import AssessmentFlow from './componentstwo/flow/AssessmentFlow';
+import MIBBSQuestionnaire from "./pages/MIBBSQuestionnaire.tsx";
+import MIBBSResults from "./pages/MIBBSResult.tsx";
 
 
 
@@ -180,11 +184,6 @@ const AppContent: React.FC = () => {
 
 
 
-
-
-
-
-
 // --- Final App ---
 const App = () => (
   
@@ -300,6 +299,8 @@ const App = () => (
                     />
                   }
                 />
+
+                <Route path="/mibbs-results" element={<MIBBSResults />} />
                 
 
                 {/* Enterprises Dashboard */}
@@ -307,6 +308,7 @@ const App = () => (
                 <Route path="/enterprises-dashboard" element={<DashboardEnterprises />} />
                 <Route path="/enterprises-login" element={<LoginEnterprises />} />
                 <Route path="/budgeting-questionnaire" element={<BudgetingQuestionnaire  />} />
+                
               </Route>
 
               {/* Protected User Dashboard  */}
@@ -321,6 +323,14 @@ const App = () => (
 
 
               <Route path="/user-type-selection" element={<UserTypeSelection />} />
+              <Route path="/mibbs-questionnaire" element={<MIBBSQuestionnaire />} />
+             
+            
+
+
+
+              
+
 
   
 
