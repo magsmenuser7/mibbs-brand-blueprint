@@ -170,21 +170,50 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
           </span>
         </div>
 
-        {/* 8 Info Cards */}
-        <div className="px-8 pb-4">
-          <div className="border border-gray-200 rounded-xl overflow-hidden">
-            <div className="grid grid-cols-4 divide-x divide-gray-200">
+        {/* Responsive 8 Info Cards */}
+        <div className="px-4 md:px-8 pb-4">
+          <div className="border-t border-l border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            
+            {/* Cell 1 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="INDUSTRY" value={data.industry} />
+            </div>
+            
+            {/* Cell 2 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="LOCATION" value={`${data.locality}, ${data.state}`} />
+            </div>
+            
+            {/* Cell 3 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="YEARS IN BUSINESS" value={data.yearsInBusiness || "N/A"} />
+            </div>
+            
+            {/* Cell 4 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="DIGITAL MATURITY" value={data.digitalScalingLevel || "basic"} />
             </div>
-            <div className="border-t border-gray-200 grid grid-cols-4 divide-x divide-gray-200">
+
+            {/* Cell 5 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="TARGET AUDIENCE" value={report.targetAudience} valueColor="text-blue-600" />
+            </div>
+
+            {/* Cell 6 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="COMPETITION LEVEL" value={report.competition} valueColor="text-green-600" />
+            </div>
+
+            {/* Cell 7 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="MARKETING GOAL" value={report.marketingGoal} valueColor="text-orange-500" />
+            </div>
+
+            {/* Cell 8 */}
+            <div className="border-r border-b border-gray-200">
               <InfoCell label="SALES CHANNEL" value={report.salesChannel} valueColor="text-purple-600" />
             </div>
+
           </div>
         </div>
 
@@ -214,7 +243,7 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
         {/* Budget Allocation & Channel Performance */}
         <div className="px-8 py-6">
           <h3 className="text-lg font-bold text-[#1E293B] mb-6">Budget Allocation & Channel Performance</h3>
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
               <h4 className="text-sm font-semibold text-[#4F46E5] mb-4">Budget Distribution</h4>
               <div className="flex items-center justify-center">
@@ -236,7 +265,7 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
 
         {/* 4 Category Cards */}
         <div className="px-8 py-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {report.categories.map((cat, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
                 className="border border-gray-200 rounded-xl overflow-hidden">
@@ -256,11 +285,11 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
 
 
         {/* Action Buttons */}
-        <div data-pdf-hide className="px-8 py-4 flex items-center justify-center gap-4 print:hidden">
-          <button onClick={onBack} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all">
+        <div data-pdf-hide className="px-8 py-4 flex items-center justify-center gap-4 print:hidden grid grid-cols-2 lg:grid-cols-4">
+          <button onClick={onBack} className="flex items-center gap-2 lg:px-14 px-10 py-2.5 rounded-xl border border-gray-300 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all">
             <ArrowLeft className="w-4 h-4" /> Back
           </button>
-          <button onClick={onSave} className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#4F46E5] text-white font-semibold text-sm hover:bg-[#4338CA] transition-all shadow-md">
+          <button onClick={onSave} className="flex items-center gap-2 lg:px-14 px-10 py-2.5 rounded-xl bg-[#4F46E5] text-white font-semibold text-sm hover:bg-[#4338CA] transition-all shadow-md">
             <Save className="w-4 h-4" /> Save
           </button>
           <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-6 py-2.5 rounded-xl border-2 border-[#4F46E5] text-[#4F46E5] font-semibold text-sm hover:bg-[#4F46E5]/5 transition-all">
@@ -273,7 +302,7 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
 
         {/* About Magsmen */}
         <div className="mx-6 rounded-xl bg-gradient-to-r from-[#3730A3] to-[#4F46E5] px-6 py-3 text-center">
-          <h3 className="text-white font-bold text-sm">About Magsmen, Your Brand Consultants</h3>
+          <h3 className="text-white font-bold text-sm">About Magsmen</h3>
         </div>
         <div className="mx-6 mt-3 bg-gray-50 border border-gray-200 rounded-xl px-6 py-4">
           <p className="text-xs text-gray-500 text-center leading-relaxed">

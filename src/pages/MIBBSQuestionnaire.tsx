@@ -17,7 +17,7 @@ import Dashboard from "@/componentsfour/dashboard/Dashboard";
 import { initialData } from "@/types/questionnaire";
 import { PincodeInfo } from "@/data/pincodeData";
 import SignupModal from "@/componentstwo/flow/SignupModal";
-
+import axios from "axios";
 
 interface SavedPlan {
   id: string;
@@ -126,7 +126,6 @@ const pageVariants = {
 type AppView = "questionnaire" | "preloader" | "output" | "dashboard" | "auth";
 
 const MIBBSQuestionnaire = () => {
-
   const [data, setData] = useState<QuestionnaireData>({
     ...initialData,
     name: initialData.name || "",
@@ -219,55 +218,128 @@ const MIBBSQuestionnaire = () => {
     }
   };
 
-const next = () => {
+  const next = () => {
 
-  if (currentStep < steps.length - 1) {
-    setCurrentStep((prev) => prev + 1);
-    return;
-  }
+    if (currentStep < steps.length - 1) {
+      setCurrentStep((prev) => prev + 1);
+      return;
+    }
 
-  // Last step completed
-  handleComplete();
+    // Last step completed
+    handleComplete();
 
-};
-
-
-const handleComplete = () => {
-
-  // Save questionnaire temporarily
-  localStorage.setItem(
-    "pending_questionnaire",
-    JSON.stringify(data)
-  );
-
-  const token = localStorage.getItem("access_token");
-
-  // If user NOT logged in → open AUTH PAGE
-  if (!token) {
-    setView("auth");   // ✅ open separate page
-    return;
-  }
-
-  // If already logged in → go to output
-  setView("output");
-
-};
+  };
 
 
-const handleAuthSuccess = () => {
+  const handleComplete = () => {
 
-  const saved = localStorage.getItem("pending_questionnaire");
+    // Save questionnaire temporarily
+    localStorage.setItem(
+      "pending_questionnaire",
+      JSON.stringify(data)
+    );
 
-  if (!saved) return;
+    const token = localStorage.getItem("access_token");
 
-  const payload = JSON.parse(saved);
+    // If user NOT logged in → open AUTH PAGE
+    if (!token) {
+      setView("auth");   // ✅ open separate page
+      return;
+    }
 
-  setData(payload);
+    // If already logged in → go to output
+    setView("output");
 
-  // Go to output page
-  setView("output");
+  };
 
-};
+
+  const handleAuthSuccess = async (user: any) => {
+    debugger;
+
+    const saved = localStorage.getItem("pending_questionnaire");
+
+    if (!saved) return;
+
+    const data = JSON.parse(saved);
+
+    // 🔹 ADD THIS LINE
+    const result = generateBudgetReport(data);
+
+    const payload = {
+
+      business_path:
+        data.businessStage === "not_started"
+          ? "NEW"
+          : "EXISTING",
+
+      user: user?.id,
+
+      business_name: data.businessName,
+      business_stage: data.businessStage,
+      has_website: data.hasWebsite,
+      website_url: data.websiteUrl,
+
+      pincode: data.pincode,
+      locality: data.locality,
+      district: data.district,
+      state: data.state,
+      country: data.country,
+
+      industry: data.industry,
+      business_type: data.businessType,
+      product_business_type: data.productBusinessType,
+
+      starting_budget: data.startingBudget,
+      business_mode: data.businessMode,
+      help_needed: data.helpNeeded,
+
+      years_in_business: data.yearsInBusiness,
+      business_challenges: data.businessChallenges,
+
+      digital_scaling_level: data.digitalScalingLevel,
+      digital_platforms: data.digitalPlatforms,
+      digital_activities: data.digitalActivities,
+
+      roi_percentage: data.roiPercentage,
+
+      monthly_revenue: data.monthlyRevenue,
+      marketing_budget_range: data.marketingBudgetRange,
+
+      brand_objectives: data.brandObjectives,
+
+      // 🔹 Budget Data
+      monthly_budget: result.monthlyBudget,
+      annual_budget: result.annualBudget,
+      pie_chart_data: result.pieChartData,
+      channel_focuses: result.channelFocuses,
+      budget_allocations: result.budgetAllocations,
+
+    };
+
+    try {
+
+      await saveQuestionnaireToDB(payload);
+
+      localStorage.removeItem("pending_questionnaire");
+
+      setData({
+        ...data,
+        monthlyBudget: result.monthlyBudget,
+        annualBudget: result.annualBudget,
+        pieChartData: result.pieChartData,
+        channelFocuses: result.channelFocuses,
+        budgetAllocations: result.budgetAllocations
+      });
+
+      setView("output");
+
+    } catch (error) {
+
+      console.error("Questionnaire save failed:", error);
+
+    }
+
+  };
 
   // const next = () => {
   //   if (currentStep < steps.length - 1) setCurrentStep((s) => s + 1);
@@ -413,225 +485,300 @@ const handleAuthSuccess = () => {
 
   }
 
-  
-const toggleBusinessMode = (mode: "Online" | "Offline" | "Both") => {
 
-  setData((prev) => {
+  const toggleBusinessMode = (mode: "Online" | "Offline" | "Both") => {
 
-    const modes = prev.businessMode ?? [];
+    setData((prev) => {
 
-    if (mode === "Both") {
+      const modes = prev.businessMode ?? [];
+
+      if (mode === "Both") {
+        return {
+          ...prev,
+          businessMode: ["Online", "Offline"]
+        };
+      }
+
+      if (modes.includes(mode)) {
+        return {
+          ...prev,
+          businessMode: modes.filter((m) => m !== mode)
+        };
+      }
+
       return {
         ...prev,
-        businessMode: ["Online", "Offline"]
+        businessMode: [...modes, mode]
       };
-    }
 
-    if (modes.includes(mode)) {
-      return {
-        ...prev,
-        businessMode: modes.filter((m) => m !== mode)
-      };
-    }
+    });
+
+  };
+
+
+
+  const generateBudgetReport = (data: any) => {
+
+    const revenue = parseInt(
+      (data.monthlyRevenue || "0").toString().replace(/[^\d]/g, "")
+    );
+
+    const monthlyBudget = Math.round(revenue * 0.06);
+    const annualBudget = monthlyBudget * 12;
+
+    // 🔹 Budget Distribution
+    const allocations = [
+      { name: "Digital Marketing", percent: 29, color: "#3b82f6" },
+      { name: "Brand & Creative", percent: 23, color: "#22c55e" },
+      { name: "Traditional Media", percent: 22, color: "#f59e0b" },
+      { name: "Events & PR", percent: 26, color: "#ef4444" }
+    ];
+
+    const pieChartData = allocations.map((item) => ({
+      name: item.name,
+      value: item.percent,
+      amount: Math.round((annualBudget * item.percent) / 100),
+      color: item.color
+    }));
+
+
+    // 🔹 Channel Focus Dynamic Calculation
+    const channelStructure = [
+      { name: "Digital", percent: 9 },
+      { name: "Events", percent: 12 },
+      { name: "Content Marketing", percent: 11 },
+      { name: "Lead Generation", percent: 12 },
+      { name: "Content/SEO", percent: 31 },
+      { name: "Webinars", percent: 26 }
+    ];
+
+    const channelFocuses = channelStructure.map((item) => ({
+      name: item.name,
+      percentage: item.percent,
+      amount: Math.round((monthlyBudget * item.percent) / 100)
+    }));
+
 
     return {
-      ...prev,
-      businessMode: [...modes, mode]
+      monthlyBudget,
+      annualBudget,
+      pieChartData,
+      channelFocuses,
+      budgetAllocations: pieChartData
     };
 
-  });
+  };
 
-};
+
+  // 🔹 ADD THIS FUNCTION HERE
+  const saveQuestionnaireToDB = async (payload: any) => {
+
+    try {
+
+      const response = await axios.post(
+        "https://api.mibbs.ai/api/questionnaire/",
+        payload
+      );
+
+      console.log("Questionnaire Saved:", response.data);
+
+    } catch (error) {
+
+      console.error("Error saving questionnaire:", error);
+
+    }
+
+  };
 
 
   return (
     <div>
-          {/* AUTH PAGE */}
-    {view === "auth" && (
-      <div className="min-h-screen flex items-center justify-center bg-background p-6">
-        <div className="w-full max-w-4xl">
-          <SignupModal
-            isOpen={true}
-            onClose={() => setView("questionnaire")}
-            onComplete={handleAuthSuccess}
-          />
+      {/* AUTH PAGE */}
+      {view === "auth" && (
+        <div className="min-h-screen flex items-center justify-center bg-background p-6">
+          <div className="w-full max-w-4xl">
+            <SignupModal
+              isOpen={true}
+              onClose={() => setView("questionnaire")}
+              onComplete={handleAuthSuccess}
+            />
+          </div>
         </div>
-      </div>
-    )}
+      )}
 
       {view === "questionnaire" && (
 
-      <div className="min-h-screen bg-background py-6 sm:py-10 px-4">
-        {/* Top bar */}
-        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-6 sm:mb-8">
-          MIBBS Registration
-        </h1>
+        <div className="min-h-screen bg-background py-6 sm:py-10 px-4">
+          {/* Top bar */}
+          <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold gradient-text mb-6 sm:mb-8">
+            MIBBS Registration
+          </h1>
 
-        <div className="max-w-2xl mx-auto bg-card rounded-2xl card-shadow overflow-hidden">
-          {/* Progress */}
-          <div className="px-5 sm:px-8 pt-5 sm:pt-6">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm text-muted-foreground font-medium">Step {currentStep + 1} of {steps.length}</span>
-              <span className="text-sm font-semibold gradient-text">{steps[currentStep]}</span>
+          <div className="max-w-2xl mx-auto bg-card rounded-2xl card-shadow overflow-hidden">
+            {/* Progress */}
+            <div className="px-5 sm:px-8 pt-5 sm:pt-6">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm text-muted-foreground font-medium">Step {currentStep + 1} of {steps.length}</span>
+                <span className="text-sm font-semibold gradient-text">{steps[currentStep]}</span>
+              </div>
+              <div className="w-full h-2 rounded-full bg-secondary overflow-hidden">
+                <motion.div className="h-full rounded-full gradient-btn" initial={{ width: 0 }} animate={{ width: `${progressPercent}%` }} transition={{ duration: 0.4, ease: "easeOut" }} />
+              </div>
             </div>
-            <div className="w-full h-2 rounded-full bg-secondary overflow-hidden">
-              <motion.div className="h-full rounded-full gradient-btn" initial={{ width: 0 }} animate={{ width: `${progressPercent}%` }} transition={{ duration: 0.4, ease: "easeOut" }} />
-            </div>
-          </div>
 
-          {/* Content */}
-          <div className="px-5 sm:px-8 py-6 sm:py-8">
-            <AnimatePresence mode="wait">
-              <motion.div key={currentStep} variants={pageVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.25 }}>
+            {/* Content */}
+            <div className="px-5 sm:px-8 py-6 sm:py-8">
+              <AnimatePresence mode="wait">
+                <motion.div key={currentStep} variants={pageVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.25 }}>
 
-                {/* STEP 1: Basic Details */}
-                {currentStep === 0 && (
-                  <div>
-                    <StepHeader title="Basic Details" subtitle="Let's start with some basic information about you and your business." />
-                    <div className="space-y-6 mt-6">
-                      <FieldGroup label="What should we call you?" hint="This helps us personalise your experience.">
-                        <input type="text" value={data.name} onChange={(e) => update("name", e.target.value)} placeholder="Enter your name" className="form-input" />
-                      </FieldGroup>
+                  {/* STEP 1: Basic Details */}
+                  {currentStep === 0 && (
+                    <div>
+                      <StepHeader title="Basic Details" subtitle="Let's start with some basic information about you and your business." />
+                      <div className="space-y-6 mt-6">
+                        <FieldGroup label="What should we call you?" hint="This helps us personalise your experience.">
+                          <input type="text" value={data.name} onChange={(e) => update("name", e.target.value)} placeholder="Enter your name" className="form-input" />
+                        </FieldGroup>
 
-                      <FieldGroup label="What is the name of your business?" hint="This will be shown on your dashboard and reports.">
-                        <input type="text" value={data.businessName} onChange={(e) => update("businessName", e.target.value)} placeholder="Enter business name" className="form-input" disabled={noBusinessName} />
-                        <label className="flex items-center gap-2 mt-2 cursor-pointer">
-                          <input type="checkbox" checked={noBusinessName} onChange={(e) => { setNoBusinessName(e.target.checked); if (e.target.checked) update("businessName", ""); }} className="w-4 h-4 rounded gradient-checkbox" />
-                          <span className="text-sm text-muted-foreground">I don't have a business name yet</span>
-                        </label>
-                      </FieldGroup>
+                        <FieldGroup label="What is the name of your business?" hint="This will be shown on your dashboard and reports.">
+                          <input type="text" value={data.businessName} onChange={(e) => update("businessName", e.target.value)} placeholder="Enter business name" className="form-input" disabled={noBusinessName} />
+                          <label className="flex items-center gap-2 mt-2 cursor-pointer">
+                            <input type="checkbox" checked={noBusinessName} onChange={(e) => { setNoBusinessName(e.target.checked); if (e.target.checked) update("businessName", ""); }} className="w-4 h-4 rounded gradient-checkbox" />
+                            <span className="text-sm text-muted-foreground">I don't have a business name yet</span>
+                          </label>
+                        </FieldGroup>
 
-                      <FieldGroup label="Do you have a website?" hint="It's completely okay if you don't — many businesses start without one.">
-                        <div className="grid grid-cols-2 gap-3">
-                          <OptionCard label="Yes, I have a website" icon={<Globe className="w-5 h-5" />} selected={data.hasWebsite === true} onClick={() => update("hasWebsite", true)} compact />
-                          <OptionCard label="Not built yet" icon={<Monitor className="w-5 h-5" />} selected={data.hasWebsite === false} onClick={() => update("hasWebsite", false)} compact />
-                        </div>
-                        <AnimatePresence>
-                          {data.hasWebsite && (
-                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-4">
-                              <p className="text-sm font-bold text-foreground mb-2">Website URL</p>
-                              <input type="url" value={data.websiteUrl} onChange={(e) => update("websiteUrl", e.target.value)} placeholder="https://yourwebsite.com" className="form-input" />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </FieldGroup>
+                        <FieldGroup label="Do you have a website?" hint="It's completely okay if you don't — many businesses start without one.">
+                          <div className="grid grid-cols-2 gap-3">
+                            <OptionCard label="Yes, I have a website" icon={<Globe className="w-5 h-5" />} selected={data.hasWebsite === true} onClick={() => update("hasWebsite", true)} compact />
+                            <OptionCard label="Not built yet" icon={<Monitor className="w-5 h-5" />} selected={data.hasWebsite === false} onClick={() => update("hasWebsite", false)} compact />
+                          </div>
+                          <AnimatePresence>
+                            {data.hasWebsite && (
+                              <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-4">
+                                <p className="text-sm font-bold text-foreground mb-2">Website URL</p>
+                                <input type="url" value={data.websiteUrl} onChange={(e) => update("websiteUrl", e.target.value)} placeholder="https://yourwebsite.com" className="form-input" />
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </FieldGroup>
 
-                      <FieldGroup label="What stage is your business in right now?" hint="Based on this, we'll ask the right questions for you.">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <OptionCard label="Haven't started yet" description="I'm planning to start my business" icon={<Rocket className="w-5 h-5" />} selected={data.businessStage === "not_started"} onClick={() => update("businessStage", "not_started")} compact />
-                          <OptionCard label="Early Stage" description="Just getting started" icon={<TrendingUp className="w-5 h-5" />} selected={data.businessStage === "early"} onClick={() => update("businessStage", "early")} compact />
-                          <OptionCard label="Growing" description="Business is running & growing" icon={<BarChart3 className="w-5 h-5" />} selected={data.businessStage === "growing"} onClick={() => update("businessStage", "growing")} compact />
-                          <OptionCard label="Advanced" description="Well established business" icon={<Target className="w-5 h-5" />} selected={data.businessStage === "advanced"} onClick={() => update("businessStage", "advanced")} compact />
-                        </div>
-                      </FieldGroup>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 2: Business Location */}
-                {currentStep === 1 && (
-                  <div>
-                    <StepHeader title="Business Location" subtitle="Where will your business be located? Location affects customer behaviour and costs." />
-                    <div className="mt-6">
-                      <FieldGroup label="Enter your Pincode" hint="Enter any 6-digit Indian pincode to auto-detect your area.">
-                        <PincodeLookup pincode={data.pincode} onPincodeChange={(v) => update("pincode", v)} onLocationFound={handleLocationFound} />
-                      </FieldGroup>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 3: Business Category */}
-                {currentStep === 2 && (
-                  <div>
-                    <StepHeader title="Business Category" subtitle="Which industry does your business belong to? Choose the closest option." />
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6">
-                      {industries.map((ind) => (
-                        <SimpleOption key={ind} label={ind} selected={data.industry === ind} onClick={() => update("industry", ind)} />
-                      ))}
-                    </div>
-
-                    <div className="mt-8">
-                      <p className="text-base font-semibold gradient-text mb-3">What will you mainly offer to customers?</p>
-                      <div className="grid grid-cols-2 gap-3">
-                        <OptionCard label="Products" description="Things people buy" icon={<Package className="w-5 h-5" />} selected={data.businessType === "product"} onClick={() => update("businessType", "product")} compact />
-                        <OptionCard label="Services" description="Work you do for people" icon={<Wrench className="w-5 h-5" />} selected={data.businessType === "service"} onClick={() => update("businessType", "service")} compact />
+                        <FieldGroup label="What stage is your business in right now?" hint="Based on this, we'll ask the right questions for you.">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <OptionCard label="Haven't started yet" description="I'm planning to start my business" icon={<Rocket className="w-5 h-5" />} selected={data.businessStage === "not_started"} onClick={() => update("businessStage", "not_started")} compact />
+                            <OptionCard label="Early Stage" description="Just getting started" icon={<TrendingUp className="w-5 h-5" />} selected={data.businessStage === "early"} onClick={() => update("businessStage", "early")} compact />
+                            <OptionCard label="Growing" description="Business is running & growing" icon={<BarChart3 className="w-5 h-5" />} selected={data.businessStage === "growing"} onClick={() => update("businessStage", "growing")} compact />
+                            <OptionCard label="Advanced" description="Well established business" icon={<Target className="w-5 h-5" />} selected={data.businessStage === "advanced"} onClick={() => update("businessStage", "advanced")} compact />
+                          </div>
+                        </FieldGroup>
                       </div>
                     </div>
+                  )}
 
-                    <AnimatePresence>
-                      {data.businessType === "product" && (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
-                          <p className="text-base font-semibold text-foreground mb-3">What type of product business?</p>
-                          <div className="grid grid-cols-3 gap-3">
-                            <SimpleOption label="B2B" selected={data.productBusinessType === "B2B"} onClick={() => update("productBusinessType", "B2B")} />
-                            <SimpleOption label="B2C" selected={data.productBusinessType === "B2C"} onClick={() => update("productBusinessType", "B2C")} />
-                            <SimpleOption label="D2C" selected={data.productBusinessType === "D2C"} onClick={() => update("productBusinessType", "D2C")} />
-                          </div>
-
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                )}
-
-                {/* NEW BUSINESS: STEP 4 - Capital / Starting Budget */}
-                {isNewBusiness && currentStep === 3 && (
-                  <div>
-                    <StepHeader title="Capital / Starting Budget" subtitle="How much money are you planning to invest? This helps us suggest realistic marketing plans." />
-                    <div className="space-y-3 mt-6">
-                      {[
-                        { label: "Less than ₹1,00,000", value: "Below ₹1 Lakh" },
-                        { label: "₹1,00,000 - ₹5,00,000", value: "₹1 - ₹5 Lakhs" },
-                        { label: "More than ₹5,00,000", value: "Above ₹5 Lakhs" },
-                      ].map((r) => (
-                        <OptionCard key={r.value} label={r.label} icon={<DollarSign className="w-5 h-5" />} selected={data.startingBudget === r.value} onClick={() => update("startingBudget", r.value)} />
-                      ))}
+                  {/* STEP 2: Business Location */}
+                  {currentStep === 1 && (
+                    <div>
+                      <StepHeader title="Business Location" subtitle="Where will your business be located? Location affects customer behaviour and costs." />
+                      <div className="mt-6">
+                        <FieldGroup label="Enter your Pincode" hint="Enter any 6-digit Indian pincode to auto-detect your area.">
+                          <PincodeLookup pincode={data.pincode} onPincodeChange={(v) => update("pincode", v)} onLocationFound={handleLocationFound} />
+                        </FieldGroup>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* NEW BUSINESS: STEP 5 - Business Mode */}
+                  {/* STEP 3: Business Category */}
+                  {currentStep === 2 && (
+                    <div>
+                      <StepHeader title="Business Category" subtitle="Which industry does your business belong to? Choose the closest option." />
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-6">
+                        {industries.map((ind) => (
+                          <SimpleOption key={ind} label={ind} selected={data.industry === ind} onClick={() => update("industry", ind)} />
+                        ))}
+                      </div>
 
-                {isNewBusiness && currentStep === 4 && (
-                  <div>
-                    <StepHeader
-                      title="Business Mode"
-                      subtitle="How do you want to start your business?"
-                    />
+                      <div className="mt-8">
+                        <p className="text-base font-semibold gradient-text mb-3">What will you mainly offer to customers?</p>
+                        <div className="grid grid-cols-2 gap-3">
+                          <OptionCard label="Products" description="Things people buy" icon={<Package className="w-5 h-5" />} selected={data.businessType === "product"} onClick={() => update("businessType", "product")} compact />
+                          <OptionCard label="Services" description="Work you do for people" icon={<Wrench className="w-5 h-5" />} selected={data.businessType === "service"} onClick={() => update("businessType", "service")} compact />
+                        </div>
+                      </div>
 
-                    <div className=" grid-cols-1 sm:grid-cols-3 gap-3 mt-6 flex flex-col">
+                      <AnimatePresence>
+                        {data.businessType === "product" && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
+                            <p className="text-base font-semibold text-foreground mb-3">What type of product business?</p>
+                            <div className="grid grid-cols-3 gap-3">
+                              <SimpleOption label="B2B" selected={data.productBusinessType === "B2B"} onClick={() => update("productBusinessType", "B2B")} />
+                              <SimpleOption label="B2C" selected={data.productBusinessType === "B2C"} onClick={() => update("productBusinessType", "B2C")} />
+                              <SimpleOption label="D2C" selected={data.productBusinessType === "D2C"} onClick={() => update("productBusinessType", "D2C")} />
+                            </div>
 
-                      <OptionCard
-                        label="Offline"
-                        description="Shop, office, physical location"
-                        icon={<Store className="w-5 h-5" />}
-                        selected={data.businessMode.includes("Offline")}
-                        onClick={() => update("businessMode", "Offline")}
-                      />
-
-                      <OptionCard
-                        label="Online"
-                        description="Website, Instagram, WhatsApp, apps"
-                        icon={<Globe2 className="w-5 h-5" />}
-                        selected={data.businessMode.includes("Online")}
-                        onClick={() => update("businessMode", "Online")}
-                      />
-
-                      <OptionCard
-                        label="Both"
-                        description="Online + Offline"
-                        icon={<Globe2 className="w-5 h-5" />}
-                        selected={
-                          data.businessMode.includes("Online") &&
-                          data.businessMode.includes("Offline")
-                        }
-                        onClick={() => toggleBusinessMode("Both")}
-                      />
-
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                  </div>
-                )}
-                {/* {isNewBusiness && currentStep === 4 && (
+                  )}
+
+                  {/* NEW BUSINESS: STEP 4 - Capital / Starting Budget */}
+                  {isNewBusiness && currentStep === 3 && (
+                    <div>
+                      <StepHeader title="Capital / Starting Budget" subtitle="How much money are you planning to invest? This helps us suggest realistic marketing plans." />
+                      <div className="space-y-3 mt-6">
+                        {[
+                          { label: "Less than ₹1,00,000", value: "Below ₹1 Lakh" },
+                          { label: "₹1,00,000 - ₹5,00,000", value: "₹1 - ₹5 Lakhs" },
+                          { label: "More than ₹5,00,000", value: "Above ₹5 Lakhs" },
+                        ].map((r) => (
+                          <OptionCard key={r.value} label={r.label} icon={<DollarSign className="w-5 h-5" />} selected={data.startingBudget === r.value} onClick={() => update("startingBudget", r.value)} />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* NEW BUSINESS: STEP 5 - Business Mode */}
+
+                  {isNewBusiness && currentStep === 4 && (
+                    <div>
+                      <StepHeader
+                        title="Business Mode"
+                        subtitle="How do you want to start your business?"
+                      />
+
+                      <div className=" grid-cols-1 sm:grid-cols-3 gap-3 mt-6 flex flex-col">
+
+                        <OptionCard
+                          label="Offline"
+                          description="Shop, office, physical location"
+                          icon={<Store className="w-5 h-5" />}
+                          selected={data.businessMode.includes("Offline")}
+                          onClick={() => update("businessMode", "Offline")}
+                        />
+
+                        <OptionCard
+                          label="Online"
+                          description="Website, Instagram, WhatsApp, apps"
+                          icon={<Globe2 className="w-5 h-5" />}
+                          selected={data.businessMode.includes("Online")}
+                          onClick={() => update("businessMode", "Online")}
+                        />
+
+                        <OptionCard
+                          label="Both"
+                          description="Online + Offline"
+                          icon={<Globe2 className="w-5 h-5" />}
+                          selected={
+                            data.businessMode.includes("Online") &&
+                            data.businessMode.includes("Offline")
+                          }
+                          onClick={() => toggleBusinessMode("Both")}
+                        />
+
+                      </div>
+                    </div>
+                  )}
+                  {/* {isNewBusiness && currentStep === 4 && (
                   <div>
                     <StepHeader title="Business Mode" subtitle="How do you want to start your business?" />
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
@@ -641,159 +788,159 @@ const toggleBusinessMode = (mode: "Online" | "Offline" | "Both") => {
                   </div>
                 )} */}
 
-                {/* NEW BUSINESS: STEP 6 - What Help Do You Need? */}
-                {isNewBusiness && currentStep === 5 && (
-                  <div>
-                    <StepHeader title="What Help Do You Need?" subtitle="What do you need most help with right now? Select all that apply." />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
-                      <OptionCard label="Paperwork / Legal" description="Licenses, registrations" icon={<FileText className="w-5 h-5" />} selected={data.helpNeeded.includes("Paperwork / Legal")} onClick={() => toggleArrayItem("helpNeeded", "Paperwork / Legal")} />
-                      <OptionCard label="Money Planning" description="How much to spend where" icon={<DollarSign className="w-5 h-5" />} selected={data.helpNeeded.includes("Money Planning")} onClick={() => toggleArrayItem("helpNeeded", "Money Planning")} />
-                      <OptionCard label="Finding Customers" description="First few clients" icon={<Users className="w-5 h-5" />} selected={data.helpNeeded.includes("Finding Customers")} onClick={() => toggleArrayItem("helpNeeded", "Finding Customers")} />
-                      <OptionCard label="Skills / Knowledge" description="How to do the work" icon={<BookOpen className="w-5 h-5" />} selected={data.helpNeeded.includes("Skills / Knowledge")} onClick={() => toggleArrayItem("helpNeeded", "Skills / Knowledge")} />
-                      <OptionCard label="Online Setup" description="Website, social media" icon={<MonitorSmartphone className="w-5 h-5" />} selected={data.helpNeeded.includes("Online Setup")} onClick={() => toggleArrayItem("helpNeeded", "Online Setup")} />
-                      <OptionCard label="Everything" description="Complete guidance" icon={<Sparkles className="w-5 h-5" />} selected={data.helpNeeded.includes("Everything")} onClick={() => toggleArrayItem("helpNeeded", "Everything")} />
+                  {/* NEW BUSINESS: STEP 6 - What Help Do You Need? */}
+                  {isNewBusiness && currentStep === 5 && (
+                    <div>
+                      <StepHeader title="What Help Do You Need?" subtitle="What do you need most help with right now? Select all that apply." />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+                        <OptionCard label="Paperwork / Legal" description="Licenses, registrations" icon={<FileText className="w-5 h-5" />} selected={data.helpNeeded.includes("Paperwork / Legal")} onClick={() => toggleArrayItem("helpNeeded", "Paperwork / Legal")} />
+                        <OptionCard label="Money Planning" description="How much to spend where" icon={<DollarSign className="w-5 h-5" />} selected={data.helpNeeded.includes("Money Planning")} onClick={() => toggleArrayItem("helpNeeded", "Money Planning")} />
+                        <OptionCard label="Finding Customers" description="First few clients" icon={<Users className="w-5 h-5" />} selected={data.helpNeeded.includes("Finding Customers")} onClick={() => toggleArrayItem("helpNeeded", "Finding Customers")} />
+                        <OptionCard label="Skills / Knowledge" description="How to do the work" icon={<BookOpen className="w-5 h-5" />} selected={data.helpNeeded.includes("Skills / Knowledge")} onClick={() => toggleArrayItem("helpNeeded", "Skills / Knowledge")} />
+                        <OptionCard label="Online Setup" description="Website, social media" icon={<MonitorSmartphone className="w-5 h-5" />} selected={data.helpNeeded.includes("Online Setup")} onClick={() => toggleArrayItem("helpNeeded", "Online Setup")} />
+                        <OptionCard label="Everything" description="Complete guidance" icon={<Sparkles className="w-5 h-5" />} selected={data.helpNeeded.includes("Everything")} onClick={() => toggleArrayItem("helpNeeded", "Everything")} />
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {/* EXISTING BUSINESS PATH */}
-                {isExistingBusiness && currentStep === 3 && (
-                  <div>
-                    <StepHeader title="Business Experience" subtitle="How long have you been running this business? This helps us understand your experience level." />
-                    <div className="space-y-3 mt-6">
-                      {yearsOptions.map((y) => (
-                        <OptionCard key={y} label={y} icon={<Calendar className="w-5 h-5" />} selected={data.yearsInBusiness === y} onClick={() => update("yearsInBusiness", y)} />
-                      ))}
+                  {/* EXISTING BUSINESS PATH */}
+                  {isExistingBusiness && currentStep === 3 && (
+                    <div>
+                      <StepHeader title="Business Experience" subtitle="How long have you been running this business? This helps us understand your experience level." />
+                      <div className="space-y-3 mt-6">
+                        {yearsOptions.map((y) => (
+                          <OptionCard key={y} label={y} icon={<Calendar className="w-5 h-5" />} selected={data.yearsInBusiness === y} onClick={() => update("yearsInBusiness", y)} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {isExistingBusiness && currentStep === 4 && (
-                  <div>
-                    <StepHeader title="Business Challenges" subtitle="Tell us what's bothering your business right now. Select all that feel true." />
-                    <div className="space-y-3 mt-6">
-                      {challengesList.map((c) => (
-                        <OptionCard key={c.label} label={c.label} description={c.desc} icon={c.icon} selected={data.businessChallenges.includes(c.label)} onClick={() => toggleArrayItem("businessChallenges", c.label)} />
-                      ))}
+                  {isExistingBusiness && currentStep === 4 && (
+                    <div>
+                      <StepHeader title="Business Challenges" subtitle="Tell us what's bothering your business right now. Select all that feel true." />
+                      <div className="space-y-3 mt-6">
+                        {challengesList.map((c) => (
+                          <OptionCard key={c.label} label={c.label} description={c.desc} icon={c.icon} selected={data.businessChallenges.includes(c.label)} onClick={() => toggleArrayItem("businessChallenges", c.label)} />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {isExistingBusiness && currentStep === 5 && (
-                  <div>
-                    <StepHeader title="Digital Presence" subtitle="How active is your business online? Select your level and choose the channels you use." />
-                    <div className="space-y-3 mt-6">
-                      {scalingLevels.map((l) => (
-                        <OptionCard key={l.label} label={l.label} description={l.desc} icon={l.icon} selected={data.digitalScalingLevel === l.label} onClick={() => update("digitalScalingLevel", l.label)} />
-                      ))}
-                    </div>
+                  {isExistingBusiness && currentStep === 5 && (
+                    <div>
+                      <StepHeader title="Digital Presence" subtitle="How active is your business online? Select your level and choose the channels you use." />
+                      <div className="space-y-3 mt-6">
+                        {scalingLevels.map((l) => (
+                          <OptionCard key={l.label} label={l.label} description={l.desc} icon={l.icon} selected={data.digitalScalingLevel === l.label} onClick={() => update("digitalScalingLevel", l.label)} />
+                        ))}
+                      </div>
 
-                    <AnimatePresence>
-                      {data.digitalScalingLevel === "Basic" && (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
-                          <div className="bg-secondary/30 rounded-xl p-4 border border-border">
-                            <p className="text-sm font-semibold gradient-text mb-2">Which platforms do you use?</p>
-                            <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
-                            <div className="grid grid-cols-3 gap-3">
-                              {["Facebook", "Instagram", "WhatsApp"].map((p) => (
-                                <SimpleOption key={p} label={p} selected={(data.digitalPlatforms || []).includes(p)} onClick={() => toggleArrayItem("digitalPlatforms", p)} />
-                              ))}
+                      <AnimatePresence>
+                        {data.digitalScalingLevel === "Basic" && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
+                            <div className="bg-secondary/30 rounded-xl p-4 border border-border">
+                              <p className="text-sm font-semibold gradient-text mb-2">Which platforms do you use?</p>
+                              <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
+                              <div className="grid grid-cols-3 gap-3">
+                                {["Facebook", "Instagram", "WhatsApp"].map((p) => (
+                                  <SimpleOption key={p} label={p} selected={(data.digitalPlatforms || []).includes(p)} onClick={() => toggleArrayItem("digitalPlatforms", p)} />
+                                ))}
+                              </div>
                             </div>
+                          </motion.div>
+                        )}
+                        {data.digitalScalingLevel === "Growing" && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
+                            <div className="bg-secondary/30 rounded-xl p-4 border border-border">
+                              <p className="text-sm font-semibold gradient-text mb-2">What marketing activities are you doing?</p>
+                              <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
+                              <div className="grid grid-cols-2 gap-3">
+                                {["Ad Campaigns", "Content Creation", "Brand Marketing", "Influencer Marketing"].map((a) => (
+                                  <SimpleOption key={a} label={a} selected={(data.digitalActivities || []).includes(a)} onClick={() => toggleArrayItem("digitalActivities", a)} />
+                                ))}
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                        {data.digitalScalingLevel === "Advanced" && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
+                            <div className="bg-secondary/30 rounded-xl p-4 border border-border">
+                              <p className="text-sm font-semibold gradient-text mb-2">What advanced activities are you doing?</p>
+                              <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
+                              <div className="grid grid-cols-2 gap-3">
+                                {["Ad Campaigns", "Content Creation", "Brand Marketing", "Influencer Marketing", "E-commerce Websites"].map((a) => (
+                                  <SimpleOption key={a} label={a} selected={(data.digitalActivities || []).includes(a)} onClick={() => toggleArrayItem("digitalActivities", a)} />
+                                ))}
+                              </div>
+                              <div className="mt-4">
+                                <p className="text-sm font-bold text-foreground">ROI (Return on Investment)</p>
+                                <p className="text-xs text-muted-foreground mb-2">What is your approximate ROI percentage?</p>
+                                <input type="text" value={data.roiPercentage || ""} onChange={(e) => update("roiPercentage", e.target.value)} placeholder="Enter numeric value" className="form-input" />
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )}
+
+                  {isExistingBusiness && currentStep === 6 && (
+                    <div>
+                      <StepHeader title="Revenue & Marketing Spend" subtitle="Based on the last 2-3 months, an approximate number is perfectly fine." />
+                      <div className="space-y-6 mt-6">
+                        <FieldGroup label="What is your average monthly revenue?" hint="On average, how much does your business earn in a month?">
+                          <input type="text" value={data.monthlyRevenue || ""} onChange={(e) => update("monthlyRevenue", e.target.value)} placeholder="e.g. ₹50,000" className="form-input" />
+                        </FieldGroup>
+                        <FieldGroup label="Monthly marketing spend?" hint="How much do you spend on promoting your brand each month?">
+                          <div className="space-y-3">
+                            {marketingSpendOptions.map((opt) => (
+                              <OptionCard key={opt} label={opt} selected={data.marketingBudgetRange === opt} onClick={() => update("marketingBudgetRange", opt)} />
+                            ))}
                           </div>
-                        </motion.div>
-                      )}
-                      {data.digitalScalingLevel === "Growing" && (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
-                          <div className="bg-secondary/30 rounded-xl p-4 border border-border">
-                            <p className="text-sm font-semibold gradient-text mb-2">What marketing activities are you doing?</p>
-                            <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
-                            <div className="grid grid-cols-2 gap-3">
-                              {["Ad Campaigns", "Content Creation", "Brand Marketing", "Influencer Marketing"].map((a) => (
-                                <SimpleOption key={a} label={a} selected={(data.digitalActivities || []).includes(a)} onClick={() => toggleArrayItem("digitalActivities", a)} />
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                      {data.digitalScalingLevel === "Advanced" && (
-                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-6">
-                          <div className="bg-secondary/30 rounded-xl p-4 border border-border">
-                            <p className="text-sm font-semibold gradient-text mb-2">What advanced activities are you doing?</p>
-                            <p className="text-xs text-muted-foreground mb-3">Select all that apply</p>
-                            <div className="grid grid-cols-2 gap-3">
-                              {["Ad Campaigns", "Content Creation", "Brand Marketing", "Influencer Marketing", "E-commerce Websites"].map((a) => (
-                                <SimpleOption key={a} label={a} selected={(data.digitalActivities || []).includes(a)} onClick={() => toggleArrayItem("digitalActivities", a)} />
-                              ))}
-                            </div>
-                            <div className="mt-4">
-                              <p className="text-sm font-bold text-foreground">ROI (Return on Investment)</p>
-                              <p className="text-xs text-muted-foreground mb-2">What is your approximate ROI percentage?</p>
-                              <input type="text" value={data.roiPercentage || ""} onChange={(e) => update("roiPercentage", e.target.value)} placeholder="Enter numeric value" className="form-input" />
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                )}
-
-                {isExistingBusiness && currentStep === 6 && (
-                  <div>
-                    <StepHeader title="Revenue & Marketing Spend" subtitle="Based on the last 2-3 months, an approximate number is perfectly fine." />
-                    <div className="space-y-6 mt-6">
-                      <FieldGroup label="What is your average monthly revenue?" hint="On average, how much does your business earn in a month?">
-                        <input type="text" value={data.monthlyRevenue || ""} onChange={(e) => update("monthlyRevenue", e.target.value)} placeholder="e.g. ₹50,000" className="form-input" />
-                      </FieldGroup>
-                      <FieldGroup label="Monthly marketing spend?" hint="How much do you spend on promoting your brand each month?">
-                        <div className="space-y-3">
-                          {marketingSpendOptions.map((opt) => (
-                            <OptionCard key={opt} label={opt} selected={data.marketingBudgetRange === opt} onClick={() => update("marketingBudgetRange", opt)} />
-                          ))}
-                        </div>
-                      </FieldGroup>
+                        </FieldGroup>
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {isExistingBusiness && currentStep === 7 && (
-                  <div>
-                    <StepHeader title="Brand Objectives" subtitle="What do you want your business to achieve next? Choose up to 4 that matter most." />
-                    <div className="space-y-3 mt-6">
-                      {brandObjectivesList.map((o) => (
-                        <OptionCard key={o.label} label={o.label} description={o.desc} icon={o.icon}
-                          selected={data.brandObjectives.includes(o.label)}
-                          onClick={() => {
-                            if (data.brandObjectives.includes(o.label)) {
-                              toggleArrayItem("brandObjectives", o.label);
-                            } else if (data.brandObjectives.length < 4) {
-                              toggleArrayItem("brandObjectives", o.label);
-                            }
-                          }}
-                        />
-                      ))}
+                  {isExistingBusiness && currentStep === 7 && (
+                    <div>
+                      <StepHeader title="Brand Objectives" subtitle="What do you want your business to achieve next? Choose up to 4 that matter most." />
+                      <div className="space-y-3 mt-6">
+                        {brandObjectivesList.map((o) => (
+                          <OptionCard key={o.label} label={o.label} description={o.desc} icon={o.icon}
+                            selected={data.brandObjectives.includes(o.label)}
+                            onClick={() => {
+                              if (data.brandObjectives.includes(o.label)) {
+                                toggleArrayItem("brandObjectives", o.label);
+                              } else if (data.brandObjectives.length < 4) {
+                                toggleArrayItem("brandObjectives", o.label);
+                              }
+                            }}
+                          />
+                        ))}
+                      </div>
+                      <p className="text-center text-sm text-muted-foreground mt-4">{data.brandObjectives.length}/4 selected</p>
                     </div>
-                    <p className="text-center text-sm text-muted-foreground mt-4">{data.brandObjectives.length}/4 selected</p>
-                  </div>
-                )}
+                  )}
 
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-          {/* Navigation */}
-          <div className="px-5 sm:px-8 pb-5 sm:pb-6 flex items-center justify-between border-t border-border pt-4">
-            <button onClick={prev} disabled={currentStep === 0}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-border font-medium text-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed text-muted-foreground hover:text-foreground hover:bg-secondary">
-              <ChevronLeft className="w-4 h-4" /> Back
-            </button>
-            <motion.button whileHover={canProceed() ? { scale: 1.02 } : {}} whileTap={canProceed() ? { scale: 0.98 } : {}}
-              onClick={next} disabled={!canProceed()}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed gradient-btn text-primary-foreground gradient-shadow">
-              {currentStep === steps.length - 1 ? "Complete" : "Continue"} <ChevronRight className="w-4 h-4" />
-            </motion.button>
+            {/* Navigation */}
+            <div className="px-5 sm:px-8 pb-5 sm:pb-6 flex items-center justify-between border-t border-border pt-4">
+              <button onClick={prev} disabled={currentStep === 0}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-border font-medium text-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed text-muted-foreground hover:text-foreground hover:bg-secondary">
+                <ChevronLeft className="w-4 h-4" /> Back
+              </button>
+              <motion.button whileHover={canProceed() ? { scale: 1.02 } : {}} whileTap={canProceed() ? { scale: 0.98 } : {}}
+                onClick={next} disabled={!canProceed()}
+                className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-sm transition-all disabled:opacity-30 disabled:cursor-not-allowed gradient-btn text-primary-foreground gradient-shadow">
+                {currentStep === steps.length - 1 ? "Complete" : "Continue"} <ChevronRight className="w-4 h-4" />
+              </motion.button>
+            </div>
           </div>
         </div>
-      </div>
       )}; {/* End of questionnaire view */}
     </div>
   );
@@ -837,5 +984,8 @@ const SimpleOption = ({ label, selected, onClick }: { label: string; selected: b
 );
 
 export default MIBBSQuestionnaire;
+
+
+
 
 
