@@ -140,7 +140,7 @@ const ExistingBusinessOutput = ({ data, onSave, onGoToDashboard, onBack }: Exist
 
   return (
     <div className="min-h-screen bg-[#F8F9FC] py-0 px-0 print:bg-white">
-      <div ref={pdfContentRef} className="max-w-[850px] mx-auto bg-white shadow-lg">
+      <div ref={pdfContentRef} className="max-w-[900px] mx-auto bg-white shadow-lg">
         {/* Top Header */}
         <div className="bg-white border-b border-gray-100 py-5 px-8 flex items-center justify-center gap-3">
           <img src={mibbsLogo} alt="MIBBS Logo" className="h-10 object-contain" />

@@ -17,6 +17,7 @@ import Dashboard from "@/componentsfour/dashboard/Dashboard";
 import { initialData } from "@/types/questionnaire";
 import { PincodeInfo } from "@/data/pincodeData";
 import SignupModal from "@/componentstwo/flow/SignupModal";
+import BrandBudgetPreloader from "@/componentstwo/flow/BrandBudgetPreloader";
 import axios from "axios";
 
 interface SavedPlan {
@@ -331,7 +332,8 @@ const MIBBSQuestionnaire = () => {
         budgetAllocations: result.budgetAllocations
       });
 
-      setView("output");
+      // setView("output");
+      setView("preloader");
 
     } catch (error) {
 
@@ -432,47 +434,43 @@ const MIBBSQuestionnaire = () => {
   };
 
 
-  // Dashboard view
-  if (view === "dashboard") {
-    return (
-      <Dashboard
-        plans={savedPlans as any}
-        onViewPlan={handleViewPlan as any}
-        onDeletePlan={handleDeletePlan as any}
-        onNewRegistration={handleNewRegistration as any}
-      />
-    );
-  }
+// Dashboard view
+if (view === "dashboard") {
+  return (
+    <Dashboard
+      plans={savedPlans as any}
+      onViewPlan={handleViewPlan as any}
+      onDeletePlan={handleDeletePlan as any}
+      onNewRegistration={handleNewRegistration as any}
+    />
+  );
+}
 
 
-  // Output view
-  if (view === "output") {
+// ✅ ADD PRELOADER VIEW HERE
+if (view === "preloader") {
+  return (
+    <BrandBudgetPreloader
+      onComplete={() => setView("output")}
+    />
+  );
+}
 
-    const businessType =
-      viewingPlan
-        ? viewingPlan.type
-        : isNewBusiness
-          ? "new"
-          : "existing";
 
-    if (businessType === "new") {
+// Output view
+if (view === "output") {
 
-      return (
-        <NewBusinessOutput
-          data={data as any}
-          onSave={handleSave}
-          onGoToDashboard={handleGoToDashboard}
-          onBack={() => {
-            setView("questionnaire");
-            setViewingPlan(null);
-          }}
-        />
-      );
+  const businessType =
+    viewingPlan
+      ? viewingPlan.type
+      : isNewBusiness
+        ? "new"
+        : "existing";
 
-    }
+  if (businessType === "new") {
 
     return (
-      <ExistingBusinessOutput
+      <NewBusinessOutput
         data={data as any}
         onSave={handleSave}
         onGoToDashboard={handleGoToDashboard}
@@ -485,6 +483,19 @@ const MIBBSQuestionnaire = () => {
 
   }
 
+  return (
+    <ExistingBusinessOutput
+      data={data as any}
+      onSave={handleSave}
+      onGoToDashboard={handleGoToDashboard}
+      onBack={() => {
+        setView("questionnaire");
+        setViewingPlan(null);
+      }}
+    />
+  );
+
+}
 
   const toggleBusinessMode = (mode: "Online" | "Offline" | "Both") => {
 

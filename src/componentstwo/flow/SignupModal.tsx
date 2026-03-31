@@ -15,7 +15,7 @@ interface SignupModalProps {
 type ViewState = 'LOGIN' | 'SIGNUP' | 'FORGOT';
 
 const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onComplete, onClose }) => {
-  const BASE_URL = "https://api.mibbs.ai/api";
+  const BASE_URL = "http://127.0.0.1:8000/api";
 
   // --- State Management ---
   const [view, setView] = useState<ViewState>('LOGIN'); // Main view switcher
