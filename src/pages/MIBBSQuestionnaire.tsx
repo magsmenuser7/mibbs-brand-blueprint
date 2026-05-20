@@ -255,7 +255,6 @@ const MIBBSQuestionnaire = () => {
 
 
   const handleAuthSuccess = async (user: any) => {
-    debugger;
 
     const saved = localStorage.getItem("pending_questionnaire");
 
@@ -587,7 +586,8 @@ if (view === "output") {
     try {
 
       const response = await axios.post(
-        "https://api.mibbs.ai/api/questionnaire/",
+        // "https://api.mibbs.ai/api/questionnaire/",
+        "http://127.0.0.1:8000/api/questionnaire/",
         payload
       );
 

@@ -3,29 +3,364 @@ import { useInView } from 'react-intersection-observer';
 import BudgetWasteChart from './charts/BudgetWasteChart';
 import IndiaChaosMap from './charts/IndiaChaosMap';
 import aboutimg from '../../assets/OChqC8uW.png';
+import { Italic } from 'lucide-react';
 
 export default function Act1WhyWeBuild() {
-  const headline = "For Years, We Watched India's Business Owners Waste Money Because Nobody Showed Them How Much to Spend";
+  const headline = "1. Why I Exist";
+
   const words = headline.split(' ');
 
   const paragraphs = [
     {
-      text: "We didn't build MIBBS because we wanted to create another software product.\n\nWe built it because for years across Guntur, Vizag, Hyderabad, Coimbatore, Indore, Surat, and hundreds of other cities we kept seeing the same painful pattern:",
+      text: "Every business wants to grow.",
       emphasis: false
     },
     {
-      text: "Business owners spending money on branding without a plan.\nAgencies pitching without any benchmark.\nFounders confused, frustrated, trusting the wrong people.\n\nMoney wasted. Time wasted. Opportunities wasted.",
+      text: "But growth decisions often come down to one difficult question: ",
       emphasis: true
     },
     {
-      text: "In every single consulting session, we heard the same question:\n\n'Sandeep, just tell me how much should I spend?'\n\nNot which agency.\nNot which campaign.\nAlways the same desperate question:\n\n'What's the right budget?'\n\nIt wasn't a branding question.\nIt was a survival question.",
+      text: <strong>Where should the money go?</strong>,
       emphasis: false
     },
     {
-      text: "That's when we realized something uncomfortable:\n\nIndia doesn't lack marketing tools.\nIndia lacks a planning system.\n\nMSMEs were spending 12–40% of their ad money inefficiently not because they were careless, but because nobody gave them structure.\n\nNobody told them what was normal for their city, their industry, their stage.\n\nThe branding industry in India ran on guesswork, not science.\n\nAnd every day that passed, thousands more businesses were making decisions in the dark.",
+      text: "Marketing, hiring, product development, expansion, technology, operations — every option competes for the same limited budget. ",
       emphasis: false
-    }
-  ];
+    },
+
+    {
+      text: "Most teams rely on instinct, scattered spreadsheets, or past habits to make these decisions. Sometimes it works. Often, it leaves opportunities unexplored. ",
+      emphasis: false
+    },
+    {
+      text: "That’s where I come in. ",
+      emphasis: false
+    },
+
+    {
+      text: (
+        <>
+          I exist to help you{" "}
+          <strong>think more clearly about budget allocation.</strong>
+        </>
+      ),
+      emphasis: false
+    },
+    {
+      text: "Instead of guessing, I analyze how different budget distributions could affect your goals. I simulate scenarios and highlight where your resources might create the most impact.",
+      emphasis: false
+    },
+    {
+      text: (
+        <span>
+          I don’t replace your judgment. I simply help you{" "}
+          <strong>see the decision space more clearly.</strong>
+        </span>
+      ),
+      emphasis: false
+    },
+    {
+      text: (
+        <span>
+          Think of me as a {" "}
+          <strong>strategic thinking partner </strong>
+          for one of the most important decisions
+          your business makes:
+        </span>
+      ),
+      emphasis: false
+    },
+
+    {
+      text: <strong>how to invest its resources. </strong>,
+      emphasis: false
+    },
+
+     {
+      text: <strong>2. How to Use Me  </strong>,
+      emphasis: false
+    },
+    {
+      text: "Using me is simple. You bring the context. I help you explore the possibilities. ",
+      emphasis: false
+    },
+
+    {
+    text: (
+      <strong className="text-[25px] font-bold">
+        Step 1 — Tell me about your business
+      </strong>
+    ),
+    emphasis: false
+  },
+  {
+    text: (
+      <>
+        <p className="mb-4">
+          Start by sharing the key inputs that define your situation:
+        </p>
+
+        <ul className="list-disc pl-8 space-y-2">
+          <li>Your total available budget</li>
+          <li>
+            The departments or initiatives competing for funding
+          </li>
+          <li>
+            Your primary business goals (growth, profitability,
+            market expansion, etc.)
+          </li>
+        </ul>
+      </>
+    ),
+    emphasis: false
+  },
+  {
+      text: "The more context you provide, the more relevant my analysis becomes. ",
+      emphasis: false
+    },
+
+    {
+  text: (
+    <>
+      <strong className="text-[25px] font-bold block mb-6">
+        Step 2 — Define priorities
+      </strong>
+
+      <p className="mb-6 leading-relaxed">
+        Not every company values the same outcomes.
+        <br />
+        You can indicate what matters most to you:
+      </p>
+
+      <ul className="list-disc pl-10 space-y-3">
+        <li>Faster growth</li>
+        <li>Risk reduction</li>
+        <li>Balanced spending</li>
+        <li>Strategic experimentation</li>
+      </ul>
+    </>
+  ),
+  emphasis: false
+},
+
+ {
+      text: "These priorities guide how I evaluate possible allocations.",
+      emphasis: false
+    },
+
+
+    {
+  text: (
+    <>
+      <strong className="text-[25px] font-bold block mb-6">
+        Step 3 — Explore allocation scenarios
+      </strong>
+
+      <p className="mb-8 leading-relaxed">
+        Once I understand your inputs, I generate possible
+        budget allocations and analyze their potential outcomes.
+      </p>
+
+      <p className="mb-6 leading-relaxed">
+        You’ll see:
+      </p>
+
+      <ul className="list-disc pl-10 space-y-3">
+        <li>Different distribution strategies</li>
+        <li>Trade-offs between options</li>
+        <li>Potential risks</li>
+        <li>Areas of opportunity</li>
+      </ul>
+    </>
+  ),
+  emphasis: false
+},
+{
+ text: (
+        <span>
+          You can adjust inputs and instantly explore{" "}
+          <strong>new scenarios. </strong>
+        </span>
+      ),
+      emphasis: false
+    },
+
+
+    {
+    text: (
+      <strong className="text-[25px] font-bold">
+        Step 4 — Make the final decision 
+      </strong>
+    ),
+    emphasis: false
+  },
+
+
+  {
+ text: (
+        <span>
+          I provide analysis —{" "}
+          <strong>you stay in control. </strong>
+        </span>
+      ),
+      emphasis: false
+    },
+
+    {
+ text: (
+        <span>
+          You decide which allocation aligns best with your vision, strategy and risk tolerance.
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+      text: <strong>3. How You Can Trust Me  </strong>,
+      emphasis: false
+    },
+
+    {
+ text: (
+        <span>
+          Trust in decision tools comes from{" "}
+          <strong>transparency and control. </strong>
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+          Here’s how I approach both. {" "}
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+    {
+      text: <strong>I show my reasoning </strong>,
+      emphasis: false
+    },
+
+    {
+ text: (
+        <span>
+          Whenever I suggest an allocation, I explain the logic behind it. You can see what factors 
+influenced the analysis and how the scenario was evaluated. {" "}
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+          No hidden logic. No mysterious outputs. {" "}
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+      text: <strong>I support your thinking — I don’t replace it  </strong>,
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+         My role is to assist decision-making, not automate it.{" "}
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+          Your experience, industry knowledge, and strategy remain central to every choice. I 
+simply provide{" "}
+          <strong> structured insights to support your judgment. </strong>
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+      text: <strong>Your data stays yours  </strong>,
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+         The information you provide is used only to generate analysis for your session. It is not 
+sold, repurposed, or used to make decisions outside your control. 
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+
+     {
+ text: (
+        <span>
+You decide what to share and how to use the insights. 
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+    {
+      text: <strong>You can challenge every result </strong>,
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+If a recommendation doesn’t feel right, you can adjust inputs, priorities, or constraints 
+and immediately see alternative outcomes. 
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+     {
+ text: (
+        <span>
+In other words:
+          
+        </span>
+      ),
+      emphasis: false
+    },
+
+    {
+      text: <strong>You remain the strategist.  </strong>,
+      emphasis: false
+    },
+
+    {
+      text: <strong>I help you see the map. </strong>,
+      emphasis: false
+    },
+
+
+
+
+
+];
 
 
 
@@ -57,11 +392,11 @@ export default function Act1WhyWeBuild() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          The Truth We Couldn't Ignore
+          Meet Your Budget Intelligence
         </motion.p>
 
         {/* Headline with word-by-word animation */}
-        <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 leading-tight">
+        <h1 className="text-3xl md:text-5xl font-bold text-left mb-8 md:mb-12 leading-tight">
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -78,6 +413,7 @@ export default function Act1WhyWeBuild() {
             </motion.span>
           ))}
         </h1>
+
 
         {/* Narrative Paragraphs */}
         <div className="space-y-8 text-lg md:text-xl leading-relaxed">
