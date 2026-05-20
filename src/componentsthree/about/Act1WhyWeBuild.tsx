@@ -387,7 +387,7 @@ In other words:
 
         {/* Section Label */}
         <motion.p
-          className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-purple-200 mb-4"
+          className="text-xs font-semibold uppercase tracking-[0.2em] text-purple-200 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
